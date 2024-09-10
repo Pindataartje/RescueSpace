@@ -10,15 +10,15 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] bool _isMoveAction;
     [SerializeField] Vector2 _currentMovementInput;
-
-    [SerializeField] Rigidbody _rb;
-    [SerializeField] private Transform _orientation;
-
-
-    [SerializeField] Vector3 _movement;
     [SerializeField] Vector3 _currentMovement;
 
+    [SerializeField] Rigidbody _rb;
+    [SerializeField] Transform _playerModel;
+    [SerializeField] Transform _orientation;
+
     [SerializeField] float _moveForce;
+
+    [SerializeField] float _playerRotationSpeed;
 
     private void Awake()
     {
@@ -35,7 +35,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnDisable()
     {
-
+        playerInput.actions.FindAction("Move").started -= OnMovement;
+        playerInput.actions.FindAction("Move").performed -= OnMovement;
+        playerInput.actions.FindAction("Move").canceled -= OnMovement;
     }
 
     private void Update()
@@ -43,6 +45,12 @@ public class PlayerController : MonoBehaviour
         _currentMovement = (_orientation.forward * _currentMovementInput.y) + (_orientation.right * _currentMovementInput.x); // NORMALIZE MAYBE?
 
         SpeedControl();
+
+        if (_isMoveAction)
+        {
+            Quaternion lookRotation = Quaternion.LookRotation(_currentMovement, Vector3.up);
+            _playerModel.transform.rotation = Quaternion.Slerp(_playerModel.transform.rotation, lookRotation, Time.deltaTime * _playerRotationSpeed);
+        }
     }
 
     private void FixedUpdate()
