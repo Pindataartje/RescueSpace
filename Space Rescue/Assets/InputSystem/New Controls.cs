@@ -62,6 +62,15 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Recal"",
+                    ""type"": ""Button"",
+                    ""id"": ""37c1fd85-5f61-4021-982f-2b3c02ff9558"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -152,6 +161,17 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
                     ""action"": ""Throw"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6a0ff1f6-cb0d-480f-b8da-b40ab32831ff"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Recal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -192,6 +212,7 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
         m_Game_Camera = m_Game.FindAction("Camera", throwIfNotFound: true);
         m_Game_MouseMove = m_Game.FindAction("MouseMove", throwIfNotFound: true);
         m_Game_Throw = m_Game.FindAction("Throw", throwIfNotFound: true);
+        m_Game_Recal = m_Game.FindAction("Recal", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Back = m_Menu.FindAction("Back", throwIfNotFound: true);
@@ -260,6 +281,7 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Game_Camera;
     private readonly InputAction m_Game_MouseMove;
     private readonly InputAction m_Game_Throw;
+    private readonly InputAction m_Game_Recal;
     public struct GameActions
     {
         private @NewControls m_Wrapper;
@@ -268,6 +290,7 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
         public InputAction @Camera => m_Wrapper.m_Game_Camera;
         public InputAction @MouseMove => m_Wrapper.m_Game_MouseMove;
         public InputAction @Throw => m_Wrapper.m_Game_Throw;
+        public InputAction @Recal => m_Wrapper.m_Game_Recal;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -289,6 +312,9 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
             @Throw.started += instance.OnThrow;
             @Throw.performed += instance.OnThrow;
             @Throw.canceled += instance.OnThrow;
+            @Recal.started += instance.OnRecal;
+            @Recal.performed += instance.OnRecal;
+            @Recal.canceled += instance.OnRecal;
         }
 
         private void UnregisterCallbacks(IGameActions instance)
@@ -305,6 +331,9 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
             @Throw.started -= instance.OnThrow;
             @Throw.performed -= instance.OnThrow;
             @Throw.canceled -= instance.OnThrow;
+            @Recal.started -= instance.OnRecal;
+            @Recal.performed -= instance.OnRecal;
+            @Recal.canceled -= instance.OnRecal;
         }
 
         public void RemoveCallbacks(IGameActions instance)
@@ -374,6 +403,7 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
         void OnCamera(InputAction.CallbackContext context);
         void OnMouseMove(InputAction.CallbackContext context);
         void OnThrow(InputAction.CallbackContext context);
+        void OnRecal(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

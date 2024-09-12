@@ -17,11 +17,15 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] bool _isThrow;
 
+    [SerializeField] bool _isRecal;
+
     [SerializeField] LayerMask _throwLayer;
     [SerializeField] RaycastHit _throwHit;
 
-    [SerializeField] GameObject _throwHitArea;
+    [SerializeField] GameObject _mouseReticle;
+
     [SerializeField] Transform _throwSpot;
+    public Transform restSpot;
 
     [SerializeField] List<GameObject> _robots = new();
 
@@ -57,7 +61,11 @@ public class PlayerController : MonoBehaviour
 
         playerInput.actions.FindAction("Throw").started += StartThrow;
         // playerInput.actions.FindAction("Throw").performed += UpdateThrow;
-        playerInput.actions.FindAction("Throw").canceled += StopThrow;
+        playerInput.actions.FindAction("Throw").canceled += PerformThrow;
+
+        playerInput.actions.FindAction("Recal").started += OnRecal;
+        playerInput.actions.FindAction("Recal").performed += OnRecal;
+        playerInput.actions.FindAction("Recal").canceled += OnRecal;
     }
 
     private void OnDisable()
@@ -71,7 +79,11 @@ public class PlayerController : MonoBehaviour
 
         playerInput.actions.FindAction("Throw").started -= StartThrow;
         // playerInput.actions.FindAction("Throw").performed -= UpdateThrow;
-        playerInput.actions.FindAction("Throw").canceled -= StopThrow;
+        playerInput.actions.FindAction("Throw").canceled -= PerformThrow;
+
+        playerInput.actions.FindAction("Recal").started -= OnRecal;
+        playerInput.actions.FindAction("Recal").performed -= OnRecal;
+        playerInput.actions.FindAction("Recal").canceled -= OnRecal;
     }
 
     private void Update()
@@ -88,11 +100,18 @@ public class PlayerController : MonoBehaviour
 
         if (_isThrow)
         {
-            UpdateThrow();
+            HoldThrow();
+        }
+
+        HandleMouseReticle();
+
+        if (_isRecal) // can be better optimized to only happen on button press and not always in the update
+        {
+            _mouseReticle.GetComponent<TestRecal>().canCheck = true;
         }
         else
         {
-            _throwHitArea.SetActive(false);
+            _mouseReticle.GetComponent<TestRecal>().canCheck = false;
         }
 
         // if (_isMouseMovement) // Set Destanation to null if reached
@@ -110,6 +129,18 @@ public class PlayerController : MonoBehaviour
         //         _agent.SetDestination(hit.point);
         //     }
         // }
+    }
+
+    public void HandleMouseReticle()
+    {
+        Vector3 mousePos = Mouse.current.position.ReadValue();
+
+        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+
+        if (Physics.Raycast(ray, out _throwHit, Mathf.Infinity, _throwLayer))
+        {
+            _mouseReticle.transform.position = _throwHit.point;
+        }
     }
 
     public void ArcThrow(Vector3 start, Vector3 target)
@@ -140,9 +171,11 @@ public class PlayerController : MonoBehaviour
 
     void StartThrow(InputAction.CallbackContext context)
     {
-        _robotToThrow = _robots[0]; // FIX EMPTY
-
-        _robots.RemoveAt(0);
+        if (_robots.Count > 0)
+        {
+            _robotToThrow = _robots[0];
+            _robots.RemoveAt(0);
+        }
 
         if (_robotToThrow != null)
         {
@@ -155,43 +188,44 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void UpdateThrow()
+    public void AddRobot(GameObject newRobot)
     {
-        _throwHitArea.SetActive(true);
-
-        _robotToThrow.transform.position = _throwSpot.position;
-
-        Vector3 mousePos = Mouse.current.position.ReadValue();
-
-        Ray ray = Camera.main.ScreenPointToRay(mousePos);
-
-        if (Physics.Raycast(ray, out _throwHit, Mathf.Infinity, _throwLayer))
-        {
-            Debug.Log($"Ray hit the ground at: {_throwHit.point}");
-            _throwHitArea.transform.position = _throwHit.point;
-
-            Quaternion lookRotation = Quaternion.LookRotation(_throwHit.point, Vector3.up);
-            _playerModel.transform.rotation = Quaternion.Slerp(_playerModel.transform.rotation, lookRotation, Time.deltaTime * _playerRotationSpeed);
-        }
+        _robots.Add(newRobot);
     }
 
-    void StopThrow(InputAction.CallbackContext context)
+    void HoldThrow() // maybe change robot state
     {
+        _robotToThrow.transform.position = _throwSpot.position;
+
+        Quaternion lookRotation = Quaternion.LookRotation(_throwHit.point, Vector3.up);
+        _playerModel.transform.rotation = Quaternion.Slerp(_playerModel.transform.rotation, lookRotation, Time.deltaTime * _playerRotationSpeed);
+    }
+
+    void PerformThrow(InputAction.CallbackContext context)
+    {
+        _mouseReticle.SetActive(true);
+
         if (_isThrow)
         {
             _isThrow = false;
 
             ArcThrow(_throwSpot.position, _throwHit.point);
+
+            _robotToThrow = null;
         }
         else
         {
+            _robotToThrow = null;
+
             Debug.Log("nah");
         }
     }
 
     void CancleThrow() // put down robot instead of throwing
     {
+        _robotToThrow = null;
 
+        _robotToThrow.GetComponent<RobotAI>().ChangeState(RobotAI.State.FOLLOW);
     }
 
     void SpeedControl()
@@ -214,5 +248,10 @@ public class PlayerController : MonoBehaviour
     private void OnMouseMovement(InputAction.CallbackContext context)
     {
         _isMouseMovement = context.ReadValueAsButton();
+    }
+
+    private void OnRecal(InputAction.CallbackContext context)
+    {
+        _isRecal = context.ReadValueAsButton();
     }
 }

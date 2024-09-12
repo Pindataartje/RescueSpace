@@ -141,7 +141,7 @@ public class RobotAI : MonoBehaviour
     {
         _currentState = State.FOLLOW;
 
-        _target = _player;
+        _target = _player.GetComponent<PlayerController>().restSpot;
 
         _agent.stoppingDistance = _robotInfo.followDistance;
     }
@@ -152,14 +152,15 @@ public class RobotAI : MonoBehaviour
 
         _distanceFromTarget = Vector3.Distance(transform.position, _target.position);
 
-        // if (agent.stoppingDistance > _distanceFromTarget)
-        // {
-        //     agent.isStopped = true;
-        // }
-        // else
-        // {
-        //     agent.isStopped = false;
-        // }
+        if (_agent.stoppingDistance > _distanceFromTarget)
+        {
+            _player.GetComponent<PlayerController>().AddRobot(this.gameObject);
+            _agent.isStopped = true;
+        }
+        else
+        {
+            _agent.isStopped = false;
+        }
     }
 
     void StopFollow()
