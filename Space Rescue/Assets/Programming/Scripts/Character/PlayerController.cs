@@ -28,8 +28,14 @@ public class PlayerController : MonoBehaviour
     public Transform restSpot;
 
     [SerializeField] List<GameObject> _robots = new();
+    public List<GameObject> Robots
+    {
+        get { return _robots; }
+    }
 
-    [SerializeField] GameObject _robotToThrow;
+    [SerializeField] int _robotTypeIndex;
+
+    [SerializeField] GameObject _currentRobot;
 
     [SerializeField] LayerMask _walkLayerMask;
 
@@ -60,7 +66,6 @@ public class PlayerController : MonoBehaviour
         playerInput.actions.FindAction("MouseMove").canceled += OnMouseMovement;
 
         playerInput.actions.FindAction("Throw").started += StartThrow;
-        // playerInput.actions.FindAction("Throw").performed += UpdateThrow;
         playerInput.actions.FindAction("Throw").canceled += PerformThrow;
 
         playerInput.actions.FindAction("Recal").started += OnRecal;
@@ -78,7 +83,6 @@ public class PlayerController : MonoBehaviour
         playerInput.actions.FindAction("MouseMove").canceled -= OnMouseMovement;
 
         playerInput.actions.FindAction("Throw").started -= StartThrow;
-        // playerInput.actions.FindAction("Throw").performed -= UpdateThrow;
         playerInput.actions.FindAction("Throw").canceled -= PerformThrow;
 
         playerInput.actions.FindAction("Recal").started -= OnRecal;
@@ -88,7 +92,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        _currentMovement = (_orientation.forward * _currentMovementInput.y) + (_orientation.right * _currentMovementInput.x); // NORMALIZE MAYBE?
+        _currentMovement = (_orientation.forward * _currentMovementInput.y) + (_orientation.right * _currentMovementInput.x);
 
         SpeedControl();
 
@@ -143,20 +147,42 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void ArcThrow(Vector3 start, Vector3 target)
+    public void SimulatedArcThrow(Vector3 start, Vector3 target, GameObject robot, float duration)
     {
-        Vector3 direction = (target - start);
-        float distance = direction.magnitude;
-        direction.Normalize();
+        robot.GetComponent<NavMeshAgent>().enabled = false;
 
-        float angle = 45f * Mathf.Deg2Rad;
-        float velocity = Mathf.Sqrt(distance * Physics.gravity.magnitude / Mathf.Sin(2 * angle));
+        StartCoroutine(ArcMovement(start, target, robot, duration));
+    }
 
-        Vector3 horizontalVelocity = direction * velocity * Mathf.Cos(angle);
-        Vector3 verticalVelocity = Vector3.up * velocity * Mathf.Sin(angle);
+    private IEnumerator ArcMovement(Vector3 start, Vector3 target, GameObject robot, float duration)
+    {
+        float timeElapsed = 0f;
+        Vector3 peak = (start + target) / 2f + Vector3.up * 5f;
 
-        _robotToThrow.GetComponent<Rigidbody>().velocity = horizontalVelocity + verticalVelocity;
-        _robotToThrow.GetComponent<Rigidbody>().useGravity = true;
+        while (timeElapsed < duration)
+        {
+            timeElapsed += Time.deltaTime;
+
+            float t = timeElapsed / duration;
+            Vector3 currentPos = CalculateParabolicPosition(start, peak, target, t);
+
+            robot.transform.position = currentPos;
+
+            yield return null;
+        }
+
+        // MAYBE MAKE IT NOT GO INTO THE GROUND
+
+        robot.GetComponent<NavMeshAgent>().enabled = true;
+
+        robot.GetComponent<RobotAI>().ChangeState(RobotAI.State.ATTACK);
+    }
+
+    private Vector3 CalculateParabolicPosition(Vector3 start, Vector3 peak, Vector3 end, float t)
+    {
+        Vector3 a = Vector3.Lerp(start, peak, t);
+        Vector3 b = Vector3.Lerp(peak, end, t);
+        return Vector3.Lerp(a, b, t);
     }
 
     private void FixedUpdate()
@@ -173,17 +199,17 @@ public class PlayerController : MonoBehaviour
     {
         if (_robots.Count > 0)
         {
-            _robotToThrow = _robots[0];
+            _currentRobot = _robots[0];
             _robots.RemoveAt(0);
         }
 
-        if (_robotToThrow != null)
+        if (_currentRobot != null)
         {
             _isThrow = true;
 
-            _robotToThrow.GetComponent<RobotAI>().ChangeState(RobotAI.State.IDLE);
-            _robotToThrow.GetComponent<NavMeshAgent>().enabled = false;
-            _robotToThrow.GetComponent<Collider>().isTrigger = true;
+            _currentRobot.GetComponent<RobotAI>().ChangeState(RobotAI.State.IDLE);
+            _currentRobot.GetComponent<NavMeshAgent>().enabled = false;
+            _currentRobot.GetComponent<Collider>().isTrigger = true;
         }
 
     }
@@ -195,7 +221,7 @@ public class PlayerController : MonoBehaviour
 
     void HoldThrow() // maybe change robot state
     {
-        _robotToThrow.transform.position = _throwSpot.position;
+        _currentRobot.transform.position = _throwSpot.position;
 
         Quaternion lookRotation = Quaternion.LookRotation(_throwHit.point, Vector3.up);
         _playerModel.transform.rotation = Quaternion.Slerp(_playerModel.transform.rotation, lookRotation, Time.deltaTime * _playerRotationSpeed);
@@ -209,13 +235,12 @@ public class PlayerController : MonoBehaviour
         {
             _isThrow = false;
 
-            ArcThrow(_throwSpot.position, _throwHit.point);
-
-            _robotToThrow = null;
+            SimulatedArcThrow(_throwSpot.position, _throwHit.point, _currentRobot, 0.75f);
+            _currentRobot = null;
         }
         else
         {
-            _robotToThrow = null;
+            _currentRobot = null;
 
             Debug.Log("nah");
         }
@@ -223,9 +248,9 @@ public class PlayerController : MonoBehaviour
 
     void CancleThrow() // put down robot instead of throwing
     {
-        _robotToThrow = null;
+        _currentRobot = null;
 
-        _robotToThrow.GetComponent<RobotAI>().ChangeState(RobotAI.State.FOLLOW);
+        _currentRobot.GetComponent<RobotAI>().ChangeState(RobotAI.State.FOLLOW);
     }
 
     void SpeedControl()

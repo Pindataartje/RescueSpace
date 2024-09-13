@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class RobotAI : MonoBehaviour
+public class RobotAI : Entity
 {
     [SerializeField] Robot _robotInfo;
 
@@ -21,7 +21,7 @@ public class RobotAI : MonoBehaviour
 
     [SerializeField] float _distanceFromTarget;
 
-    private void Start()
+    public override void Start()
     {
         if (_robotInfo != null)
         {
@@ -29,7 +29,7 @@ public class RobotAI : MonoBehaviour
         }
     }
 
-    private void Update()
+    public override void Update()
     {
         CheckState(_currentState);
 
@@ -143,6 +143,8 @@ public class RobotAI : MonoBehaviour
 
         _target = _player.GetComponent<PlayerController>().restSpot;
 
+        _agent.enabled = true;
+
         _agent.stoppingDistance = _robotInfo.followDistance;
     }
 
@@ -152,9 +154,8 @@ public class RobotAI : MonoBehaviour
 
         _distanceFromTarget = Vector3.Distance(transform.position, _target.position);
 
-        if (_agent.stoppingDistance > _distanceFromTarget)
+        if (_agent.stoppingDistance > _distanceFromTarget && !_agent.isStopped)
         {
-            _player.GetComponent<PlayerController>().AddRobot(this.gameObject);
             _agent.isStopped = true;
         }
         else
@@ -252,9 +253,12 @@ public class RobotAI : MonoBehaviour
         StartCoroutine(Attacking());
     }
 
-    public IEnumerator Attacking()
+    public IEnumerator Attacking() // make sure it stops attacking before changing state
     {
-        _target.GetComponent<Entity>().TakeDamage(_robotInfo.damage);
+        if (_target != null)
+        {
+            _target.GetComponent<Entity>().TakeDamage(_robotInfo.damage); // this still happens with this because it tries to attack the player ( probably )
+        }
 
         yield return new WaitForSeconds(_robotInfo.fireRate);
 

@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 54526136}
   - component: {fileID: 54526135}
   - component: {fileID: 54526134}
-  - component: {fileID: 54526133}
   - component: {fileID: 54526132}
   - component: {fileID: 54526131}
   m_Layer: 6
@@ -174,12 +173,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b774bbedf999a4793e5e093647b509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
+  type: 0
   _robotInfo: {fileID: 11400000, guid: bb1a913f7ec672a4385a515a88ac1de7, type: 2}
   _agent: {fileID: 54526132}
   _target: {fileID: 0}
   _player: {fileID: 2146559204}
   _collider: {fileID: 54526134}
-  _rb: {fileID: 54526133}
+  _rb: {fileID: 0}
   _isAttacking: 0
   _distanceFromTarget: 0
   _currentState: 0
@@ -205,33 +206,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!54 &54526133
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 54526129}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!136 &54526134
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -350,8 +324,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToCarry: {fileID: 142727704}
-  numberOfPikmin: 5
-  radius: 1
+  numberOfPikmin: 0
+  radius: 3
+  player: {fileID: 355293593}
 --- !u!1 &142727700
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,6 +447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+  type: 0
   _enemyInfo: {fileID: 11400000, guid: 7782fa1d400a7e74c898bae00b2a77da, type: 2}
   _killedMaterial: {fileID: 2100000, guid: fc48760c6d293b14c922486a5903aa3c, type: 2}
   _normalMaterial: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
@@ -488,12 +464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pikminPositioner: {fileID: 125843179}
-  pikminArray:
-  - {fileID: 1547499654}
-  - {fileID: 1664117602}
-  - {fileID: 1134112463}
-  - {fileID: 1657394237}
-  - {fileID: 54526130}
+  pikminArray: []
 --- !u!1 &355293592
 GameObject:
   m_ObjectHideFlags: 0
@@ -1303,9 +1274,13 @@ MonoBehaviour:
   player: {fileID: 2146559204}
   offset: {x: 0, y: 0, z: 0}
   restSpot: {fileID: 644006004}
+  _squadRange: 1
   _terrainLayer:
     serializedVersion: 2
     m_Bits: 1
+  _robotLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &889732939
 GameObject:
   m_ObjectHideFlags: 0
@@ -1598,7 +1573,6 @@ GameObject:
   - component: {fileID: 1134112469}
   - component: {fileID: 1134112468}
   - component: {fileID: 1134112467}
-  - component: {fileID: 1134112466}
   - component: {fileID: 1134112465}
   - component: {fileID: 1134112464}
   m_Layer: 6
@@ -1637,12 +1611,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b774bbedf999a4793e5e093647b509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
+  type: 0
   _robotInfo: {fileID: 11400000, guid: bb1a913f7ec672a4385a515a88ac1de7, type: 2}
   _agent: {fileID: 1134112465}
   _target: {fileID: 0}
   _player: {fileID: 2146559204}
   _collider: {fileID: 1134112467}
-  _rb: {fileID: 1134112466}
+  _rb: {fileID: 0}
   _isAttacking: 0
   _distanceFromTarget: 0
   _currentState: 0
@@ -1668,33 +1644,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!54 &1134112466
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1134112462}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!136 &1134112467
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1894,7 +1843,6 @@ GameObject:
   - component: {fileID: 1547499653}
   - component: {fileID: 1547499652}
   - component: {fileID: 1547499651}
-  - component: {fileID: 1547499657}
   - component: {fileID: 1547499655}
   - component: {fileID: 1547499656}
   m_Layer: 6
@@ -2028,42 +1976,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b774bbedf999a4793e5e093647b509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
+  type: 0
   _robotInfo: {fileID: 11400000, guid: bb1a913f7ec672a4385a515a88ac1de7, type: 2}
   _agent: {fileID: 1547499655}
   _target: {fileID: 0}
   _player: {fileID: 2146559204}
   _collider: {fileID: 1547499651}
-  _rb: {fileID: 1547499657}
+  _rb: {fileID: 0}
   _isAttacking: 0
   _distanceFromTarget: 0
   _currentState: 0
---- !u!54 &1547499657
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1547499650}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1639079657
 GameObject:
   m_ObjectHideFlags: 0
@@ -2159,7 +2082,6 @@ GameObject:
   - component: {fileID: 1657394243}
   - component: {fileID: 1657394242}
   - component: {fileID: 1657394241}
-  - component: {fileID: 1657394240}
   - component: {fileID: 1657394239}
   - component: {fileID: 1657394238}
   m_Layer: 6
@@ -2198,12 +2120,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b774bbedf999a4793e5e093647b509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
+  type: 0
   _robotInfo: {fileID: 11400000, guid: bb1a913f7ec672a4385a515a88ac1de7, type: 2}
   _agent: {fileID: 1657394239}
   _target: {fileID: 0}
   _player: {fileID: 2146559204}
   _collider: {fileID: 1657394241}
-  _rb: {fileID: 1657394240}
+  _rb: {fileID: 0}
   _isAttacking: 0
   _distanceFromTarget: 0
   _currentState: 0
@@ -2229,33 +2153,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!54 &1657394240
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1657394236}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!136 &1657394241
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2341,7 +2238,6 @@ GameObject:
   - component: {fileID: 1664117608}
   - component: {fileID: 1664117607}
   - component: {fileID: 1664117606}
-  - component: {fileID: 1664117605}
   - component: {fileID: 1664117604}
   - component: {fileID: 1664117603}
   m_Layer: 6
@@ -2380,12 +2276,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b774bbedf999a4793e5e093647b509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
+  type: 0
   _robotInfo: {fileID: 11400000, guid: bb1a913f7ec672a4385a515a88ac1de7, type: 2}
   _agent: {fileID: 1664117604}
   _target: {fileID: 0}
   _player: {fileID: 2146559204}
   _collider: {fileID: 1664117606}
-  _rb: {fileID: 1664117605}
+  _rb: {fileID: 0}
   _isAttacking: 0
   _distanceFromTarget: 0
   _currentState: 0
@@ -2411,33 +2309,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!54 &1664117605
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1664117601}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!136 &1664117606
 CapsuleCollider:
   m_ObjectHideFlags: 0
