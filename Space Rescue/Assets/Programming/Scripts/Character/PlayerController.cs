@@ -147,6 +147,75 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        MoveMent();
+    }
+
+    #region ROBOTS
+
+    #endregion
+
+    void MoveMent()
+    {
+        _rb.AddForce(_currentMovement.normalized * _moveForce * 10f, ForceMode.Force);
+    }
+
+    #region THROW
+
+    void StartThrow(InputAction.CallbackContext context)
+    {
+        if (_robots.Count > 0)
+        {
+            _currentRobot = _robots[0];
+            _robots.RemoveAt(0);
+        }
+
+        if (_currentRobot != null)
+        {
+            _isThrow = true;
+
+            _currentRobot.GetComponent<RobotAI>().ChangeState(RobotAI.State.IDLE);
+            _currentRobot.GetComponent<NavMeshAgent>().enabled = false;
+            _currentRobot.GetComponent<Collider>().isTrigger = true;
+        }
+
+    }
+
+    void HoldThrow() // maybe change robot state
+    {
+        _currentRobot.transform.position = _throwSpot.position;
+
+        Quaternion lookRotation = Quaternion.LookRotation(_throwHit.point, Vector3.up);
+        _playerModel.transform.rotation = Quaternion.Slerp(_playerModel.transform.rotation, lookRotation, Time.deltaTime * _playerRotationSpeed);
+    }
+
+    void PerformThrow(InputAction.CallbackContext context)
+    {
+        _mouseReticle.SetActive(true);
+
+        if (_isThrow)
+        {
+            _isThrow = false;
+
+            SimulatedArcThrow(_throwSpot.position, _throwHit.point, _currentRobot, 0.75f);
+            _currentRobot = null;
+        }
+        else
+        {
+            _currentRobot = null;
+
+            // Debug.Log("nah");
+        }
+    }
+
+    void CancleThrow() // put down robot instead of throwing
+    {
+        _currentRobot = null;
+
+        _currentRobot.GetComponent<RobotAI>().ChangeState(RobotAI.State.FOLLOW);
+    }
+
     public void SimulatedArcThrow(Vector3 start, Vector3 target, GameObject robot, float duration)
     {
         robot.GetComponent<NavMeshAgent>().enabled = false;
@@ -185,72 +254,11 @@ public class PlayerController : MonoBehaviour
         return Vector3.Lerp(a, b, t);
     }
 
-    private void FixedUpdate()
+    #endregion
+
+    public void AddRobot(GameObject robot)
     {
-        MoveMent();
-    }
-
-    void MoveMent()
-    {
-        _rb.AddForce(_currentMovement.normalized * _moveForce * 10f, ForceMode.Force);
-    }
-
-    void StartThrow(InputAction.CallbackContext context)
-    {
-        if (_robots.Count > 0)
-        {
-            _currentRobot = _robots[0];
-            _robots.RemoveAt(0);
-        }
-
-        if (_currentRobot != null)
-        {
-            _isThrow = true;
-
-            _currentRobot.GetComponent<RobotAI>().ChangeState(RobotAI.State.IDLE);
-            _currentRobot.GetComponent<NavMeshAgent>().enabled = false;
-            _currentRobot.GetComponent<Collider>().isTrigger = true;
-        }
-
-    }
-
-    public void AddRobot(GameObject newRobot)
-    {
-        _robots.Add(newRobot);
-    }
-
-    void HoldThrow() // maybe change robot state
-    {
-        _currentRobot.transform.position = _throwSpot.position;
-
-        Quaternion lookRotation = Quaternion.LookRotation(_throwHit.point, Vector3.up);
-        _playerModel.transform.rotation = Quaternion.Slerp(_playerModel.transform.rotation, lookRotation, Time.deltaTime * _playerRotationSpeed);
-    }
-
-    void PerformThrow(InputAction.CallbackContext context)
-    {
-        _mouseReticle.SetActive(true);
-
-        if (_isThrow)
-        {
-            _isThrow = false;
-
-            SimulatedArcThrow(_throwSpot.position, _throwHit.point, _currentRobot, 0.75f);
-            _currentRobot = null;
-        }
-        else
-        {
-            _currentRobot = null;
-
-            Debug.Log("nah");
-        }
-    }
-
-    void CancleThrow() // put down robot instead of throwing
-    {
-        _currentRobot = null;
-
-        _currentRobot.GetComponent<RobotAI>().ChangeState(RobotAI.State.FOLLOW);
+        _robots.Add(robot);
     }
 
     void SpeedControl()

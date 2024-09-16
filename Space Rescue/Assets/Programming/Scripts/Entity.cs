@@ -12,6 +12,8 @@ public class Entity : MonoBehaviour
     public enum Type
     {
         NONE,
+        FIRE,
+        WATER,
     }
 
     public virtual void Start()

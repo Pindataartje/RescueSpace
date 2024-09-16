@@ -5,45 +5,56 @@ using UnityEngine;
 public class TestPosition : MonoBehaviour
 {
     public Transform objectToCarry;
-    public int numberOfRobts;
+    public int numberOfRobotsNeeded;
     public float radius;
-
     public Transform player;
+    public List<Transform> robots = new List<Transform>();
 
-    public void PositionPikmin(Transform[] robots)
+    public float _extraRobotPercent;
+
+    private List<Transform> robotPositionTransforms = new List<Transform>();
+
+    void Start()
     {
-        numberOfRobts = robots.Length;
+        GeneratePositionTransforms();
+    }
 
-        float angleStep = 360f / numberOfRobts;
+    private void GeneratePositionTransforms()
+    {
+        int totalPositions = Mathf.CeilToInt(numberOfRobotsNeeded * _extraRobotPercent);
 
-        for (int i = 0; i < numberOfRobts; i++)
+        float angleStep = 360f / totalPositions;
+
+        for (int i = 0; i < totalPositions; i++)
         {
             float angle = i * angleStep;
             float angleRad = Mathf.Deg2Rad * angle;
 
-            Vector3 robotPos = new Vector3(objectToCarry.position.x + Mathf.Cos(angleRad) * radius, objectToCarry.position.y, objectToCarry.position.z + Mathf.Sin(angleRad) * radius);
+            Vector3 position = new Vector3(objectToCarry.position.x + Mathf.Cos(angleRad) * radius, objectToCarry.position.y, objectToCarry.position.z + Mathf.Sin(angleRad) * radius);
 
-            robots[i].position = robotPos;
-            robots[i].LookAt(objectToCarry);
+            GameObject positionObject = new GameObject("Position_" + i);
+            positionObject.transform.position = position;
+            positionObject.transform.parent = transform;
+
+            robotPositionTransforms.Add(positionObject.transform);
         }
     }
 
-    void RobotTypeSplitter(Transform[] robots)
+    [SerializeField] float gizmoSize = 0.1f;
+
+    private void OnDrawGizmos()
     {
-        numberOfRobts = robots.Length;
-
-        float angleStep = 180f / (numberOfRobts - 1);
-
-        for (int i = 0; i < numberOfRobts; i++)
+        if (robotPositionTransforms != null && robotPositionTransforms.Count > 0)
         {
-            float angle = -90f + (i * angleStep);
-            float angleRad = Mathf.Deg2Rad * angle;
+            Gizmos.color = Color.white;
 
-            Vector3 positionOffset = new Vector3(Mathf.Sin(angleRad), 0, -Mathf.Cos(angleRad)) * radius;
-            Vector3 robotPos = player.position + player.right * positionOffset.x + player.forward * positionOffset.z;
-
-            robots[i].position = robotPos;
-            robots[i].LookAt(player);
+            foreach (Transform position in robotPositionTransforms)
+            {
+                if (position != null)
+                {
+                    Gizmos.DrawCube(position.position, Vector3.one * gizmoSize);
+                }
+            }
         }
     }
 }

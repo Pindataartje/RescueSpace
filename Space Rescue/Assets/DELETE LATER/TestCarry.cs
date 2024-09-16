@@ -12,7 +12,7 @@ public class TestCarry : MonoBehaviour
         // Example: Dynamically position the Pikmin around the object every frame
         if (Input.GetKeyDown(KeyCode.P))
         {
-            pikminPositioner.PositionPikmin(pikminArray);
+            // pikminPositioner.PositionPikmin(pikminArray);
         }
     }
 }

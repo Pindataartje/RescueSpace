@@ -1,22 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Robot", menuName = "Robot Data", order = 1)]
-
-public class Robot : ScriptableObject
+public class Robot : MonoBehaviour
 {
-    public float health;
-    public float speed;
+    private void Start()
+    {
 
-    public float range;
-    public float followDistance;
-
-    public int damage;
-    public int impactDamage;
-
-    public float fireRate;
-
-    public float windUpTime;
-    public float windDownTime;
-
-    public float retreatTime;
+    }
 }

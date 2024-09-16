@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class RobotAI : Entity
 {
-    [SerializeField] Robot _robotInfo;
+    [SerializeField] RobotSO _robotInfo;
 
     [SerializeField] NavMeshAgent _agent;
 
@@ -14,8 +14,8 @@ public class RobotAI : Entity
     [SerializeField] Transform _player;
 
     [SerializeField] Collider _collider;
-    [SerializeField] Rigidbody _rb;
 
+    [SerializeField] Transform _scrapRobot;
 
     [SerializeField] bool _isAttacking;
 
@@ -47,7 +47,7 @@ public class RobotAI : Entity
 
         if (Input.GetKeyDown(KeyCode.I))
         {
-            ChangeState(State.IDLE);
+            ChangeState(State.GATHER);
         }
 
     }
@@ -59,6 +59,7 @@ public class RobotAI : Entity
         IDLE,
         FOLLOW,
         ATTACK,
+        GATHER,
         ATTACHED,
     }
 
@@ -75,6 +76,9 @@ public class RobotAI : Entity
             case State.ATTACK:
                 StopAttack();
                 break;
+            case State.GATHER:
+                StopGather();
+                break;
             case State.ATTACHED:
                 StopAttached();
                 break;
@@ -90,6 +94,9 @@ public class RobotAI : Entity
                 break;
             case State.ATTACK:
                 StartAttack();
+                break;
+            case State.GATHER:
+                StartGather();
                 break;
             case State.ATTACHED:
                 StartAttached();
@@ -109,6 +116,9 @@ public class RobotAI : Entity
                 break;
             case State.ATTACK:
                 Attack();
+                break;
+            case State.GATHER:
+                Gather();
                 break;
             case State.ATTACHED:
                 Attached();
@@ -152,7 +162,9 @@ public class RobotAI : Entity
     {
         _agent.SetDestination(_target.position);
 
-        _distanceFromTarget = Vector3.Distance(transform.position, _target.position);
+        Vector3 targetWithOffset = new Vector3(_target.position.x, transform.position.y, _target.position.z);
+
+        _distanceFromTarget = Vector3.Distance(transform.position, targetWithOffset);
 
         if (_agent.stoppingDistance > _distanceFromTarget && !_agent.isStopped)
         {
@@ -216,14 +228,53 @@ public class RobotAI : Entity
 
     #endregion
 
+    #region Gather
+
+    void StartGather()
+    {
+        _currentState = State.GATHER;
+
+        GetNewGatherTargetPosition();
+
+        _agent.stoppingDistance = 0.1f;
+    }
+
+    void Gather()
+    {
+        if (_agent.isActiveAndEnabled)
+        {
+            _agent.SetDestination(_target.position);
+        }
+
+        Vector3 targetWithOffset = new Vector3(_target.position.x, transform.position.y, _target.position.z);
+
+        _distanceFromTarget = Vector3.Distance(transform.position, targetWithOffset);
+
+        if (_agent.stoppingDistance > _distanceFromTarget && !_agent.isStopped)
+        {
+            Debug.Log("Stop");
+            transform.SetParent(_target);
+            _agent.isStopped = true;
+        }
+        else if (_agent.stoppingDistance < _distanceFromTarget)
+        {
+            Debug.Log("UnStop");
+            _agent.isStopped = false;
+        }
+    }
+
+    void StopGather()
+    {
+
+    }
+
+    #endregion
+
     #region Attached
 
     void StartAttached()
     {
         _currentState = State.ATTACHED;
-
-        _rb.velocity = Vector3.zero;
-        _rb.useGravity = false;
 
         transform.SetParent(_target.transform, true);
     }
@@ -238,12 +289,18 @@ public class RobotAI : Entity
         transform.SetParent(null);
 
         _collider.isTrigger = false;
-        _rb.useGravity = true;
 
         _agent.enabled = true; // maybe when hits the floor
     }
 
     #endregion
+
+    public TestPosition tempthing;
+
+    public void GetNewGatherTargetPosition()
+    {
+        _target = _target.GetComponent<Scrap>().GetGatherPosition();
+    }
 
     public IEnumerator StartAttacking()
     {
