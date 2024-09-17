@@ -175,7 +175,7 @@ public class PlayerController : MonoBehaviour
         {
             _isThrow = true;
 
-            _currentRobot.GetComponent<RobotAI>().ChangeState(RobotAI.State.IDLE);
+            _currentRobot.GetComponent<RobotAI>().ChangeState(RobotAI.State.THROWN);
             _currentRobot.GetComponent<NavMeshAgent>().enabled = false;
             _currentRobot.GetComponent<Collider>().isTrigger = true;
         }
@@ -243,8 +243,6 @@ public class PlayerController : MonoBehaviour
         // MAYBE MAKE IT NOT GO INTO THE GROUND
 
         robot.GetComponent<NavMeshAgent>().enabled = true;
-
-        robot.GetComponent<RobotAI>().ChangeState(RobotAI.State.ATTACK);
     }
 
     private Vector3 CalculateParabolicPosition(Vector3 start, Vector3 peak, Vector3 end, float t)

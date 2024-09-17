@@ -10,6 +10,8 @@ public class EnemyAI : Entity
 
     [SerializeField] Material _normalMaterial;
 
+    public bool isAlive;
+
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
@@ -41,6 +43,10 @@ public class EnemyAI : Entity
         if (health > 0)
         {
             renderer.material = _normalMaterial;
+        }
+        else
+        {
+            isAlive = false;
         }
     }
 }

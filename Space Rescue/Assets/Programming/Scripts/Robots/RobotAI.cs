@@ -21,6 +21,9 @@ public class RobotAI : Entity
 
     [SerializeField] float _distanceFromTarget;
 
+    [SerializeField] float _checkRadius;
+    [SerializeField] LayerMask _throwLayer;
+
     public override void Start()
     {
         if (_robotInfo != null)
@@ -59,6 +62,7 @@ public class RobotAI : Entity
         IDLE,
         FOLLOW,
         ATTACK,
+        THROWN,
         GATHER,
         ATTACHED,
     }
@@ -75,6 +79,8 @@ public class RobotAI : Entity
                 break;
             case State.ATTACK:
                 StopAttack();
+                break;
+            case State.THROWN:
                 break;
             case State.GATHER:
                 StopGather();
@@ -94,6 +100,9 @@ public class RobotAI : Entity
                 break;
             case State.ATTACK:
                 StartAttack();
+                break;
+            case State.THROWN:
+                StartThrown();
                 break;
             case State.GATHER:
                 StartGather();
@@ -116,6 +125,9 @@ public class RobotAI : Entity
                 break;
             case State.ATTACK:
                 Attack();
+                break;
+            case State.THROWN:
+                Thrown();
                 break;
             case State.GATHER:
                 Gather();
@@ -166,7 +178,7 @@ public class RobotAI : Entity
 
         _distanceFromTarget = Vector3.Distance(transform.position, targetWithOffset);
 
-        if (_agent.stoppingDistance > _distanceFromTarget && !_agent.isStopped)
+        if (_agent.stoppingDistance >= _distanceFromTarget && !_agent.isStopped)
         {
             _agent.isStopped = true;
         }
@@ -228,6 +240,56 @@ public class RobotAI : Entity
 
     #endregion
 
+    #region Thrown
+
+    void StartThrown()
+    {
+        _currentState = State.THROWN;
+    }
+
+    void Thrown()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, _checkRadius, _throwLayer);
+
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (colliders[i].TryGetComponent<EnemyAI>(out EnemyAI enemy))
+            {
+                if (colliders[i].GetComponent<EnemyAI>().isAlive)
+                {
+                    _target = colliders[i].transform;
+
+                    ChangeState(State.ATTACK);
+
+                    break;
+                }
+                else
+                {
+                    _target = colliders[i].transform;
+
+                    ChangeState(State.GATHER);
+
+                    break;
+                }
+            }
+            else if (colliders[i].TryGetComponent<Scrap>(out Scrap scrap))
+            {
+                _target = colliders[i].GetComponent<Scrap>().transform;
+
+                ChangeState(State.GATHER);
+
+                break;
+            }
+        }
+    }
+
+    void StopThrown()
+    {
+
+    }
+
+    #endregion
+
     #region Gather
 
     void StartGather()
@@ -250,22 +312,28 @@ public class RobotAI : Entity
 
         _distanceFromTarget = Vector3.Distance(transform.position, targetWithOffset);
 
-        if (_agent.stoppingDistance > _distanceFromTarget && !_agent.isStopped)
+        if (_agent.stoppingDistance >= _distanceFromTarget && _agent.isActiveAndEnabled && !_agent.isStopped)
         {
             Debug.Log("Stop");
+
+            _target.GetComponentInParent<Scrap>().AddRobot(this);
+
+            _agent.enabled = false;
+
             transform.SetParent(_target);
-            _agent.isStopped = true;
-        }
-        else if (_agent.stoppingDistance < _distanceFromTarget)
-        {
-            Debug.Log("UnStop");
-            _agent.isStopped = false;
         }
     }
 
     void StopGather()
     {
+        transform.SetParent(null);
 
+        if (_target != null)
+        {
+            _target.GetComponentInParent<Scrap>().RemoveRobot(this);
+        }
+
+        _agent.enabled = true;
     }
 
     #endregion
@@ -295,11 +363,19 @@ public class RobotAI : Entity
 
     #endregion
 
-    public TestPosition tempthing;
-
     public void GetNewGatherTargetPosition()
     {
         _target = _target.GetComponent<Scrap>().GetGatherPosition();
+
+        if (_target == null)
+        {
+            ChangeState(State.IDLE);
+        }
+    }
+
+    public void CollectScrapAtBase()
+    {
+        ChangeState(State.IDLE);
     }
 
     public IEnumerator StartAttacking()
