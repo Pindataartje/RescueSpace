@@ -273,6 +273,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Melee Bot
       objectReference: {fileID: 0}
+    - target: {fileID: 2830451110237923651, guid: 56c66dba4f8f2e44e98599a2f434407d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.46
+      objectReference: {fileID: 0}
     - target: {fileID: 5513764415282159172, guid: 56c66dba4f8f2e44e98599a2f434407d,
         type: 3}
       propertyPath: m_LocalPosition.x
