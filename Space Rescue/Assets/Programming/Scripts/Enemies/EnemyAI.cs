@@ -1,10 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAI : Entity
 {
-    [SerializeField] Enemy _enemyInfo;
+    [SerializeField] EnemySO _enemyInfo;
 
     [SerializeField] Material _killedMaterial;
 

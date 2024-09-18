@@ -1,11 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Scrap : MonoBehaviour
+public class Scrap : Entity
 {
     [SerializeField] Transform _objectToCarry;
 
@@ -42,12 +39,12 @@ public class Scrap : MonoBehaviour
 
     [SerializeField] ScrapRobot _scrapRobot;
 
-    private void Start()
+    public override void Start()
     {
         GeneratePositionTransforms();
     }
 
-    private void Update()
+    public override void Update()
     {
         if (_robotsCarrying >= _robotsToCarry)
         {

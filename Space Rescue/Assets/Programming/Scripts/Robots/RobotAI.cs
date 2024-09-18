@@ -9,6 +9,8 @@ public class RobotAI : Entity
 
     [SerializeField] NavMeshAgent _agent;
 
+    [SerializeField] Animator _animator;
+
     [SerializeField] Transform _target;
     public Transform Target
     { get { return _target; } }
@@ -171,10 +173,12 @@ public class RobotAI : Entity
         if (_agent.stoppingDistance >= _distanceFromTarget && !_agent.isStopped)
         {
             _agent.isStopped = true;
+            _animator.SetBool("Walking", false);
         }
         else
         {
             _agent.isStopped = false;
+            _animator.SetBool("Walking", true);
         }
     }
 
