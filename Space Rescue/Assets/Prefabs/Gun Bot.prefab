@@ -82,11 +82,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 129742174215704463, guid: 84f980066cb494c4294977835a6f9a92,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 329207fe566c7444a9df5b3501d04d7b, type: 2}
     - target: {fileID: 4555714312524519633, guid: 84f980066cb494c4294977835a6f9a92,
         type: 3}
       propertyPath: m_Name
       value: Gun Bot
       objectReference: {fileID: 0}
+    - target: {fileID: 8753192973228351773, guid: 84f980066cb494c4294977835a6f9a92,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e46f8dad69f4c6c4dbd9b1af7345794f, type: 2}
     - target: {fileID: 9091666515225928546, guid: 84f980066cb494c4294977835a6f9a92,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -136,6 +146,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9091666515225928546, guid: 84f980066cb494c4294977835a6f9a92,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
