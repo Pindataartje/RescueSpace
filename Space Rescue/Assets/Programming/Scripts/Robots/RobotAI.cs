@@ -405,7 +405,6 @@ public class RobotAI : Entity
 
     #endregion
 
-
     public virtual void CollectScrapAtBase()
     {
         ChangeState(State.IDLE);
