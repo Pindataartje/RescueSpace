@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,23 +11,30 @@ public class Scrap : MonoBehaviour
 
     [SerializeField] NavMeshAgent _agent;
 
-    [SerializeField] int _numberOfRobotsNeeded;
-    [SerializeField] int _maxRobotAmount;
+    [SerializeField] int _robotsToCarry;
+    [SerializeField] int _extraRobots;
+
+    [SerializeField] int _maxRobots;
 
     [SerializeField] int _robotsCarrying;
-    [SerializeField] int _robotsAttempting;
 
     [SerializeField] float _extraRobotPercent;
 
     [SerializeField] float _radius;
+    [SerializeField] float _extraRadius;
 
     [SerializeField] Transform _player;
 
     [SerializeField] Transform _target;
 
-    [SerializeField] List<RobotAI> _robots = new();
+    [SerializeField] List<Transform> _robotPos = new List<Transform>();
+    [SerializeField] List<Transform> _extraRobotPos = new List<Transform>();
 
-    [SerializeField] List<Transform> _robotPositionTransforms = new List<Transform>();
+    [SerializeField] RobotAI[] _holdPos;
+    [SerializeField] RobotAI[] _extraHoldPos;
+
+    [SerializeField] RobotAI[] _atPos;
+    [SerializeField] RobotAI[] _extraAtPos;
 
     [SerializeField] float _distanceFromTarget;
 
@@ -40,7 +49,7 @@ public class Scrap : MonoBehaviour
 
     private void Update()
     {
-        if (_robotsCarrying >= _numberOfRobotsNeeded)
+        if (_robotsCarrying >= _robotsToCarry)
         {
             if (_agent.isActiveAndEnabled)
             {
@@ -55,12 +64,25 @@ public class Scrap : MonoBehaviour
 
             if (_agent.stoppingDistance >= _distanceFromTarget && _agent.isActiveAndEnabled && !_agent.isStopped)
             {
-                for (int i = 0; i < _robots.Count; i++)
+                for (int i = 0; i < _atPos.Length; i++)
                 {
-                    _robots[i].CollectScrapAtBase();
-                }
+                    if (_atPos[i] != null)
+                    {
+                        _atPos[i].CollectScrapAtBase();
+                        _atPos[i] = null;
+                        _holdPos[i] = null;
+                    }
 
-                _robots.Clear();
+                }
+                for (int i = 0; i < _extraAtPos.Length; i++)
+                {
+                    if (_extraAtPos[i] != null)
+                    {
+                        _extraAtPos[i].CollectScrapAtBase();
+                        _extraAtPos[i] = null;
+                        _extraHoldPos[i] = null;
+                    }
+                }
 
                 _robotsCarrying = 0;
 
@@ -69,7 +91,7 @@ public class Scrap : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        else if (_robotsCarrying < _numberOfRobotsNeeded && _agent.isActiveAndEnabled && !_agent.isStopped)
+        else if (_robotsCarrying < _robotsToCarry && _agent.isActiveAndEnabled && !_agent.isStopped)
         {
             _agent.isStopped = true;
         }
@@ -77,74 +99,234 @@ public class Scrap : MonoBehaviour
 
     private void GeneratePositionTransforms()
     {
-        _maxRobotAmount = Mathf.CeilToInt(_numberOfRobotsNeeded * _extraRobotPercent);
+        _maxRobots = Mathf.CeilToInt(_robotsToCarry * _extraRobotPercent);
 
-        float angleStep = 360f / _maxRobotAmount;
+        _extraRobots = _maxRobots - _robotsToCarry;
 
-        for (int i = 0; i < _maxRobotAmount; i++)
+        GeneratePositions(_robotsToCarry);
+
+        GenerateExtraPositions(_extraRobots);
+
+
+    }
+
+    void GeneratePositions(int posAmount)
+    {
+        _atPos = new RobotAI[posAmount];
+        _holdPos = new RobotAI[posAmount];
+
+        float angleStep = 360f / posAmount;
+
+        for (int i = 0; i < posAmount; i++)
         {
             float angle = i * angleStep;
             float angleRad = Mathf.Deg2Rad * angle;
 
             Vector3 position = new Vector3(_objectToCarry.position.x + Mathf.Cos(angleRad) * _radius, _objectToCarry.position.y, _objectToCarry.position.z + Mathf.Sin(angleRad) * _radius);
 
-            GameObject positionObject = new GameObject("Position_" + i);
+            GameObject positionObject = new GameObject($"Hold_Pos ({i})");
 
             positionObject.transform.position = position;
             positionObject.transform.parent = transform;
 
-            _robotPositionTransforms.Add(positionObject.transform);
+            _robotPos.Add(positionObject.transform);
         }
     }
 
-    public Transform GetGatherPosition()
+    void GenerateExtraPositions(int posAmount)
     {
-        if (_robotsAttempting >= _maxRobotAmount)
+        _extraAtPos = new RobotAI[posAmount];
+        _extraHoldPos = new RobotAI[posAmount];
+
+        float extraAngleStep = 360f / posAmount;
+
+        for (int i = 0; i < posAmount; i++)
         {
-            return null;
+            float angle = i * extraAngleStep;
+            float angleRad = Mathf.Deg2Rad * angle;
+
+            Vector3 position = new Vector3(_objectToCarry.position.x + Mathf.Cos(angleRad) * _extraRadius, _objectToCarry.position.y, _objectToCarry.position.z + Mathf.Sin(angleRad) * _extraRadius);
+
+            GameObject positionObject = new GameObject($"Extra_Hold_Pos ({i})");
+
+            positionObject.transform.position = position;
+            positionObject.transform.parent = transform;
+
+            _extraRobotPos.Add(positionObject.transform);
         }
-        else
+    }
+
+    public Transform GetGatherPosition(RobotAI robot)
+    {
+        for (int i = 0; i < _holdPos.Length; i++)
         {
-            _robotsAttempting++;
+            if (_holdPos[i] == null)
+            {
+                _holdPos[i] = robot;
+
+                return _robotPos[i];
+            }
         }
 
-        return _robotPositionTransforms[_robotsAttempting - 1];
+        for (int i = 0; i < _extraHoldPos.Length; i++)
+        {
+            if (_extraHoldPos[i] == null)
+            {
+                _extraHoldPos[i] = robot;
+
+                return _extraRobotPos[i];
+            }
+        }
+
+        return null;
     }
 
     public void AddRobot(RobotAI robot)
     {
-        _robotsCarrying++;
+        bool hasAdded = false;
 
-        _robots.Add(robot);
+        for (int i = 0; i < _robotPos.Count; i++)
+        {
+            if (_robotPos[i] == robot.Target && !hasAdded)
+            {
+                hasAdded = true;
+                Debug.Log($"Adding robot at position {i}");
+
+                _atPos[i] = robot;
+            }
+        }
+
+        if (!hasAdded)
+        {
+            for (int i = 0; i < _extraRobotPos.Count; i++)
+            {
+                if (_extraRobotPos[i] == robot.Target && !hasAdded)
+                {
+                    hasAdded = true;
+                    Debug.Log($"Adding robot at position {i}");
+
+                    _extraAtPos[i] = robot;
+                }
+            }
+        }
+
+        _robotsCarrying = 0;
+
+        for (int i = 0; i < _atPos.Length; i++)
+        {
+            if (_atPos[i] != null)
+            {
+                _robotsCarrying++;
+            }
+        }
+
+        for (int i = 0; i < _extraAtPos.Length; i++)
+        {
+            if (_extraAtPos[i] != null)
+            {
+                _robotsCarrying++;
+            }
+        }
+
+        Debug.Log($"Total robots carrying: {_robotsCarrying}");
     }
 
     public void RemoveRobot(RobotAI robot)
     {
-        Debug.Log("RemoveRobot");
-
-        if (_robotsAttempting > _robotsCarrying) // this still needs a fix // new robots get placed in a position where a robot already is ( because the removed robot does not have to be in the slot of the new robot position so they overlap )
+        for (int i = 0; i < _atPos.Length; i++)
         {
-            _robotsAttempting--;
+            if (_atPos[i] == robot)
+            {
+                _atPos[i] = null;
+
+                _holdPos[i] = null;
+
+                _robotsCarrying--;
+
+                RepositionRobot();
+
+                Debug.Log($"({i})");
+            }
         }
-        else
+
+        for (int i = 0; i < _holdPos.Length; i++)
         {
-            _robotsCarrying--;
+            if (_holdPos[i] == robot)
+            {
+                _holdPos[i] = null;
 
-            _robotsAttempting--;
+                Debug.Log($"({i})");
+            }
         }
 
-        _robots.Add(robot);
+        for (int i = 0; i < _extraAtPos.Length; i++)
+        {
+            if (_extraAtPos[i] == robot)
+            {
+                _extraAtPos[i] = null;
+
+                _extraHoldPos[i] = null;
+
+                _robotsCarrying--;
+            }
+        }
+
+        for (int i = 0; i < _extraHoldPos.Length; i++)
+        {
+            if (_extraHoldPos[i] == robot)
+            {
+                _extraHoldPos[i] = null;
+            }
+        }
+    }
+
+    void RepositionRobot()
+    {
+        int neededRepositions = 0;
+
+        int repositions = 0;
+
+        for (int i = 0; i < _atPos.Length; i++)
+        {
+            if (_atPos[i] == null)
+            {
+                neededRepositions++;
+            }
+        }
+
+        for (int i = 0; i < _extraAtPos.Length; i++)
+        {
+            if (_extraAtPos[i] != null && repositions < neededRepositions)
+            {
+
+                repositions++;
+                _extraAtPos[i].ChangeGatherTarget();
+            }
+        }
     }
 
     [SerializeField] float gizmoSize = 0.1f;
 
     private void OnDrawGizmos()
     {
-        if (_robotPositionTransforms != null && _robotPositionTransforms.Count > 0)
+        if (_robotPos != null && _robotPos.Count > 0)
         {
             Gizmos.color = Color.white;
 
-            foreach (Transform position in _robotPositionTransforms)
+            foreach (Transform position in _robotPos)
+            {
+                if (position != null)
+                {
+                    Gizmos.DrawCube(position.position, Vector3.one * gizmoSize);
+                }
+            }
+        }
+
+        if (_extraRobotPos != null && _extraRobotPos.Count > 0)
+        {
+            Gizmos.color = Color.black;
+
+            foreach (Transform position in _extraRobotPos)
             {
                 if (position != null)
                 {

@@ -20,11 +20,62 @@ public class ScrapRobot : RobotAI
         base.Update();
     }
 
+    public override void ChangeState(State newState)
+    {
+        switch (_currentState)
+        {
+            case State.IDLE:
+                StopIdle();
+                break;
+            case State.FOLLOW:
+                StopFollow();
+                break;
+            case State.GATHER:
+                StopGather();
+                break;
+            default:
+                Debug.Log($"{newState} is not supported on this robot");
+                break;
+        }
+
+        switch (newState)
+        {
+            case State.IDLE:
+                StartIdle();
+                break;
+            case State.FOLLOW:
+                StartFollow();
+                break;
+            case State.GATHER:
+                StartGather();
+                break;
+            default:
+                Debug.Log($"{newState} is not supported on this robot");
+                break;
+        }
+    }
+
+    public override void CheckState(State state)
+    {
+        switch (state)
+        {
+            case State.IDLE:
+                Idle();
+                break;
+            case State.FOLLOW:
+                Follow();
+                break;
+            case State.GATHER:
+                Gather();
+                break;
+        }
+    }
+
     public void CollectScrap(int scrapWorth)
     {
+        // ChangeState(State.GATHER);
 
         StartCoroutine(SpawnNewRobot(scrapWorth));
-
     }
 
     IEnumerator SpawnNewRobot(int robotsToSpawn)

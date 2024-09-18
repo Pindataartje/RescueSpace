@@ -10,6 +10,8 @@ public class RobotAI : Entity
     [SerializeField] NavMeshAgent _agent;
 
     [SerializeField] Transform _target;
+    public Transform Target
+    { get { return _target; } }
 
     [SerializeField] Transform _player;
 
@@ -35,24 +37,6 @@ public class RobotAI : Entity
     public override void Update()
     {
         CheckState(_currentState);
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            if (_currentState == State.FOLLOW)
-            {
-                ChangeState(State.ATTACK);
-            }
-            else
-            {
-                ChangeState(State.FOLLOW);
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            ChangeState(State.GATHER);
-        }
-
     }
 
     public State _currentState;
@@ -67,7 +51,7 @@ public class RobotAI : Entity
         ATTACHED,
     }
 
-    public void ChangeState(State newState)
+    public virtual void ChangeState(State newState)
     {
         switch (_currentState)
         {
@@ -87,6 +71,9 @@ public class RobotAI : Entity
                 break;
             case State.ATTACHED:
                 StopAttached();
+                break;
+            default:
+                Debug.Log($"{newState} is not supported on this robot");
                 break;
         }
 
@@ -110,10 +97,13 @@ public class RobotAI : Entity
             case State.ATTACHED:
                 StartAttached();
                 break;
+            default:
+                Debug.Log($"{newState} is not supported on this robot");
+                break;
         }
     }
 
-    void CheckState(State state)
+    public virtual void CheckState(State state)
     {
         switch (state)
         {
@@ -140,17 +130,17 @@ public class RobotAI : Entity
 
     #region Idle
 
-    void StartIdle()
+    public virtual void StartIdle()
     {
         _currentState = State.IDLE;
     }
 
-    void Idle()
+    public virtual void Idle()
     {
 
     }
 
-    void StopIdle()
+    public virtual void StopIdle()
     {
 
     }
@@ -159,7 +149,7 @@ public class RobotAI : Entity
 
     #region Follow
 
-    void StartFollow()
+    public virtual void StartFollow()
     {
         _currentState = State.FOLLOW;
 
@@ -170,7 +160,7 @@ public class RobotAI : Entity
         _agent.stoppingDistance = _robotInfo.followDistance;
     }
 
-    void Follow()
+    public virtual void Follow()
     {
         _agent.SetDestination(_target.position);
 
@@ -188,7 +178,7 @@ public class RobotAI : Entity
         }
     }
 
-    void StopFollow()
+    public virtual void StopFollow()
     {
 
     }
@@ -197,7 +187,7 @@ public class RobotAI : Entity
 
     #region Attack
 
-    void StartAttack()
+    public virtual void StartAttack()
     {
         _currentState = State.ATTACK;
 
@@ -206,7 +196,7 @@ public class RobotAI : Entity
         _target = GameObject.FindGameObjectWithTag("Enemy").transform;
     }
 
-    void Attack()
+    public virtual void Attack()
     {
         if (_agent.isActiveAndEnabled)
         {
@@ -233,21 +223,50 @@ public class RobotAI : Entity
         }
     }
 
-    void StopAttack()
+    public virtual void StopAttack()
     {
         StartCoroutine(StopAttacking());
+    }
+
+    public virtual IEnumerator StartAttacking()
+    {
+        _isAttacking = true;
+        yield return new WaitForSeconds(_robotInfo.windUpTime);
+
+        StartCoroutine(Attacking());
+    }
+
+    public virtual IEnumerator Attacking() // make sure it stops attacking before changing state
+    {
+        if (_target != null)
+        {
+            _target.GetComponent<Entity>().TakeDamage(_robotInfo.damage); // this still happens with this because it tries to attack the player ( probably )
+        }
+
+        yield return new WaitForSeconds(_robotInfo.fireRate);
+
+        if (_isAttacking)
+        {
+            StartCoroutine(Attacking());
+        }
+    }
+
+    public virtual IEnumerator StopAttacking()
+    {
+        yield return new WaitForSeconds(_robotInfo.windDownTime);
+        _isAttacking = false;
     }
 
     #endregion
 
     #region Thrown
 
-    void StartThrown()
+    public virtual void StartThrown()
     {
         _currentState = State.THROWN;
     }
 
-    void Thrown()
+    public virtual void Thrown()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, _checkRadius, _throwLayer);
 
@@ -283,7 +302,7 @@ public class RobotAI : Entity
         }
     }
 
-    void StopThrown()
+    public virtual void StopThrown()
     {
 
     }
@@ -292,7 +311,7 @@ public class RobotAI : Entity
 
     #region Gather
 
-    void StartGather()
+    public virtual void StartGather()
     {
         _currentState = State.GATHER;
 
@@ -301,7 +320,7 @@ public class RobotAI : Entity
         _agent.stoppingDistance = 0.1f;
     }
 
-    void Gather()
+    public virtual void Gather()
     {
         if (_agent.isActiveAndEnabled)
         {
@@ -324,7 +343,7 @@ public class RobotAI : Entity
         }
     }
 
-    void StopGather()
+    public virtual void StopGather()
     {
         transform.SetParent(null);
 
@@ -336,23 +355,42 @@ public class RobotAI : Entity
         _agent.enabled = true;
     }
 
+    public virtual void GetNewGatherTargetPosition()
+    {
+        _target = _target.GetComponent<Scrap>().GetGatherPosition(this);
+
+        if (_target == null)
+        {
+            ChangeState(State.IDLE);
+        }
+    }
+
+    public void ChangeGatherTarget()
+    {
+        _agent.enabled = true;
+
+        _target.GetComponentInParent<Scrap>().RemoveRobot(this);
+
+        _target = _target.GetComponentInParent<Scrap>().GetGatherPosition(this);
+    }
+
     #endregion
 
     #region Attached
 
-    void StartAttached()
+    public virtual void StartAttached()
     {
         _currentState = State.ATTACHED;
 
         transform.SetParent(_target.transform, true);
     }
 
-    void Attached()
+    public virtual void Attached()
     {
 
     }
 
-    void StopAttached()
+    public virtual void StopAttached()
     {
         transform.SetParent(null);
 
@@ -363,48 +401,10 @@ public class RobotAI : Entity
 
     #endregion
 
-    public void GetNewGatherTargetPosition()
-    {
-        _target = _target.GetComponent<Scrap>().GetGatherPosition();
 
-        if (_target == null)
-        {
-            ChangeState(State.IDLE);
-        }
-    }
-
-    public void CollectScrapAtBase()
+    public virtual void CollectScrapAtBase()
     {
         ChangeState(State.IDLE);
-    }
-
-    public IEnumerator StartAttacking()
-    {
-        _isAttacking = true;
-        yield return new WaitForSeconds(_robotInfo.windUpTime);
-
-        StartCoroutine(Attacking());
-    }
-
-    public IEnumerator Attacking() // make sure it stops attacking before changing state
-    {
-        if (_target != null)
-        {
-            _target.GetComponent<Entity>().TakeDamage(_robotInfo.damage); // this still happens with this because it tries to attack the player ( probably )
-        }
-
-        yield return new WaitForSeconds(_robotInfo.fireRate);
-
-        if (_isAttacking)
-        {
-            StartCoroutine(Attacking());
-        }
-    }
-
-    public IEnumerator StopAttacking()
-    {
-        yield return new WaitForSeconds(_robotInfo.windDownTime);
-        _isAttacking = false;
     }
 
     private void OnTriggerEnter(Collider other)
