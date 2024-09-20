@@ -569,6 +569,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9055937208178258511, guid: c96d3ee052ac82343acb115672ddc017,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a03df96b662232b4bbd34db292f9bf14, type: 2}
     - target: {fileID: -8679921383154817045, guid: c96d3ee052ac82343acb115672ddc017,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -624,11 +629,21 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d9be19997e7af5e45bc7beb2970775d7, type: 2}
+    - target: {fileID: -1991272963349136948, guid: c96d3ee052ac82343acb115672ddc017,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d9be19997e7af5e45bc7beb2970775d7, type: 2}
     - target: {fileID: 919132149155446097, guid: c96d3ee052ac82343acb115672ddc017,
         type: 3}
       propertyPath: m_Name
       value: EnemyTurtle
       objectReference: {fileID: 0}
+    - target: {fileID: 8942196845031321969, guid: c96d3ee052ac82343acb115672ddc017,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a03df96b662232b4bbd34db292f9bf14, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
