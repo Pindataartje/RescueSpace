@@ -2,9 +2,15 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    public int health;
 
+    [Header("Type")]
     public Type type;
+
+    [Header("Info")]
+
+    public int health;
+    public float speed;
+    public int damage;
 
     public enum Type
     {

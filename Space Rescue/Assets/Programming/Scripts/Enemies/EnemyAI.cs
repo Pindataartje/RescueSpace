@@ -1,26 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyAI : Entity
 {
-    [Header("Setup")]
+    [Header("State")]
 
+    [SerializeField] State _currentState;
+
+    public enum State
+    {
+        IDLE,
+        PATROL,
+        CHASE,
+        SEARCH,
+        ATTACK,
+    }
+
+    [Header("Setup")]
     [SerializeField] EnemySO _enemyInfo;
     [SerializeField] Animator _animator;
     [SerializeField] NavMeshAgent _agent;
 
     [Header("General")]
     public bool isAlive;
-    [SerializeField] Transform _target;
+    [SerializeField] Transform _targetTransform;
+    [SerializeField] Vector3 _targetVector;
     [SerializeField] float _distanceFromTarget;
 
     [Header("Patrol")]
     [SerializeField] float _distanceFromPatrol;
 
-    [SerializeField] float _patrolRange;
+    [SerializeField] float _patrolReturnDistance;
     [SerializeField] int _currentPatrol;
 
     [SerializeField] int _patrolPointCount;
@@ -33,19 +47,64 @@ public class EnemyAI : Entity
 
     [SerializeField] float _searchTime;
     [SerializeField] float _timeToSearch;
+
+    [SerializeField] int _maxSearchCount;
     [SerializeField] int _searchCount;
 
+    [SerializeField] Transform _detectionHolder;
 
+    [SerializeField] Vector3 _originalDetectionScale;
 
-    [SerializeField] State _currentState;
+    [SerializeField] float _scaleSpeed;
 
-    public enum State
+    [SerializeField] float _minScale;
+    [SerializeField] float _maxScale;
+
+    [SerializeField] Vector3 _startSearchPosition;
+
+    [SerializeField] bool _newRandomPos;
+
+    [SerializeField] float _searchRadius;
+
+    public override void Start()
     {
-        IDLE,
-        PATROL,
-        CHASE,
-        SEARCH,
-        ATTACK,
+        InitializeEnemyInfo();
+
+        if (health > 0)
+        {
+            isAlive = true;
+        }
+
+        GeneratePatrol(_patrolPointCount);
+
+        _searchCount = _maxSearchCount;
+
+        _targetTransform = _patrolPoints[0];
+
+        _originalDetectionScale = _detectionHolder.localScale;
+    }
+
+    public override void Update()
+    {
+        CheckState();
+    }
+
+    void InitializeEnemyInfo()
+    {
+        health = _enemyInfo.health;
+
+        speed = _enemyInfo.speed;
+        if (_agent != null) { _agent.speed = speed; }
+
+        damage = _enemyInfo.damage;
+
+        _patrolRadius = _enemyInfo.patrolRadius;
+        _patrolReturnDistance = _enemyInfo.patrolReturnDistance;
+        _patrolPointCount = _enemyInfo.patrolPoints;
+
+        _searchRadius = _enemyInfo.searchRadius;
+        _timeToSearch = _enemyInfo.timeToSearch;
+        _searchCount = _enemyInfo.searchCount;
     }
 
     public virtual void ChangeState(State newState)
@@ -108,6 +167,9 @@ public class EnemyAI : Entity
             case State.CHASE:
                 Chase();
                 break;
+            case State.SEARCH:
+                Search();
+                break;
             case State.ATTACK:
                 Attack();
                 break;
@@ -138,16 +200,15 @@ public class EnemyAI : Entity
     public virtual void StartPatrol()
     {
         _currentState = State.PATROL;
-
     }
 
     public virtual void Patrol()
     {
-        if (_target != null)
+        if (_targetTransform != null)
         {
-            _agent.SetDestination(_target.position);
+            _agent.SetDestination(_targetTransform.position);
 
-            Vector3 targetWithOffset = new Vector3(_target.position.x, transform.position.y, _target.position.z);
+            Vector3 targetWithOffset = new Vector3(_targetTransform.position.x, transform.position.y, _targetTransform.position.z);
 
             _distanceFromTarget = Vector3.Distance(transform.position, targetWithOffset);
         }
@@ -159,7 +220,7 @@ public class EnemyAI : Entity
             {
                 _currentPatrol = 0;
             }
-            _target = _patrolPoints[_currentPatrol];
+            _targetTransform = _patrolPoints[_currentPatrol];
         }
         else
         {
@@ -183,11 +244,11 @@ public class EnemyAI : Entity
 
     public virtual void Chase()
     {
-        if (_target != null)
+        if (_targetTransform != null)
         {
-            _agent.SetDestination(_target.position);
+            _agent.SetDestination(_targetTransform.position);
 
-            Vector3 targetWithOffset = new Vector3(_target.position.x, transform.position.y, _target.position.z);
+            Vector3 targetWithOffset = new Vector3(_targetTransform.position.x, transform.position.y, _targetTransform.position.z);
 
             _distanceFromTarget = Vector3.Distance(transform.position, targetWithOffset);
 
@@ -196,7 +257,7 @@ public class EnemyAI : Entity
             _distanceFromPatrol = Vector3.Distance(transform.position, patrolWithOffset);
         }
 
-        if (_patrolRange <= _distanceFromPatrol)
+        if (_patrolReturnDistance <= _distanceFromPatrol)
         {
             ChangeState(State.PATROL);
         }
@@ -219,25 +280,99 @@ public class EnemyAI : Entity
     public virtual void StartSearch()
     {
         _currentState = State.SEARCH;
+
+        _searchCount = _maxSearchCount;
+
+        _targetTransform = null;
+
+        _startSearchPosition = transform.position;
     }
 
     public virtual void Search()
     {
-        if (_searchTime < _timeToSearch)
+        if (_newRandomPos)
         {
-            _searchTime += Time.deltaTime;
-        }
-        else if (_searchTime >= _timeToSearch)
-        {
-            _searchCount++;
+            _agent.SetDestination(_targetVector);
 
-            // MOVE RANDOM DIRECTION AND THEN SEARCH AGAIN
+            Vector3 targetWithOffset = new Vector3(_targetVector.x, transform.position.y, _targetVector.z);
+            _distanceFromTarget = Vector3.Distance(transform.position, targetWithOffset);
+
+            if (_agent.stoppingDistance >= _distanceFromTarget && !_agent.isStopped)
+            {
+                _newRandomPos = false;
+            }
         }
+        else
+        {
+            DetectionPulse();
+
+            if (_searchTime < _timeToSearch)
+            {
+                _searchTime += Time.deltaTime;
+            }
+            else if (_searchTime >= _timeToSearch && _searchCount > 0)
+            {
+                _searchCount--;
+
+                _searchTime = 0;
+
+                GetRandomSearchPosition();
+            }
+            else if (_searchCount <= 0)
+            {
+                ChangeState(State.PATROL);
+            }
+        }
+
     }
 
     public virtual void StopSearch()
     {
 
+    }
+
+    public void DetectionPulse()
+    {
+        float scale = Mathf.Lerp(_minScale, _maxScale, (Mathf.Sin(Time.time * _scaleSpeed) + 1.0f) / 2.0f);
+
+        _detectionHolder.localScale = _originalDetectionScale * scale;
+
+        _detectionHolder.localScale = new Vector3(_detectionHolder.localScale.x, 1, _detectionHolder.localScale.z);
+    }
+
+    public virtual void GetRandomSearchPosition()
+    {
+        _newRandomPos = true;
+
+        Vector3 randomOffset = Random.insideUnitSphere * _searchRadius;
+        randomOffset.y = 0;
+        Vector3 randomPosition = _startSearchPosition + randomOffset;
+
+        if (NavMesh.SamplePosition(randomPosition, out _navmeshHit, _searchRadius, NavMesh.AllAreas))
+        {
+            _targetVector = _navmeshHit.position;
+        }
+        else
+        {
+            Debug.LogWarning("Could not find a valid search position on the navmesh");
+        }
+    }
+
+    public virtual void EnterDetection(Transform newDetected)
+    {
+        _targetTransform = newDetected;
+
+        ChangeState(State.CHASE);
+    }
+
+    public virtual void Detection()
+    {
+
+    }
+
+    public virtual void ExitDetection()
+    {
+        // ChangeState(State.SEARCH); // Differnt thing
     }
 
     #endregion
@@ -265,25 +400,6 @@ public class EnemyAI : Entity
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-    }
-
-    public override void Start()
-    {
-        health = _enemyInfo.health;
-
-        if (health > 0)
-        {
-            isAlive = true;
-        }
-
-        GeneratePatrol(_patrolPointCount);
-
-        _target = _patrolPoints[0];
-    }
-
-    public override void Update()
-    {
-        CheckState();
     }
 
     public virtual void GeneratePatrol(int patrolPoints)
@@ -328,6 +444,11 @@ public class EnemyAI : Entity
 
     [SerializeField] float _gizmoSize;
 
+    public void OnValidate()
+    {
+        InitializeEnemyInfo();
+    }
+
     private void OnDrawGizmos()
     {
         for (int i = 0; i < _patrolPoints.Count; i++)
@@ -344,20 +465,4 @@ public class EnemyAI : Entity
         }
     }
 
-    public virtual void EnterDetection(Transform newDetected)
-    {
-        _target = newDetected;
-
-        ChangeState(State.CHASE);
-    }
-
-    public virtual void Detection()
-    {
-
-    }
-
-    public virtual void ExitDetection()
-    {
-        ChangeState(State.SEARCH);
-    }
 }

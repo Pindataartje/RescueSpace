@@ -4,16 +4,24 @@ using UnityEngine;
 
 public class EnemySO : ScriptableObject
 {
+    // general
+
     public int health;
     public float speed;
-
-    public float range;
-
     public int damage;
-    public float fireRate;
 
-    public float windUpTime;
-    public float windDownTime;
+    // patrol
 
-    public float retreatTime;
+    public float patrolRadius;
+    public float patrolReturnDistance;
+    public int patrolPoints;
+
+    // search
+
+    public float searchRadius;
+    public float timeToSearch;
+    public int searchCount;
+
+
+
 }
