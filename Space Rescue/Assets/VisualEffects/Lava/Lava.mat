@@ -45,8 +45,8 @@ Material:
     - _Scale: 1.33
     - _StartTime: 14.89
     m_Colors:
-    - _BaseColor: {r: 1, g: 0.2116599, b: 0, a: 0}
-    - _HighlightsColor: {r: 1.183937, g: 0.7516165, b: 0.2401383, a: 0}
+    - _BaseColor: {r: 36.758343, g: 7.780267, b: 0, a: 0}
+    - _HighlightsColor: {r: 4.2370954, g: 2.6898987, b: 0.85941136, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &6438299127680205540
 MonoBehaviour:

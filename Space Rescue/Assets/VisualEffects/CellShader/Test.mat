@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4463379192028274600
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 7
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -7,14 +20,14 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: StarsMat
-  m_Shader: {fileID: -6465566751694194690, guid: 7f36a0368a2af884cbcae97e28a21690,
+  m_Name: Test
+  m_Shader: {fileID: -6465566751694194690, guid: 1f9c4f061540b8b43836555b2a615181,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 4
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -24,6 +37,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _MainTexture:
+        m_Texture: {fileID: 2800000, guid: 6625a85cabae14749966b7875adaac43, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -38,32 +55,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Density: 100
-    - _Density_1: 100
-    - _Density_2: 100
+    - _Ambient: 0.62
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Scale: 100
-    - _Scale_1: 100
-    - _Scale_2: 100
-    - _Speed: 0.001
-    - _Speed_1: 0.0015
-    - _Speed_2: 0.002
+    - _RimLightBrightness: 0.62
+    - _RimPower: 0.62
+    - _ToonRampOffset: 0.4
+    - _ToonRampOffsetPoint: 0.22
+    - _ToonRampSmoothness: 0.36
     m_Colors:
-    - _Color: {r: 227.31613, g: 167.88057, b: 253.01428, a: 0}
-    - _Color_1: {r: 79.137276, g: 168.42706, b: 168.89702, a: 0}
-    - _Color_2: {r: 315.17303, g: 205.42445, b: 82.26213, a: 0}
+    - _ToonRampTinting: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &3912229919885183908
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 7
