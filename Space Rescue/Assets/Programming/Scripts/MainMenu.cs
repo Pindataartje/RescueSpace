@@ -8,8 +8,6 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] string _sceneToLoad;
 
-    [SerializeField] GameObject _quitPanel;
-
     public void StartBtn()
     {
         SceneManager.LoadScene(_sceneToLoad);
