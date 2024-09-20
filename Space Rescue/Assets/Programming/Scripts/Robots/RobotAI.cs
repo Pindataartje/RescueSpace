@@ -38,7 +38,7 @@ public class RobotAI : Entity
 
     public override void Update()
     {
-        CheckState(_currentState);
+        CheckState();
     }
 
     public State _currentState;
@@ -105,9 +105,9 @@ public class RobotAI : Entity
         }
     }
 
-    public virtual void CheckState(State state)
+    public virtual void CheckState()
     {
-        switch (state)
+        switch (_currentState)
         {
             case State.IDLE:
                 Idle();

@@ -55,9 +55,9 @@ public class ScrapRobot : RobotAI
         }
     }
 
-    public override void CheckState(State state)
+    public override void CheckState()
     {
-        switch (state)
+        switch (_currentState)
         {
             case State.IDLE:
                 Idle();
