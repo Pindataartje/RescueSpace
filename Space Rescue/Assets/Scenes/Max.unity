@@ -210,7 +210,7 @@ Transform:
   m_GameObject: {fileID: 810601323}
   serializedVersion: 2
   m_LocalRotation: {x: -0.21660385, y: 0.5325117, z: -0.21333195, w: -0.789939}
-  m_LocalPosition: {x: 0.39, y: 0.37, z: -0.23}
+  m_LocalPosition: {x: 0.795, y: 0.693, z: -0.144}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -268,65 +268,60 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 977812203998553591, guid: 56c66dba4f8f2e44e98599a2f434407d,
-        type: 3}
-      propertyPath: m_Name
-      value: Melee Bot
-      objectReference: {fileID: 0}
     - target: {fileID: 2830451110237923651, guid: 56c66dba4f8f2e44e98599a2f434407d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.46
+      value: -0.719
       objectReference: {fileID: 0}
-    - target: {fileID: 5513764415282159172, guid: 56c66dba4f8f2e44e98599a2f434407d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5513764415282159172, guid: 56c66dba4f8f2e44e98599a2f434407d,
+    - target: {fileID: 2830451110237923651, guid: 56c66dba4f8f2e44e98599a2f434407d,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5513764415282159172, guid: 56c66dba4f8f2e44e98599a2f434407d,
+    - target: {fileID: 2830451110237923651, guid: 56c66dba4f8f2e44e98599a2f434407d,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5513764415282159172, guid: 56c66dba4f8f2e44e98599a2f434407d,
+    - target: {fileID: 2830451110237923651, guid: 56c66dba4f8f2e44e98599a2f434407d,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5513764415282159172, guid: 56c66dba4f8f2e44e98599a2f434407d,
+    - target: {fileID: 2830451110237923651, guid: 56c66dba4f8f2e44e98599a2f434407d,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5513764415282159172, guid: 56c66dba4f8f2e44e98599a2f434407d,
+    - target: {fileID: 2830451110237923651, guid: 56c66dba4f8f2e44e98599a2f434407d,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5513764415282159172, guid: 56c66dba4f8f2e44e98599a2f434407d,
+    - target: {fileID: 2830451110237923651, guid: 56c66dba4f8f2e44e98599a2f434407d,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5513764415282159172, guid: 56c66dba4f8f2e44e98599a2f434407d,
+    - target: {fileID: 2830451110237923651, guid: 56c66dba4f8f2e44e98599a2f434407d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5513764415282159172, guid: 56c66dba4f8f2e44e98599a2f434407d,
+    - target: {fileID: 2830451110237923651, guid: 56c66dba4f8f2e44e98599a2f434407d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5513764415282159172, guid: 56c66dba4f8f2e44e98599a2f434407d,
+    - target: {fileID: 2830451110237923651, guid: 56c66dba4f8f2e44e98599a2f434407d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373229081118266096, guid: 56c66dba4f8f2e44e98599a2f434407d,
+        type: 3}
+      propertyPath: m_Name
+      value: Melee Bot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -359,7 +354,7 @@ PrefabInstance:
     - target: {fileID: 8161153402900336663, guid: aeae31314a70ec54f9d1824536dd8211,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.38655683
+      value: 0.974
       objectReference: {fileID: 0}
     - target: {fileID: 8161153402900336663, guid: aeae31314a70ec54f9d1824536dd8211,
         type: 3}
@@ -527,57 +522,57 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2609654643712161170, guid: 6d47cfa49ea886f4d95cb18566f614f2,
+    - target: {fileID: 2100752502761170238, guid: 6d47cfa49ea886f4d95cb18566f614f2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2609654643712161170, guid: 6d47cfa49ea886f4d95cb18566f614f2,
+    - target: {fileID: 2100752502761170238, guid: 6d47cfa49ea886f4d95cb18566f614f2,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2609654643712161170, guid: 6d47cfa49ea886f4d95cb18566f614f2,
+    - target: {fileID: 2100752502761170238, guid: 6d47cfa49ea886f4d95cb18566f614f2,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2609654643712161170, guid: 6d47cfa49ea886f4d95cb18566f614f2,
+    - target: {fileID: 2100752502761170238, guid: 6d47cfa49ea886f4d95cb18566f614f2,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2609654643712161170, guid: 6d47cfa49ea886f4d95cb18566f614f2,
+    - target: {fileID: 2100752502761170238, guid: 6d47cfa49ea886f4d95cb18566f614f2,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2609654643712161170, guid: 6d47cfa49ea886f4d95cb18566f614f2,
+    - target: {fileID: 2100752502761170238, guid: 6d47cfa49ea886f4d95cb18566f614f2,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2609654643712161170, guid: 6d47cfa49ea886f4d95cb18566f614f2,
+    - target: {fileID: 2100752502761170238, guid: 6d47cfa49ea886f4d95cb18566f614f2,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2609654643712161170, guid: 6d47cfa49ea886f4d95cb18566f614f2,
+    - target: {fileID: 2100752502761170238, guid: 6d47cfa49ea886f4d95cb18566f614f2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2609654643712161170, guid: 6d47cfa49ea886f4d95cb18566f614f2,
+    - target: {fileID: 2100752502761170238, guid: 6d47cfa49ea886f4d95cb18566f614f2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2609654643712161170, guid: 6d47cfa49ea886f4d95cb18566f614f2,
+    - target: {fileID: 2100752502761170238, guid: 6d47cfa49ea886f4d95cb18566f614f2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7287505428166757921, guid: 6d47cfa49ea886f4d95cb18566f614f2,
+    - target: {fileID: 6643495289814687373, guid: 6d47cfa49ea886f4d95cb18566f614f2,
         type: 3}
       propertyPath: m_Name
       value: Gun Bot
