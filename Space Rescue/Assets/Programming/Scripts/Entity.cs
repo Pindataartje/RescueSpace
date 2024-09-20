@@ -6,18 +6,20 @@ public class Entity : MonoBehaviour
     [Header("Type")]
     public Type type;
 
-    [Header("Info")]
-
-    public int health;
-    public float speed;
-    public int damage;
-
     public enum Type
     {
         NONE,
         FIRE,
         WATER,
     }
+
+    [Header("Info")]
+
+    public float health;
+    public float maxHealth;
+
+    public float speed;
+    public float damage;
 
     public virtual void Start()
     {

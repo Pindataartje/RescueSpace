@@ -6,9 +6,12 @@ public class EnemySO : ScriptableObject
 {
     // general
 
-    public int health;
+    public float health;
     public float speed;
-    public int damage;
+    public float damage;
+
+    public float regenRate;
+    public float regenAmount;
 
     // patrol
 

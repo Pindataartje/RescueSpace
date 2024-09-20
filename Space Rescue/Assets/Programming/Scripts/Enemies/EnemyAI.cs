@@ -7,6 +7,9 @@ using UnityEngine.AI;
 
 public class EnemyAI : Entity
 {
+    [SerializeField] float _regenRate;
+    [SerializeField] float _regenAmount;
+
     [Header("State")]
 
     [SerializeField] State _currentState;
@@ -27,6 +30,8 @@ public class EnemyAI : Entity
 
     [Header("General")]
     public bool isAlive;
+    [SerializeField] bool _canNaturalRegen;
+
     [SerializeField] Transform _targetTransform;
     [SerializeField] Vector3 _targetVector;
     [SerializeField] float _distanceFromTarget;
@@ -91,12 +96,16 @@ public class EnemyAI : Entity
 
     void InitializeEnemyInfo()
     {
-        health = _enemyInfo.health;
+        maxHealth = _enemyInfo.health;
+        health = maxHealth;
 
         speed = _enemyInfo.speed;
         if (_agent != null) { _agent.speed = speed; }
 
         damage = _enemyInfo.damage;
+
+        _regenRate = _enemyInfo.regenRate;
+        _regenAmount = _enemyInfo.regenAmount;
 
         _patrolRadius = _enemyInfo.patrolRadius;
         _patrolReturnDistance = _enemyInfo.patrolReturnDistance;
@@ -200,6 +209,8 @@ public class EnemyAI : Entity
     public virtual void StartPatrol()
     {
         _currentState = State.PATROL;
+
+        _canNaturalRegen = true;
     }
 
     public virtual void Patrol()
@@ -230,7 +241,9 @@ public class EnemyAI : Entity
 
     public virtual void StopPatrol()
     {
+        _canNaturalRegen = false;
 
+        StopCoroutine(NaturalRegeneration());
     }
 
     #endregion
@@ -442,12 +455,41 @@ public class EnemyAI : Entity
         }
     }
 
-    [SerializeField] float _gizmoSize;
+    public virtual void Regeneration(float amount)
+    {
+        health += amount;
+
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+            _canNaturalRegen = false;
+        }
+    }
+
+    public virtual IEnumerator NaturalRegeneration()
+    {
+        yield return new WaitForSeconds(_regenRate);
+
+        health += _regenAmount;
+
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+            _canNaturalRegen = false;
+        }
+
+        if (_canNaturalRegen)
+        {
+            StartCoroutine(NaturalRegeneration());
+        }
+    }
 
     public void OnValidate()
     {
         InitializeEnemyInfo();
     }
+
+    [SerializeField] float _gizmoSize;
 
     private void OnDrawGizmos()
     {
