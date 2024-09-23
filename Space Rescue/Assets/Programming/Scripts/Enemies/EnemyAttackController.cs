@@ -1,11 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAttackController : MonoBehaviour
 {
-    public void StompAttack()
+    [SerializeField] EnemyAI enemyAi;
+
+    [SerializeField] ShockWaveController _shockWaveController;
+
+    [SerializeField] EnemyAttackCollider _stompAttackCollider;
+
+    [SerializeField] Collider _stompCollider;
+
+    private void Start()
     {
-        Debug.Log("Stomp");
+        _stompAttackCollider.InitialzeAttack(enemyAi.damage);
+    }
+
+    public void StartStomp()
+    {
+        _stompAttackCollider.DoAttack();
+
+        _shockWaveController.Shockwave();
+    }
+
+    public void StopStomp()
+    {
+        _stompAttackCollider.StopAttack();
     }
 }

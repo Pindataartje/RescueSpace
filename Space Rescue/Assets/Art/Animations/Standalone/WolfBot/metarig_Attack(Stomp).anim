@@ -86221,10 +86221,17 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 1.5833334
-    functionName: StompAttack
+    functionName: StartStomp
     data: 
     objectReferenceParameter: {fileID: 11500000, guid: 2e28a6c2e5e4a234aa1e047474a81225,
       type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.75
+    functionName: StopStomp
+    data: 
+    objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
