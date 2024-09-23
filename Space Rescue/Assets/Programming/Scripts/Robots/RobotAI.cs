@@ -41,8 +41,6 @@ public class RobotAI : Entity
         CheckState();
     }
 
-
-
     public State _currentState;
 
     public enum State
