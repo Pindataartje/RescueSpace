@@ -5,8 +5,6 @@ using UnityEngine.AI;
 
 public class WolfBot : EnemyAI
 {
-
-
     public override void Start()
     {
         base.Start();
@@ -15,12 +13,5 @@ public class WolfBot : EnemyAI
     public override void Update()
     {
         base.Update();
-
-        
     }
-
-
-
-
-
 }

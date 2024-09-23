@@ -92,6 +92,11 @@ public class EnemyAI : Entity
     public override void Update()
     {
         CheckState();
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            _animator.SetTrigger("Stomp");
+        }
     }
 
     void InitializeEnemyInfo()
