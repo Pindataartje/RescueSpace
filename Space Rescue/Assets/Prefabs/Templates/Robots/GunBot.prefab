@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2273629952231799186}
-  - component: {fileID: 5990177789106960734}
+  - component: {fileID: 1984554821705642849}
   - component: {fileID: 5668596216918850583}
   - component: {fileID: 1512296474607712041}
   m_Layer: 6
@@ -27,15 +27,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8273847429328212341}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.25, y: 0.5, z: -6}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1757941421784597632}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5990177789106960734
+--- !u!114 &1984554821705642849
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,14 +44,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8273847429328212341}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08058daf4b3f7f645b327e55b3a25a51, type: 3}
+  m_Script: {fileID: 11500000, guid: acc3506e78f810841938a1b029ae9819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
-  health: 0
-  maxHealth: 0
-  speed: 0
-  damage: 0
+  health: 1
+  maxHealth: 1
+  speed: 3
+  damage: 1
   _robotInfo: {fileID: 11400000, guid: 8713ae78335bcfb4999399151b58dc4a, type: 2}
   _agent: {fileID: 1512296474607712041}
   _animator: {fileID: 3525334026660492487}
@@ -61,7 +61,7 @@ MonoBehaviour:
   _scrapRobot: {fileID: 0}
   _isAttacking: 0
   _distanceFromTarget: 0
-  _checkRadius: 1
+  _checkRadius: 0
   _throwLayer:
     serializedVersion: 2
     m_Bits: 384
@@ -97,7 +97,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: -334000983
   m_Radius: 0.45
-  m_Speed: 3.5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

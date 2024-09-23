@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2012802907125975571}
-  - component: {fileID: 3453249732771467611}
+  - component: {fileID: 9202191280697303281}
   - component: {fileID: 1227535519904105975}
   - component: {fileID: 7298241273879622761}
   m_Layer: 6
-  m_Name: FireBot
+  m_Name: MeleeBot
   m_TagString: Robot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,14 +28,14 @@ Transform:
   m_GameObject: {fileID: 9067155408617356733}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.25, y: 0.9, z: -5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6036323221078058168}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3453249732771467611
+--- !u!114 &9202191280697303281
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,21 +44,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 9067155408617356733}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08058daf4b3f7f645b327e55b3a25a51, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ae6d5003d871d5439044ef2032c559a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
   type: 1
+  health: 10
+  maxHealth: 10
+  speed: 3
+  damage: 1
   _robotInfo: {fileID: 11400000, guid: bb1a913f7ec672a4385a515a88ac1de7, type: 2}
   _agent: {fileID: 7298241273879622761}
-  _animator: {fileID: 8884657631106700543}
+  _animator: {fileID: 0}
   _target: {fileID: 0}
   _player: {fileID: 0}
   _collider: {fileID: 1227535519904105975}
   _scrapRobot: {fileID: 0}
   _isAttacking: 0
   _distanceFromTarget: 0
-  _checkRadius: 1
+  _checkRadius: 0
   _throwLayer:
     serializedVersion: 2
     m_Bits: 384
@@ -94,7 +97,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: -334000983
   m_Radius: 0.45
-  m_Speed: 3.5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -177,12 +180,6 @@ PrefabInstance:
 --- !u!4 &6036323221078058168 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2830451110237923651, guid: 56c66dba4f8f2e44e98599a2f434407d,
-    type: 3}
-  m_PrefabInstance: {fileID: 8395443857300114939}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &8884657631106700543 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1138916749774674180, guid: 56c66dba4f8f2e44e98599a2f434407d,
     type: 3}
   m_PrefabInstance: {fileID: 8395443857300114939}
   m_PrefabAsset: {fileID: 0}

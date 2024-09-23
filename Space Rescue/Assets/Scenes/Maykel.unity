@@ -1321,7 +1321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9c7739ed29a3e0478b9d6e71235df56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _robotToAdd: {fileID: 1547499656}
+  _robotToAdd: {fileID: 0}
 --- !u!4 &1487623118
 Transform:
   m_ObjectHideFlags: 0
@@ -1337,18 +1337,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1547499656 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3453249732771467611, guid: eac2ab7e78f9426479dbd9cf036c4fe8,
+--- !u!95 &1645637052 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 617355484889222510, guid: 00bff1eea71254548ac79f390ebb596f,
     type: 3}
-  m_PrefabInstance: {fileID: 4703981411328698635}
+  m_PrefabInstance: {fileID: 4527465681611498926}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08058daf4b3f7f645b327e55b3a25a51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1882481688
 GameObject:
   m_ObjectHideFlags: 0
@@ -1833,21 +1827,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3453249732771467611, guid: eac2ab7e78f9426479dbd9cf036c4fe8,
-        type: 3}
-      propertyPath: _player
-      value: 
-      objectReference: {fileID: 2146559204}
-    - target: {fileID: 3453249732771467611, guid: eac2ab7e78f9426479dbd9cf036c4fe8,
-        type: 3}
-      propertyPath: _target
-      value: 
-      objectReference: {fileID: 369052143}
     - target: {fileID: 9067155408617356733, guid: eac2ab7e78f9426479dbd9cf036c4fe8,
         type: 3}
       propertyPath: m_Name
       value: MeleeBot
       objectReference: {fileID: 0}
+    - target: {fileID: 9202191280697303281, guid: eac2ab7e78f9426479dbd9cf036c4fe8,
+        type: 3}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 1645637052}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1911,16 +1900,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5990177789106960734, guid: 6ee738e4bf16d384589041f509697db2,
-        type: 3}
-      propertyPath: _player
-      value: 
-      objectReference: {fileID: 2146559204}
-    - target: {fileID: 5990177789106960734, guid: 6ee738e4bf16d384589041f509697db2,
-        type: 3}
-      propertyPath: _target
-      value: 
-      objectReference: {fileID: 369052143}
     - target: {fileID: 8273847429328212341, guid: 6ee738e4bf16d384589041f509697db2,
         type: 3}
       propertyPath: m_Name

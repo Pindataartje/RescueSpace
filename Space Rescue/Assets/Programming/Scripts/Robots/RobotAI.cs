@@ -34,11 +34,37 @@ public class RobotAI : Entity
         {
             _agent.speed = _robotInfo.speed;
         }
+
+        _player = FindAnyObjectByType<PlayerController>().transform;
+
+        _scrapRobot = FindAnyObjectByType<ScrapRobot>().transform;
     }
 
     public override void Update()
     {
         CheckState();
+    }
+
+    public virtual void InitializeRobotInfo()
+    {
+        maxHealth = _robotInfo.health;
+        health = maxHealth;
+
+        speed = _robotInfo.speed;
+        if (_agent != null) { _agent.speed = speed; }
+
+        damage = _robotInfo.damage;
+
+        // _regenRate = _robotInfo.regenRate;
+        // _regenAmount = _robotInfo.regenAmount;
+
+        // _patrolRadius = _robotInfo.patrolRadius;
+        // _patrolReturnDistance = _robotInfo.patrolReturnDistance;
+        // _patrolPointCount = _robotInfo.patrolPoints;
+
+        // _searchRadius = _robotInfo.searchRadius;
+        // _timeToSearch = _robotInfo.timeToSearch;
+        // _searchCount = _robotInfo.searchCount;
     }
 
     public State _currentState;
@@ -421,4 +447,10 @@ public class RobotAI : Entity
             ChangeState(State.ATTACHED);
         }
     }
+
+    public void OnValidate()
+    {
+        InitializeRobotInfo();
+    }
+
 }
