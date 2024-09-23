@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class Scrap : Entity
 {
     [SerializeField] Transform _objectToCarry;
@@ -42,6 +43,12 @@ public class Scrap : Entity
     public override void Start()
     {
         GeneratePositionTransforms();
+
+        _agent.speed = speed;
+
+        _scrapRobot = FindAnyObjectByType<ScrapRobot>();
+
+        _target = _scrapRobot.GetComponent<Transform>();
     }
 
     public override void Update()

@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 using UnityEngine.AI;
+
 
 public class EnemyAI : Entity
 {
@@ -27,6 +26,7 @@ public class EnemyAI : Entity
     [SerializeField] EnemySO _enemyInfo;
     [SerializeField] Animator _animator;
     [SerializeField] NavMeshAgent _agent;
+    [SerializeField] EnemyAttackController _attackController;
 
     [Header("General")]
     public bool isAlive;
@@ -71,6 +71,11 @@ public class EnemyAI : Entity
 
     [SerializeField] float _searchRadius;
 
+    [Header("Chase")]
+
+    [Header("Attack")]
+    [SerializeField] float _attackDistance;
+
     public override void Start()
     {
         InitializeEnemyInfo();
@@ -92,11 +97,6 @@ public class EnemyAI : Entity
     public override void Update()
     {
         CheckState();
-
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            _animator.SetTrigger("Stomp");
-        }
     }
 
     void InitializeEnemyInfo()
@@ -280,7 +280,7 @@ public class EnemyAI : Entity
             ChangeState(State.PATROL);
         }
 
-        if (_agent.stoppingDistance >= _distanceFromTarget)
+        if (_attackDistance >= _distanceFromTarget)
         {
             ChangeState(State.ATTACK);
         }
@@ -401,11 +401,11 @@ public class EnemyAI : Entity
     {
         _currentState = State.ATTACK;
 
+        _attackController.DoRandomAttack();
     }
 
     public virtual void Attack()
     {
-
     }
 
     public virtual void StopAttack()
