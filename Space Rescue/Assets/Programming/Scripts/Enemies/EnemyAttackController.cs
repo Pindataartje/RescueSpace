@@ -6,15 +6,14 @@ public class EnemyAttackController : MonoBehaviour
 
     [SerializeField] ShockWaveController _shockWaveController;
 
-    [SerializeField] EnemyAttackCollider _stompAttackCollider;
+    [SerializeField] EnemyAttackCollider _1attackCollider;
 
     [SerializeField] Animator _animator;
 
-    [SerializeField] Collider _stompCollider;
 
     private void Start()
     {
-        _stompAttackCollider.InitialzeAttack(enemyAi.damage);
+        _1attackCollider.InitialzeAttack(enemyAi.damage);
     }
 
     public void DoRandomAttack()
@@ -24,13 +23,13 @@ public class EnemyAttackController : MonoBehaviour
 
     public void StartStomp()
     {
-        _stompAttackCollider.DoAttack();
+        _1attackCollider.DoAttack();
 
         _shockWaveController.Shockwave();
     }
 
     public void StopStomp()
     {
-        _stompAttackCollider.StopAttack();
+        _1attackCollider.StopAttack();
     }
 }

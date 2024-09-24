@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerInput playerInput = null;
     public PlayerInput PlayerInput => playerInput;
 
+    [SerializeField] Animator _animator;
+
     [SerializeField] bool _isMoveAction;
     [SerializeField] Vector2 _currentMovementInput;
     [SerializeField] Vector3 _currentMovement;
@@ -98,8 +100,13 @@ public class PlayerController : MonoBehaviour
 
         if (_isMoveAction && !_isThrow)
         {
+            _animator.SetBool("Walking", true);
             Quaternion lookRotation = Quaternion.LookRotation(_currentMovement, Vector3.up);
             _playerModel.transform.rotation = Quaternion.Slerp(_playerModel.transform.rotation, lookRotation, Time.deltaTime * _playerRotationSpeed);
+        }
+        else
+        {
+            _animator.SetBool("Walking", false);
         }
 
         if (_isThrow)
@@ -165,6 +172,7 @@ public class PlayerController : MonoBehaviour
 
     void StartThrow(InputAction.CallbackContext context)
     {
+
         if (_robots.Count > 0)
         {
             _currentRobot = _robots[0];
@@ -174,6 +182,8 @@ public class PlayerController : MonoBehaviour
         if (_currentRobot != null)
         {
             _isThrow = true;
+
+            _animator.SetTrigger("Hold");
 
             _currentRobot.GetComponent<RobotAI>().ChangeState(RobotAI.State.THROWN);
             _currentRobot.GetComponent<NavMeshAgent>().enabled = false;
@@ -198,6 +208,7 @@ public class PlayerController : MonoBehaviour
         {
             _isThrow = false;
 
+            _animator.SetTrigger("Yeet");
             SimulatedArcThrow(_throwSpot.position, _throwHit.point, _currentRobot, 0.75f);
             _currentRobot = null;
         }

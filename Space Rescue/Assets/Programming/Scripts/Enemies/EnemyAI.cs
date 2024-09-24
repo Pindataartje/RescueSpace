@@ -224,6 +224,8 @@ public class EnemyAI : Entity
         {
             _agent.SetDestination(_targetTransform.position);
 
+            _animator.SetBool("Walking", true);
+
             Vector3 targetWithOffset = new Vector3(_targetTransform.position.x, transform.position.y, _targetTransform.position.z);
 
             _distanceFromTarget = Vector3.Distance(transform.position, targetWithOffset);
@@ -265,6 +267,8 @@ public class EnemyAI : Entity
         if (_targetTransform != null)
         {
             _agent.SetDestination(_targetTransform.position);
+
+            _animator.SetBool("Walking", true);
 
             Vector3 targetWithOffset = new Vector3(_targetTransform.position.x, transform.position.y, _targetTransform.position.z);
 
@@ -312,12 +316,16 @@ public class EnemyAI : Entity
         {
             _agent.SetDestination(_targetVector);
 
+            _animator.SetBool("Walking", true);
+
             Vector3 targetWithOffset = new Vector3(_targetVector.x, transform.position.y, _targetVector.z);
             _distanceFromTarget = Vector3.Distance(transform.position, targetWithOffset);
 
             if (_agent.stoppingDistance >= _distanceFromTarget && !_agent.isStopped)
             {
                 _newRandomPos = false;
+
+                _animator.SetBool("Walking", false);
             }
         }
         else
@@ -400,6 +408,10 @@ public class EnemyAI : Entity
     public virtual void StartAttack()
     {
         _currentState = State.ATTACK;
+
+        _agent.isStopped = true;
+
+        _animator.SetBool("Walking", false);
 
         _attackController.DoRandomAttack();
     }
