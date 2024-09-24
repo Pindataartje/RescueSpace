@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyAttackController : MonoBehaviour
 {
-    [SerializeField] EnemyAI enemyAi;
+    [SerializeField] EnemyAI _enemyAi;
 
     [SerializeField] ShockWaveController _shockWaveController;
 
@@ -13,7 +13,12 @@ public class EnemyAttackController : MonoBehaviour
 
     private void Start()
     {
-        _1attackCollider.InitialzeAttack(enemyAi.damage);
+        _enemyAi = GetComponentInParent<EnemyAI>();
+
+        if (_1attackCollider != null)
+        {
+            _1attackCollider.InitialzeAttack(_enemyAi.damage);
+        }
     }
 
     public void DoRandomAttack()

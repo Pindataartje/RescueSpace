@@ -101,24 +101,27 @@ public class EnemyAI : Entity
 
     void InitializeEnemyInfo()
     {
-        maxHealth = _enemyInfo.health;
-        health = maxHealth;
+        if (_enemyInfo != null)
+        {
+            maxHealth = _enemyInfo.health;
+            health = maxHealth;
 
-        speed = _enemyInfo.speed;
-        if (_agent != null) { _agent.speed = speed; }
+            speed = _enemyInfo.speed;
+            if (_agent != null) { _agent.speed = speed; }
 
-        damage = _enemyInfo.damage;
+            damage = _enemyInfo.damage;
 
-        _regenRate = _enemyInfo.regenRate;
-        _regenAmount = _enemyInfo.regenAmount;
+            _regenRate = _enemyInfo.regenRate;
+            _regenAmount = _enemyInfo.regenAmount;
 
-        _patrolRadius = _enemyInfo.patrolRadius;
-        _patrolReturnDistance = _enemyInfo.patrolReturnDistance;
-        _patrolPointCount = _enemyInfo.patrolPoints;
+            _patrolRadius = _enemyInfo.patrolRadius;
+            _patrolReturnDistance = _enemyInfo.patrolReturnDistance;
+            _patrolPointCount = _enemyInfo.patrolPoints;
 
-        _searchRadius = _enemyInfo.searchRadius;
-        _timeToSearch = _enemyInfo.timeToSearch;
-        _searchCount = _enemyInfo.searchCount;
+            _searchRadius = _enemyInfo.searchRadius;
+            _timeToSearch = _enemyInfo.timeToSearch;
+            _searchCount = _enemyInfo.searchCount;
+        }
     }
 
     public virtual void ChangeState(State newState)

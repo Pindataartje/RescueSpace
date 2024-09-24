@@ -21,18 +21,24 @@ public class Entity : MonoBehaviour
     public float speed;
     public float damage;
 
-    public virtual void Start()
-    {
+    public virtual void Start() { }
 
-    }
-
-    public virtual void Update()
-    {
-
-    }
+    public virtual void Update() { }
 
     public virtual void TakeDamage(float damage)
     {
         health -= damage;
+
+        if (health <= 0)
+        {
+            health = 0;
+
+            Death();
+        }
+    }
+
+    public virtual void Death()
+    {
+        Destroy(this.gameObject);
     }
 }

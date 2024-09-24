@@ -1526,7 +1526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e28a6c2e5e4a234aa1e047474a81225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyAi: {fileID: 7267021771582976873}
+  _enemyAi: {fileID: 0}
   _shockWaveController: {fileID: 2781671509270835514}
   _1attackCollider: {fileID: 7389875655807279136}
   _animator: {fileID: 617355484889222510}
