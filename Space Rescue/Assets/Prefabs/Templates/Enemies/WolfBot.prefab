@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d29cbaffd562b04699719158c3a6ff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyAI: {fileID: 0}
+  enemyAI: {fileID: 7267021771582976873}
 --- !u!1 &2616314449892514314
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,7 +376,7 @@ MonoBehaviour:
   _newRandomPos: 0
   _searchRadius: 8
   _attackDistance: 2
-  _gizmoSize: 0
+  _gizmoSize: 0.5
 --- !u!195 &2090475737085718487
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1528,9 +1528,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyAi: {fileID: 7267021771582976873}
   _shockWaveController: {fileID: 2781671509270835514}
-  _stompAttackCollider: {fileID: 7389875655807279136}
+  _1attackCollider: {fileID: 7389875655807279136}
   _animator: {fileID: 617355484889222510}
-  _stompCollider: {fileID: 0}
 --- !u!1 &3645051668890915663 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5374047642030849334, guid: 2a90d2686fe9a0c419072708c27e1522,

@@ -1030,16 +1030,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: WolfBot
       objectReference: {fileID: 0}
-    - target: {fileID: 7267021771582976873, guid: 00bff1eea71254548ac79f390ebb596f,
-        type: 3}
-      propertyPath: _gizmoSize
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7421059898322441881, guid: 00bff1eea71254548ac79f390ebb596f,
-        type: 3}
-      propertyPath: _1attackCollider
-      value: 
-      objectReference: {fileID: 1568916326}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1579,7 +1569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e28a6c2e5e4a234aa1e047474a81225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyAi: {fileID: 7267021772500764533}
+  enemyAi: {fileID: 0}
   _shockWaveController: {fileID: 0}
   _1attackCollider: {fileID: 1554057386}
   _animator: {fileID: 1554057383}
@@ -1657,18 +1647,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &1568916326 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7389875655807279136, guid: 00bff1eea71254548ac79f390ebb596f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1035064440}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f04c326e8b16a854083ca9441e719bda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1637204565
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2077,7 +2055,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6037389109610046070}
-  - component: {fileID: 7267021772500764533}
   - component: {fileID: 2090475736713042891}
   - component: {fileID: 4705998604530087787}
   m_Layer: 7
@@ -2087,55 +2064,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &7267021772500764533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7217989374458109608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5d2ba55876972242a3641ff94d62ce0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  health: 15
-  maxHealth: 15
-  speed: 3
-  damage: 8
-  _regenRate: 0
-  _regenAmount: 0
-  _currentState: 1
-  _enemyInfo: {fileID: 11400000, guid: 7782fa1d400a7e74c898bae00b2a77da, type: 2}
-  _animator: {fileID: 0}
-  _agent: {fileID: 2090475736713042891}
-  _attackController: {fileID: 0}
-  isAlive: 0
-  _canNaturalRegen: 0
-  _targetTransform: {fileID: 0}
-  _targetVector: {x: 0, y: 0, z: 0}
-  _distanceFromTarget: 0
-  _distanceFromPatrol: 0
-  _patrolReturnDistance: 20
-  _currentPatrol: 0
-  _patrolPointCount: 12
-  _patrolRadius: 10
-  _patrolPoints: []
-  _searchTime: 0
-  _timeToSearch: 3
-  _maxSearchCount: 0
-  _searchCount: 2
-  _detectionHolder: {fileID: 1888213707072456809}
-  _originalDetectionScale: {x: 0, y: 0, z: 0}
-  _scaleSpeed: 0
-  _minScale: 0
-  _maxScale: 0
-  _startSearchPosition: {x: 0, y: 0, z: 0}
-  _newRandomPos: 0
-  _searchRadius: 8
-  _attackDistance: 2
-  _gizmoSize: 0.5
 --- !u!114 &8048034592083871289
 MonoBehaviour:
   m_ObjectHideFlags: 0
