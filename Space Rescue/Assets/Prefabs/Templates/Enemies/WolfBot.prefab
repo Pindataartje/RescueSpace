@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyAI: {fileID: 7267021771582976873}
+  detectableObjects: []
 --- !u!1 &2616314449892514314
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,6 +353,7 @@ MonoBehaviour:
   _animator: {fileID: 617355484889222510}
   _agent: {fileID: 2090475737085718487}
   _attackController: {fileID: 7421059898322441881}
+  _enemyDetection: {fileID: 8048034591190856229}
   isAlive: 0
   _canNaturalRegen: 0
   _targetTransform: {fileID: 0}
@@ -369,6 +371,10 @@ MonoBehaviour:
   _searchCount: 2
   _detectionHolder: {fileID: 1888213707991317621}
   _originalDetectionScale: {x: 0, y: 0, z: 0}
+  _detectableObjects:
+  - Player
+  - Robot
+  - Reticle
   _scaleSpeed: 0
   _minScale: 0
   _maxScale: 0

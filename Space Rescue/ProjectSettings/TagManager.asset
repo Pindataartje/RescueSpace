@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Robot
+  - Reticle
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Robot
   - Enemy
   - Scrap
-  - 
+  - Reticle
   - 
   - 
   - 

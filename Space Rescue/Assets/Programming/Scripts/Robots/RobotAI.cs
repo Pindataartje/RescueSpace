@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -26,6 +25,7 @@ public class RobotAI : Entity
     [SerializeField] float _distanceFromTarget;
 
     [SerializeField] float _checkRadius;
+    [SerializeField] float _groundedCheckRadius;
     [SerializeField] LayerMask _throwLayer;
 
     public override void Start()
@@ -302,7 +302,17 @@ public class RobotAI : Entity
 
     public virtual void Thrown()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, _checkRadius, _throwLayer);
+        CheckForEntityInRange(_checkRadius);
+    }
+
+    public virtual void StopThrown()
+    {
+
+    }
+
+    public virtual void CheckForEntityInRange(float radius)
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, radius, _throwLayer);
 
         for (int i = 0; i < colliders.Length; i++)
         {
@@ -334,11 +344,6 @@ public class RobotAI : Entity
                 break;
             }
         }
-    }
-
-    public virtual void StopThrown()
-    {
-
     }
 
     #endregion
@@ -442,13 +447,11 @@ public class RobotAI : Entity
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (_currentState == State.THROWN)
         {
-            Debug.Log("hit enemy");
-            other.gameObject.GetComponent<Entity>().TakeDamage(_robotInfo.impactDamage);
-
-            _target = other.transform;
-            ChangeState(State.ATTACHED);
+            _agent.enabled = true;
+            ChangeState(State.IDLE);
+            CheckForEntityInRange(_groundedCheckRadius);
         }
     }
 

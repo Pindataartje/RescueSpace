@@ -250,10 +250,6 @@ public class PlayerController : MonoBehaviour
 
             yield return null;
         }
-
-        // MAYBE MAKE IT NOT GO INTO THE GROUND
-
-        robot.GetComponent<NavMeshAgent>().enabled = true;
     }
 
     private Vector3 CalculateParabolicPosition(Vector3 start, Vector3 peak, Vector3 end, float t)

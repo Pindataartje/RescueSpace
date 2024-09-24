@@ -27,6 +27,7 @@ public class EnemyAI : Entity
     [SerializeField] Animator _animator;
     [SerializeField] NavMeshAgent _agent;
     [SerializeField] EnemyAttackController _attackController;
+    [SerializeField] EnemyDetection _enemyDetection;
 
     [Header("General")]
     public bool isAlive;
@@ -60,6 +61,8 @@ public class EnemyAI : Entity
 
     [SerializeField] Vector3 _originalDetectionScale;
 
+    [SerializeField] string[] _detectableObjects;
+
     [SerializeField] float _scaleSpeed;
 
     [SerializeField] float _minScale;
@@ -92,6 +95,10 @@ public class EnemyAI : Entity
         _targetTransform = _patrolPoints[0];
 
         _originalDetectionScale = _detectionHolder.localScale;
+
+        _enemyDetection = GetComponentInChildren<EnemyDetection>();
+
+        _enemyDetection.detectableObjects = _detectableObjects;
     }
 
     public override void Update()

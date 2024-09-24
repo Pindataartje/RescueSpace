@@ -6,21 +6,21 @@ public class EnemyDetection : MonoBehaviour
 {
     [SerializeField] EnemyAI enemyAI;
 
+    public string[] detectableObjects;
+
     private void Awake()
     {
         enemyAI = GetComponentInParent<EnemyAI>();
     }
 
-    private void OnDisable()
-    {
-
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Robot") || other.CompareTag("Player"))
+        for (int i = 0; i < detectableObjects.Length; i++)
         {
-            enemyAI.EnterDetection(other.transform);
+            if (other.CompareTag(detectableObjects[i]))
+            {
+                enemyAI.EnterDetection(other.transform);
+            }
         }
     }
 

@@ -204,6 +204,7 @@ MonoBehaviour:
   _animator: {fileID: 5991455134888532697}
   _agent: {fileID: 497595841256877330}
   _attackController: {fileID: 8876819550459233416}
+  _enemyDetection: {fileID: 0}
   isAlive: 0
   _canNaturalRegen: 0
   _targetTransform: {fileID: 0}
@@ -221,6 +222,7 @@ MonoBehaviour:
   _searchCount: 2
   _detectionHolder: {fileID: 5222762849891520670}
   _originalDetectionScale: {x: 0, y: 0, z: 0}
+  _detectableObjects: []
   _scaleSpeed: 0
   _minScale: 0
   _maxScale: 0
@@ -420,6 +422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyAI: {fileID: 0}
+  detectableObjects: []
 --- !u!1001 &5289919713069663864
 PrefabInstance:
   m_ObjectHideFlags: 0
