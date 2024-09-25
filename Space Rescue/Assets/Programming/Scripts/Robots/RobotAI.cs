@@ -266,9 +266,11 @@ public class RobotAI : Entity
         //     _agent.SetDestination(GameObject.FindGameObjectWithTag("Enemy").transform.position);
         // }
 
+
         if (_target != null)
         {
             _distanceFromTarget = Vector3.Distance(transform.position, _target.position);
+            transform.LookAt(_target);
         }
 
 
@@ -358,7 +360,6 @@ public class RobotAI : Entity
             Debug.Log("Hit Ground");
             ChangeState(State.IDLE);
             CheckForEntityInRange(_groundedCheckRadius);
-
         }
     }
 
@@ -378,6 +379,8 @@ public class RobotAI : Entity
             {
                 if (colliders[i].GetComponent<EnemyAI>().isAlive)
                 {
+                    Debug.Log("ENEMY DETECTED");
+
                     _target = colliders[i].transform;
 
                     ChangeState(State.ATTACK);

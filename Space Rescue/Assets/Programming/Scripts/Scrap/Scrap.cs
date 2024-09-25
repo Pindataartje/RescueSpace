@@ -338,5 +338,7 @@ public class Scrap : Entity
                 }
             }
         }
+
+        Gizmos.DrawWireSphere(transform.position, _radius);
     }
 }

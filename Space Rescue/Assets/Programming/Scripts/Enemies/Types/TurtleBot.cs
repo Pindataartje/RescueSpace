@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class TurtleBot : EnemyAI
 {
+    [SerializeField] Material _ledMaterial;
+
     public override void Start()
     {
         base.Start();
@@ -105,7 +107,7 @@ public class TurtleBot : EnemyAI
     {
         base.EnterDetection(newDetected);
 
-        
+        Animator.SetBool("Power", true);
     }
 
     public override void Detection()

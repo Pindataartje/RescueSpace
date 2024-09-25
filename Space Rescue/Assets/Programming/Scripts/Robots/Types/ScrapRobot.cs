@@ -83,7 +83,7 @@ public class ScrapRobot : RobotAI
         for (int i = 0; i < robotsToSpawn; i++)
         {
             yield return new WaitForSeconds(_spawnTime);
-            GameObject newRobot = Instantiate(_robotPrefabs[Random.Range(0, _robotPrefabs.Length - 1)]);
+            GameObject newRobot = Instantiate(_robotPrefabs[Random.Range(0, _robotPrefabs.Length)]);
 
             newRobot.transform.position = _spawnPosition.position;
         }

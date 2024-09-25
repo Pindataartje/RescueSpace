@@ -37,4 +37,10 @@ public class EnemyAttackController : MonoBehaviour
     {
         _1attackCollider.StopAttack();
     }
+
+    public void HasPoweredOn()
+    {
+        _enemyAi.HasPoweredOn = true;
+    }
+
 }

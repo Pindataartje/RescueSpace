@@ -34,6 +34,10 @@ public class EnemyAI : Entity
 
     [Header("General")]
     public bool isAlive;
+    [SerializeField] bool _hasPoweredOn;
+    public bool HasPoweredOn
+    { get { return _hasPoweredOn; } set { _hasPoweredOn = value; } }
+
     [SerializeField] bool _canNaturalRegen;
 
     [SerializeField] Transform _targetTransform;
@@ -110,7 +114,10 @@ public class EnemyAI : Entity
 
     public override void Update()
     {
-        CheckState();
+        if (_hasPoweredOn)
+        {
+            CheckState();
+        }
     }
 
     public override void Death()
@@ -253,6 +260,8 @@ public class EnemyAI : Entity
         _currentState = State.PATROL;
 
         _canNaturalRegen = true;
+
+        _targetTransform = _patrolPoints[0];
     }
 
     public virtual void Patrol()
@@ -329,7 +338,7 @@ public class EnemyAI : Entity
 
     public virtual void StopChase()
     {
-
+        _targetTransform = null;
     }
 
     #endregion
