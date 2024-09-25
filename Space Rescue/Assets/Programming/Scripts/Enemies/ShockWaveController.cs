@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.VFX;
 
 public class ShockWaveController : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class ShockWaveController : MonoBehaviour
 
     [SerializeField] float _pushBackForce;
 
+    [SerializeField] VisualEffect _shockWaveEffect;
+
     private void Start()
     {
         _currentInnerRadius = _initialInnerRadius;
@@ -31,6 +34,7 @@ public class ShockWaveController : MonoBehaviour
     {
         if (canShockwave)
         {
+            _shockWaveEffect.Play();
             if (_currentOuterRadius < _maxRadius)
             {
                 _currentInnerRadius += _speed * Time.deltaTime;
@@ -41,6 +45,8 @@ public class ShockWaveController : MonoBehaviour
                 canShockwave = false;
 
                 _collider.enabled = false;
+
+                _shockWaveEffect.Stop();
 
                 transform.localScale = Vector3.one * _initialInnerRadius;
 

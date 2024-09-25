@@ -54,7 +54,8 @@ MonoBehaviour:
   damage: 1
   _robotInfo: {fileID: 11400000, guid: 8713ae78335bcfb4999399151b58dc4a, type: 2}
   _agent: {fileID: 1512296474607712041}
-  _animator: {fileID: 3525334026660492487}
+  _bodyAnimator: {fileID: 3525334026660492487}
+  _weaponAnimator: {fileID: 3157620950301373188}
   _target: {fileID: 0}
   _player: {fileID: 0}
   _collider: {fileID: 5668596216918850583}
@@ -187,6 +188,12 @@ PrefabInstance:
 --- !u!4 &1757941421784597632 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2100752502761170238, guid: 6d47cfa49ea886f4d95cb18566f614f2,
+    type: 3}
+  m_PrefabInstance: {fileID: 378910595618775486}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &3157620950301373188 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3355241833066549946, guid: 6d47cfa49ea886f4d95cb18566f614f2,
     type: 3}
   m_PrefabInstance: {fileID: 378910595618775486}
   m_PrefabAsset: {fileID: 0}

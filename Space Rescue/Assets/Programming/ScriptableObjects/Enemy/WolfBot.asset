@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0627ca21446312844ac8ffb83e471ed6, type: 3}
   m_Name: WolfBot
   m_EditorClassIdentifier: 
-  health: 15
+  health: 1000
   speed: 3
   damage: 8
+  regenRate: 0
+  regenAmount: 0
   patrolRadius: 10
   patrolReturnDistance: 20
   patrolPoints: 12

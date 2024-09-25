@@ -25,6 +25,9 @@ public class EnemyAI : Entity
     [Header("Setup")]
     [SerializeField] EnemySO _enemyInfo;
     [SerializeField] Animator _animator;
+    public Animator Animator
+    { get { return _animator; } }
+
     [SerializeField] NavMeshAgent _agent;
     [SerializeField] EnemyAttackController _attackController;
     [SerializeField] EnemyDetection _enemyDetection;

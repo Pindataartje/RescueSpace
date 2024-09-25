@@ -5,10 +5,17 @@ using UnityEngine.AI;
 public class RobotAI : Entity
 {
     [SerializeField] RobotSO _robotInfo;
+    public RobotSO RobotInfo
+    { get { return _robotInfo; } }
 
     [SerializeField] NavMeshAgent _agent;
 
-    [SerializeField] Animator _animator;
+    [SerializeField] Animator _bodyAnimator;
+    public Animator BodyAnimator
+    { get { return _bodyAnimator; } }
+    [SerializeField] Animator _weaponAnimator;
+    public Animator WeaponAnimator
+    { get { return _weaponAnimator; } }
 
     [SerializeField] Transform _target;
     public Transform Target
@@ -21,6 +28,8 @@ public class RobotAI : Entity
     [SerializeField] Transform _scrapRobot;
 
     [SerializeField] bool _isAttacking;
+    public bool IsAttacking
+    { get { return _isAttacking; } }
 
     [SerializeField] float _distanceFromTarget;
 
@@ -46,7 +55,7 @@ public class RobotAI : Entity
 
         _scrapRobot = FindAnyObjectByType<ScrapRobot>().transform;
 
-        _animator = GetComponentInChildren<Animator>();
+        _bodyAnimator = GetComponentInChildren<Animator>();
     }
 
     public override void Update()
@@ -223,12 +232,12 @@ public class RobotAI : Entity
         if (_agent.stoppingDistance >= _distanceFromTarget && !_agent.isStopped)
         {
             _agent.isStopped = true;
-            _animator.SetBool("Walking", false);
+            _bodyAnimator.SetBool("Walking", false);
         }
         else
         {
             _agent.isStopped = false;
-            _animator.SetBool("Walking", true);
+            _bodyAnimator.SetBool("Walking", true);
         }
     }
 
@@ -289,6 +298,9 @@ public class RobotAI : Entity
     public virtual IEnumerator StartAttacking()
     {
         _isAttacking = true;
+
+        _weaponAnimator.SetBool("Ready", true);
+
         yield return new WaitForSeconds(_robotInfo.windUpTime);
 
         StartCoroutine(Attacking());
@@ -299,6 +311,9 @@ public class RobotAI : Entity
         if (_target != null)
         {
             _target.GetComponent<Entity>().TakeDamage(_robotInfo.damage); // this still happens with this because it tries to attack the player ( probably )
+
+            _bodyAnimator.SetTrigger("Attack");
+            _weaponAnimator.SetTrigger("Attack");
         }
 
         yield return new WaitForSeconds(_robotInfo.fireRate);
@@ -311,6 +326,8 @@ public class RobotAI : Entity
 
     public virtual IEnumerator StopAttacking()
     {
+        _weaponAnimator.SetBool("Ready", false);
+
         yield return new WaitForSeconds(_robotInfo.windDownTime);
         _isAttacking = false;
     }

@@ -104,6 +104,8 @@ public class TurtleBot : EnemyAI
     public override void EnterDetection(Transform newDetected)
     {
         base.EnterDetection(newDetected);
+
+        
     }
 
     public override void Detection()
