@@ -186,11 +186,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeleeBot
       objectReference: {fileID: 0}
-    - target: {fileID: 9202191280697303281, guid: eac2ab7e78f9426479dbd9cf036c4fe8,
-        type: 3}
-      propertyPath: _groundedCheckRadius
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -372,6 +367,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1482087099940304695, guid: 004e271c203668e4db7524d0c54b94ae,
+        type: 3}
+      propertyPath: _throwLayer.m_Bits
+      value: 1153
+      objectReference: {fileID: 0}
+    - target: {fileID: 1482087099940304695, guid: 004e271c203668e4db7524d0c54b94ae,
+        type: 3}
+      propertyPath: _walkLayerMask.m_Bits
+      value: 1025
+      objectReference: {fileID: 0}
     - target: {fileID: 1622245044523130312, guid: 004e271c203668e4db7524d0c54b94ae,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -416,6 +421,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Reticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075656263155324649, guid: 004e271c203668e4db7524d0c54b94ae,
+        type: 3}
+      propertyPath: _terrainLayer.m_Bits
+      value: 1025
       objectReference: {fileID: 0}
     - target: {fileID: 7587584735501610104, guid: 004e271c203668e4db7524d0c54b94ae,
         type: 3}
@@ -621,16 +631,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1984554821705642849, guid: 6ee738e4bf16d384589041f509697db2,
-        type: 3}
-      propertyPath: _checkRadius
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1984554821705642849, guid: 6ee738e4bf16d384589041f509697db2,
-        type: 3}
-      propertyPath: _groundedCheckRadius
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 2273629952231799186, guid: 6ee738e4bf16d384589041f509697db2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -879,8 +879,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7267021771582976873, guid: 00bff1eea71254548ac79f390ebb596f,
         type: 3}
+      propertyPath: health
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7267021771582976873, guid: 00bff1eea71254548ac79f390ebb596f,
+        type: 3}
+      propertyPath: maxHealth
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7267021771582976873, guid: 00bff1eea71254548ac79f390ebb596f,
+        type: 3}
+      propertyPath: _isInitialized
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7267021771582976873, guid: 00bff1eea71254548ac79f390ebb596f,
+        type: 3}
+      propertyPath: _deathEffectPrefab
+      value: 
+      objectReference: {fileID: 8043584368744636961, guid: 953c254cc5e763b4c8e8bc67df3c95c3,
+        type: 3}
+    - target: {fileID: 7267021771582976873, guid: 00bff1eea71254548ac79f390ebb596f,
+        type: 3}
       propertyPath: _detectableObjects.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8018553889223898413, guid: 00bff1eea71254548ac79f390ebb596f,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -902,7 +928,7 @@ GameObject:
   - component: {fileID: 1179790491}
   - component: {fileID: 1179790492}
   - component: {fileID: 1179790493}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1158,6 +1184,11 @@ MonoBehaviour:
   _throwLayer:
     serializedVersion: 2
     m_Bits: 0
+  _groundMask:
+    serializedVersion: 2
+    m_Bits: 0
+  _isThrown: 0
+  _deathEffectPrefab: {fileID: 0}
   _currentState: 0
   _spawnTime: 3
   _robotPrefabs:
@@ -1264,6 +1295,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TurtleBot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4913891989532649836, guid: d30f9a15ee1af7245917ba4f801ad34a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5891106718197098601, guid: d30f9a15ee1af7245917ba4f801ad34a,
         type: 3}

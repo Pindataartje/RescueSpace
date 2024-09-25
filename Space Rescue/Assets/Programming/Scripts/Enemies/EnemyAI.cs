@@ -79,6 +79,10 @@ public class EnemyAI : Entity
     [Header("Attack")]
     [SerializeField] float _attackDistance;
 
+    [SerializeField] GameObject _deathEffectPrefab;
+
+    [SerializeField] bool _isInitialized;
+
     public override void Start()
     {
         InitializeEnemyInfo();
@@ -106,10 +110,30 @@ public class EnemyAI : Entity
         CheckState();
     }
 
+    public override void Death()
+    {
+        GameObject effect = Instantiate(_deathEffectPrefab);
+
+        effect.transform.position = transform.position;
+
+        Destroy(effect, 1f);
+
+        base.Death();
+    }
+
     void InitializeEnemyInfo()
     {
-        if (_enemyInfo != null)
+        if (_enemyInfo != null && !_isInitialized)
         {
+            if (maxHealth == 0)
+            {
+                _isInitialized = false;
+            }
+            else
+            {
+                _isInitialized = true;
+            }
+
             maxHealth = _enemyInfo.health;
             health = maxHealth;
 

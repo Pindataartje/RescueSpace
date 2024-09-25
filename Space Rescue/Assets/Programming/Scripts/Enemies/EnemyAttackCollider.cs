@@ -18,6 +18,7 @@ public class EnemyAttackCollider : MonoBehaviour
 
     public void DoAttack()
     {
+        Debug.Log("attack");
         _attackCollider.enabled = true;
     }
 
@@ -30,6 +31,7 @@ public class EnemyAttackCollider : MonoBehaviour
     {
         if (other.CompareTag("Robot"))
         {
+            
             other.GetComponent<RobotAI>().TakeDamage(_damage);
         }
         if (other.CompareTag("Player"))

@@ -84,7 +84,7 @@ public class ShockWaveController : MonoBehaviour
                     agent.velocity += direction * _pushBackForce;
 
                     // Optionally stop the agent from following its path momentarily
-                    agent.isStopped = true;
+                    // agent.isStopped = true;
                 }
             }
         }

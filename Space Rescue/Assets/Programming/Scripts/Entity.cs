@@ -27,6 +27,7 @@ public class Entity : MonoBehaviour
 
     public virtual void TakeDamage(float damage)
     {
+        Debug.Log($"{this.gameObject.name} takes {damage}");
         health -= damage;
 
         if (health <= 0)

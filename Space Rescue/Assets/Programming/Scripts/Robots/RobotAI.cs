@@ -28,6 +28,13 @@ public class RobotAI : Entity
     [SerializeField] float _groundedCheckRadius;
     [SerializeField] LayerMask _throwLayer;
 
+    [SerializeField] LayerMask _groundMask;
+
+    [SerializeField] bool _isThrown;
+
+    [SerializeField] GameObject _deathEffectPrefab;
+
+
     public override void Start()
     {
         if (_robotInfo != null)
@@ -45,30 +52,42 @@ public class RobotAI : Entity
     public override void Update()
     {
         CheckState();
+    }
 
+    public override void Death()
+    {
+        GameObject effect = Instantiate(_deathEffectPrefab);
 
+        effect.transform.position = transform.position;
+
+        Destroy(effect, 1f);
+
+        base.Death();
     }
 
     public virtual void InitializeRobotInfo()
     {
-        // maxHealth = _robotInfo.health;
-        // health = maxHealth;
+        if (_robotInfo != null)
+        {
+            maxHealth = _robotInfo.health;
+            health = maxHealth;
 
-        // speed = _robotInfo.speed;
-        // if (_agent != null) { _agent.speed = speed; }
+            speed = _robotInfo.speed;
+            if (_agent != null) { _agent.speed = speed; }
 
-        // damage = _robotInfo.damage;
+            damage = _robotInfo.damage;
 
-        // _regenRate = _robotInfo.regenRate;
-        // _regenAmount = _robotInfo.regenAmount;
+            // _regenRate = _robotInfo.regenRate;
+            // _regenAmount = _robotInfo.regenAmount;
 
-        // _patrolRadius = _robotInfo.patrolRadius;
-        // _patrolReturnDistance = _robotInfo.patrolReturnDistance;
-        // _patrolPointCount = _robotInfo.patrolPoints;
+            // _patrolRadius = _robotInfo.patrolRadius;
+            // _patrolReturnDistance = _robotInfo.patrolReturnDistance;
+            // _patrolPointCount = _robotInfo.patrolPoints;
 
-        // _searchRadius = _robotInfo.searchRadius;
-        // _timeToSearch = _robotInfo.timeToSearch;
-        // _searchCount = _robotInfo.searchCount;
+            // _searchRadius = _robotInfo.searchRadius;
+            // _timeToSearch = _robotInfo.timeToSearch;
+            // _searchCount = _robotInfo.searchCount;
+        }
     }
 
     public State _currentState;
@@ -97,6 +116,7 @@ public class RobotAI : Entity
                 StopAttack();
                 break;
             case State.THROWN:
+                StopThrown();
                 break;
             case State.GATHER:
                 StopGather();
@@ -232,12 +252,16 @@ public class RobotAI : Entity
 
     public virtual void Attack()
     {
-        if (_agent.isActiveAndEnabled)
+        // if (_agent.isActiveAndEnabled)
+        // {
+        //     _agent.SetDestination(GameObject.FindGameObjectWithTag("Enemy").transform.position);
+        // }
+
+        if (_target != null)
         {
-            _agent.SetDestination(GameObject.FindGameObjectWithTag("Enemy").transform.position);
+            _distanceFromTarget = Vector3.Distance(transform.position, _target.position);
         }
 
-        _distanceFromTarget = Vector3.Distance(transform.position, _target.position);
 
         if (_agent.stoppingDistance > _distanceFromTarget && !_isAttacking)
         {
@@ -298,16 +322,33 @@ public class RobotAI : Entity
     public virtual void StartThrown()
     {
         _currentState = State.THROWN;
+
+        _agent.enabled = false;
+        _collider.isTrigger = true;
+
+        _isThrown = true;
     }
 
     public virtual void Thrown()
     {
-        CheckForEntityInRange(_checkRadius);
+        if (_isThrown)
+        {
+            CheckForEntityInRange(_checkRadius);
+        }
+
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 0.1f, _groundMask))
+        {
+            Debug.Log("Hit Ground");
+            ChangeState(State.IDLE);
+            CheckForEntityInRange(_groundedCheckRadius);
+
+        }
     }
 
     public virtual void StopThrown()
     {
-
+        _agent.enabled = true;
+        _collider.isTrigger = false;
     }
 
     public virtual void CheckForEntityInRange(float radius)
@@ -343,6 +384,7 @@ public class RobotAI : Entity
 
                 break;
             }
+
         }
     }
 
@@ -445,19 +487,8 @@ public class RobotAI : Entity
         ChangeState(State.IDLE);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (_currentState == State.THROWN)
-        {
-            _agent.enabled = true;
-            ChangeState(State.IDLE);
-            CheckForEntityInRange(_groundedCheckRadius);
-        }
-    }
-
     public void OnValidate()
     {
         InitializeRobotInfo();
     }
-
 }

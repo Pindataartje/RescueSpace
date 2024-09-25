@@ -185,9 +185,9 @@ public class PlayerController : MonoBehaviour
 
             _animator.SetTrigger("Hold");
 
+            _currentRobot.GetComponent<Collider>().isTrigger = true; // maybe do in start throw
+            _currentRobot.transform.position = _throwSpot.position;
             _currentRobot.GetComponent<RobotAI>().ChangeState(RobotAI.State.THROWN);
-            _currentRobot.GetComponent<NavMeshAgent>().enabled = false;
-            _currentRobot.GetComponent<Collider>().isTrigger = true;
         }
 
     }

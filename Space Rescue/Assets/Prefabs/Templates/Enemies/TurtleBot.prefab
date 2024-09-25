@@ -204,7 +204,7 @@ MonoBehaviour:
   _animator: {fileID: 5991455134888532697}
   _agent: {fileID: 497595841256877330}
   _attackController: {fileID: 8876819550459233416}
-  _enemyDetection: {fileID: 0}
+  _enemyDetection: {fileID: 2912140376665945380}
   isAlive: 0
   _canNaturalRegen: 0
   _targetTransform: {fileID: 0}
