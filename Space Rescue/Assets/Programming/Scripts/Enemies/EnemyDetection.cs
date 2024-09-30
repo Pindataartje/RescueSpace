@@ -24,16 +24,11 @@ public class EnemyDetection : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-
-    }
-
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Robot") || other.CompareTag("Player"))
         {
-            enemyAI.ExitDetection();
+            enemyAI.ExitDetection(other.transform);
         }
     }
 }

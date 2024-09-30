@@ -120,14 +120,9 @@ public class TurtleBot : EnemyAI
         Animator.SetBool("Power", true);
     }
 
-    public override void Detection()
+    public override void ExitDetection(Transform exitDeteted)
     {
-        base.Detection();
-    }
-
-    public override void ExitDetection()
-    {
-        base.ExitDetection();
+        base.ExitDetection(exitDeteted);
     }
 
     #endregion

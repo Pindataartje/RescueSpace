@@ -6,8 +6,13 @@ using UnityEngine.AI;
 
 public class EnemyAI : Entity
 {
+
     [SerializeField] float _regenRate;
     [SerializeField] float _regenAmount;
+
+    [Header("Initialized")]
+
+    [SerializeField] bool _isInitialized;
 
     [Header("State")]
 
@@ -41,7 +46,11 @@ public class EnemyAI : Entity
     [SerializeField] bool _canNaturalRegen;
 
     [SerializeField] Transform _targetTransform;
+
+    [SerializeField] List<Transform> _possibleTargets = new();
+
     [SerializeField] Vector3 _targetVector;
+
     [SerializeField] float _distanceFromTarget;
 
     [Header("Patrol")]
@@ -84,11 +93,12 @@ public class EnemyAI : Entity
     [Header("Chase")]
 
     [Header("Attack")]
-    [SerializeField] float _attackDistance;
+    [SerializeField] float _attackRange;
+    [SerializeField] bool _isAttacking;
+    public bool IsAttacking
+    { get { return _isAttacking; } set { _isAttacking = value; } }
 
     [SerializeField] GameObject _deathEffectPrefab;
-
-    [SerializeField] bool _isInitialized;
 
     [Header("Robots")]
     [SerializeField] List<RobotAI> _attachedRobots = new();
@@ -159,6 +169,7 @@ public class EnemyAI : Entity
             if (_agent != null) { _agent.speed = speed; }
 
             damage = _enemyInfo.damage;
+            _attackRange = _enemyInfo.attackRange;
 
             _regenRate = _enemyInfo.regenRate;
             _regenAmount = _enemyInfo.regenAmount;
@@ -323,7 +334,7 @@ public class EnemyAI : Entity
 
     public virtual void Chase()
     {
-        if (_targetTransform != null)
+        if (_targetTransform != null && _possibleTargets.Count > 0)
         {
             _agent.SetDestination(_targetTransform.position);
 
@@ -337,13 +348,18 @@ public class EnemyAI : Entity
 
             _distanceFromPatrol = Vector3.Distance(transform.position, patrolWithOffset);
         }
+        else if (_possibleTargets.Count > 0)
+        {
+            _targetTransform = _possibleTargets[0];
+        }
+
 
         if (_patrolReturnDistance <= _distanceFromPatrol)
         {
             ChangeState(State.PATROL);
         }
 
-        if (_attackDistance >= _distanceFromTarget)
+        if (_attackRange >= _distanceFromTarget)
         {
             ChangeState(State.ATTACK);
         }
@@ -351,7 +367,7 @@ public class EnemyAI : Entity
 
     public virtual void StopChase()
     {
-        _targetTransform = null;
+
     }
 
     #endregion
@@ -445,18 +461,22 @@ public class EnemyAI : Entity
 
     public virtual void EnterDetection(Transform newDetected)
     {
-        _targetTransform = newDetected;
+        if (!_possibleTargets.Contains(newDetected))
+        {
+            _possibleTargets.Add(newDetected);
+        }
 
-        ChangeState(State.CHASE);
+        if (_currentState != State.CHASE && _currentState != State.ATTACK && _possibleTargets.Count > 0)
+        {
+            _targetTransform = _possibleTargets[0];
+
+            ChangeState(State.CHASE);
+        }
     }
 
-    public virtual void Detection()
+    public virtual void ExitDetection(Transform exitDetected)
     {
-
-    }
-
-    public virtual void ExitDetection()
-    {
+        _possibleTargets.Remove(exitDetected);
         // ChangeState(State.SEARCH); // Differnt thing
     }
 
@@ -467,16 +487,54 @@ public class EnemyAI : Entity
     public virtual void StartAttack()
     {
         _currentState = State.ATTACK;
-
-        _agent.isStopped = true;
-
-        _animator.SetBool("Walking", false);
-
-        _attackController.DoRandomAttack();
     }
 
     public virtual void Attack()
     {
+        if (_targetTransform != null && !IsAttacking)
+        {
+            _agent.isStopped = false;
+
+            _agent.SetDestination(_targetTransform.position);
+
+            _animator.SetBool("Walking", true);
+
+            Vector3 targetWithOffset = new Vector3(_targetTransform.position.x, transform.position.y, _targetTransform.position.z);
+
+            _distanceFromTarget = Vector3.Distance(transform.position, targetWithOffset);
+
+            Vector3 patrolWithOffset = new Vector3(_patrolPoints[_currentPatrol].position.x, transform.position.y, _patrolPoints[_currentPatrol].position.z);
+
+            _distanceFromPatrol = Vector3.Distance(transform.position, patrolWithOffset);
+        }
+
+        if (_targetTransform == null && _possibleTargets.Count > 0 && !_isAttacking)
+        {
+            for (int i = 0; i < _possibleTargets.Count; i++)
+            {
+                if (_possibleTargets[i] == null)
+                {
+                    _possibleTargets.RemoveAt(i);
+                }
+            }
+            if (_possibleTargets.Count > 0)
+            {
+                _targetTransform = _possibleTargets[0];
+            }
+        }
+        else if (_targetTransform == null && _possibleTargets.Count == 0)
+        {
+            ChangeState(State.SEARCH);
+        }
+
+        if (_targetTransform != null && _attackRange >= _distanceFromTarget && !_isAttacking)
+        {
+            _isAttacking = true;
+            Debug.Log("DO ATTACK");
+            _agent.isStopped = true;
+            _animator.SetBool("Walking", false);
+            _attackController.DoRandomAttack();
+        }
     }
 
     public virtual void StopAttack()

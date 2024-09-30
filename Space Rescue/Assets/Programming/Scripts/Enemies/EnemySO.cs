@@ -10,6 +10,8 @@ public class EnemySO : ScriptableObject
     public float speed;
     public float damage;
 
+    public float attackRange;
+
     public float regenRate;
     public float regenAmount;
 

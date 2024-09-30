@@ -15,10 +15,11 @@ MonoBehaviour:
   health: 80
   speed: 2
   damage: 5
+  attackRange: 3.9
   regenRate: 10
   regenAmount: 5
   patrolRadius: 25
-  patrolReturnDistance: 9
+  patrolReturnDistance: 35
   patrolPoints: 8
   searchRadius: 10
   timeToSearch: 30
