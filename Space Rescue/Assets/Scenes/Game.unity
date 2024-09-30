@@ -505,6 +505,11 @@ PrefabInstance:
       propertyPath: m_RenderPostProcessing
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8776470964849790041, guid: 004e271c203668e4db7524d0c54b94ae,
+        type: 3}
+      propertyPath: rotationSpeed
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -526,11 +531,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 223243031811315052, guid: 3fd2150f34b77d04bb2608f78aa9b5eb,
-        type: 3}
-      propertyPath: speed
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1073502272091545421, guid: 3fd2150f34b77d04bb2608f78aa9b5eb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -580,21 +580,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1762539857872525301, guid: 3fd2150f34b77d04bb2608f78aa9b5eb,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2647735492616798864, guid: 3fd2150f34b77d04bb2608f78aa9b5eb,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2647735492616798864, guid: 3fd2150f34b77d04bb2608f78aa9b5eb,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2941487060624864016, guid: 3fd2150f34b77d04bb2608f78aa9b5eb,
         type: 3}
@@ -680,6 +665,11 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 2043467760274213587, guid: 3fd2150f34b77d04bb2608f78aa9b5eb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 30d11f6d16465f549aecdf334ef6a04a, type: 2}
     - target: {fileID: 2647735492616798864, guid: 3fd2150f34b77d04bb2608f78aa9b5eb,
         type: 3}
       propertyPath: m_Enabled
@@ -1484,6 +1474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ae5573c83ff6a439f8d4dec64b89c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityType: 0
   type: 0
   health: 0
   maxHealth: 0
@@ -1501,7 +1492,7 @@ MonoBehaviour:
   _distanceFromTarget: 0
   _checkRadius: 0
   _groundedCheckRadius: 0
-  _throwLayer:
+  _detectionLayer:
     serializedVersion: 2
     m_Bits: 0
   _groundMask:
@@ -1664,60 +1655,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2912140376665945380, guid: d30f9a15ee1af7245917ba4f801ad34a,
-        type: 3}
-      propertyPath: detectableObjects.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2912140376665945380, guid: d30f9a15ee1af7245917ba4f801ad34a,
-        type: 3}
-      propertyPath: detectableObjects.Array.data[0]
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 2912140376665945380, guid: d30f9a15ee1af7245917ba4f801ad34a,
-        type: 3}
-      propertyPath: detectableObjects.Array.data[1]
-      value: Robot
-      objectReference: {fileID: 0}
-    - target: {fileID: 4702703197392661161, guid: d30f9a15ee1af7245917ba4f801ad34a,
-        type: 3}
-      propertyPath: _patrolRadius
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4702703197392661161, guid: d30f9a15ee1af7245917ba4f801ad34a,
-        type: 3}
-      propertyPath: _distanceFromPatrol
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4702703197392661161, guid: d30f9a15ee1af7245917ba4f801ad34a,
-        type: 3}
-      propertyPath: _patrolReturnDistance
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4702703197392661161, guid: d30f9a15ee1af7245917ba4f801ad34a,
-        type: 3}
-      propertyPath: _detectableObjects.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4702703197392661161, guid: d30f9a15ee1af7245917ba4f801ad34a,
-        type: 3}
-      propertyPath: _detectableObjects.Array.data[0]
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4702703197392661161, guid: d30f9a15ee1af7245917ba4f801ad34a,
-        type: 3}
-      propertyPath: _detectableObjects.Array.data[1]
-      value: Robot
-      objectReference: {fileID: 0}
     - target: {fileID: 4913891989532649836, guid: d30f9a15ee1af7245917ba4f801ad34a,
         type: 3}
       propertyPath: m_Name
       value: TurtleBot
-      objectReference: {fileID: 0}
-    - target: {fileID: 4913891989532649836, guid: d30f9a15ee1af7245917ba4f801ad34a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5891106718197098601, guid: d30f9a15ee1af7245917ba4f801ad34a,
         type: 3}

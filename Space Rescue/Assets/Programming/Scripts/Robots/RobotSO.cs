@@ -11,7 +11,7 @@ public class RobotSO : ScriptableObject
     public float followDistance;
 
     public float damage;
-    public int impactDamage;
+    public float impactDamage;
 
     public float fireRate;
 

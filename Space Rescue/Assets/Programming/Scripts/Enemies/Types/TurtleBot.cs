@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class TurtleBot : EnemyAI
 {
-    [SerializeField] Material _ledMaterial;
+    [SerializeField] Renderer _ledRenderer;
+    [SerializeField] Material _onLed;
+    [SerializeField] Material _offLed;
 
     public override void Start()
     {
@@ -11,7 +13,15 @@ public class TurtleBot : EnemyAI
 
     public override void Update()
     {
-        base.Update();
+        if (HasPoweredOn)
+        {
+            _ledRenderer.material = _onLed;
+            CheckState();
+        }
+        else
+        {
+            _ledRenderer.material = _offLed;
+        }
     }
 
     public override void ChangeState(State newState)

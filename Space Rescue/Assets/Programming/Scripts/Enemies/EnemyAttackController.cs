@@ -21,6 +21,11 @@ public class EnemyAttackController : MonoBehaviour
         }
     }
 
+    public void PowerOn()
+    {
+        _enemyAi.HasPoweredOn = true;
+    }
+
     public void DoRandomAttack()
     {
         _animator.SetTrigger("Attack"); // stomp

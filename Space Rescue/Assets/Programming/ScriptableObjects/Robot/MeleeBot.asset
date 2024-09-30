@@ -16,9 +16,9 @@ MonoBehaviour:
   speed: 3
   range: 3.5
   followDistance: 0.5
-  damage: 0.2
-  impactDamage: 4
-  fireRate: 0.5
-  windUpTime: 0.5
+  damage: 0.1
+  impactDamage: 2
+  fireRate: 0.1
+  windUpTime: 0.1
   windDownTime: 0
   retreatTime: 0.5

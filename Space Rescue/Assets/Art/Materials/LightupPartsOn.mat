@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LightupParts
+  m_Name: LightupPartsOn
   m_Shader: {fileID: -6465566751694194690, guid: 3cb9738dc66ebe84c8a85624d0b77f64,
     type: 3}
   m_Parent: {fileID: 0}

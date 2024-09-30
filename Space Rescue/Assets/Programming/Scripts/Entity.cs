@@ -2,6 +2,14 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
+    public EntityType entityType;
+
+    public enum EntityType
+    {
+        SCRAP,
+        ROBOT,
+        ENEMY,
+    }
 
     [Header("Type")]
     public Type type;
@@ -27,7 +35,7 @@ public class Entity : MonoBehaviour
 
     public virtual void TakeDamage(float damage)
     {
-        Debug.Log($"{this.gameObject.name} takes {damage}");
+        Debug.Log($"{this.gameObject.name} takes {damage} damage");
         health -= damage;
 
         if (health <= 0)
@@ -42,4 +50,6 @@ public class Entity : MonoBehaviour
     {
         Destroy(this.gameObject);
     }
+
+
 }

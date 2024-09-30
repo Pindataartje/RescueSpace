@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1984554821705642849}
   - component: {fileID: 5668596216918850583}
   - component: {fileID: 1512296474607712041}
+  - component: {fileID: 8466269666925882523}
   m_Layer: 6
   m_Name: GunBot
   m_TagString: Robot
@@ -47,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acc3506e78f810841938a1b029ae9819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityType: 1
   type: 2
   health: 1
   maxHealth: 1
@@ -64,7 +66,7 @@ MonoBehaviour:
   _distanceFromTarget: 0
   _checkRadius: 1
   _groundedCheckRadius: 3
-  _throwLayer:
+  _detectionLayer:
     serializedVersion: 2
     m_Bits: 384
   _groundMask:
@@ -117,6 +119,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &8466269666925882523
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8273847429328212341}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.75, y: 0.5, z: 0.75}
+  m_Center: {x: 0, y: 0.15, z: 0}
 --- !u!1001 &378910595618775486
 PrefabInstance:
   m_ObjectHideFlags: 0

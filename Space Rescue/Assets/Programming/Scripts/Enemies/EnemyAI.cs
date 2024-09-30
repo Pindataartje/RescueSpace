@@ -90,6 +90,9 @@ public class EnemyAI : Entity
 
     [SerializeField] bool _isInitialized;
 
+    [Header("Robots")]
+    [SerializeField] List<RobotAI> _attachedRobots = new();
+
     public override void Start()
     {
         InitializeEnemyInfo();
@@ -125,6 +128,11 @@ public class EnemyAI : Entity
         GameObject effect = Instantiate(_deathEffectPrefab);
 
         effect.transform.position = transform.position;
+
+        for (int i = 0; i < _attachedRobots.Count; i++)
+        {
+            _attachedRobots[i].RemoveAttachMent();
+        }
 
         Destroy(effect, 1f);
 
@@ -232,6 +240,11 @@ public class EnemyAI : Entity
                 Attack();
                 break;
         }
+    }
+
+    public void AttachRobot(RobotAI newrobot)
+    {
+        _attachedRobots.Add(newrobot);
     }
 
     #region Idle

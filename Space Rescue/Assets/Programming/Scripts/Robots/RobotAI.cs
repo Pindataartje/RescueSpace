@@ -9,6 +9,8 @@ public class RobotAI : Entity
     { get { return _robotInfo; } }
 
     [SerializeField] NavMeshAgent _agent;
+    public NavMeshAgent Agent
+    { get { return _agent; } }
 
     [SerializeField] Animator _bodyAnimator;
     public Animator BodyAnimator
@@ -19,7 +21,7 @@ public class RobotAI : Entity
 
     [SerializeField] Transform _target;
     public Transform Target
-    { get { return _target; } }
+    { get { return _target; } set { _target = value; } }
 
     [SerializeField] Transform _player;
 
@@ -35,7 +37,11 @@ public class RobotAI : Entity
 
     [SerializeField] float _checkRadius;
     [SerializeField] float _groundedCheckRadius;
-    [SerializeField] LayerMask _throwLayer;
+
+    [SerializeField] LayerMask _detectionLayer;
+    public LayerMask DetectionLayer
+    { get { return _detectionLayer; } }
+
 
     [SerializeField] LayerMask _groundMask;
 
@@ -108,7 +114,6 @@ public class RobotAI : Entity
         ATTACK,
         THROWN,
         GATHER,
-        ATTACHED,
     }
 
     public virtual void ChangeState(State newState)
@@ -129,9 +134,6 @@ public class RobotAI : Entity
                 break;
             case State.GATHER:
                 StopGather();
-                break;
-            case State.ATTACHED:
-                StopAttached();
                 break;
             default:
                 Debug.Log($"{newState} is not supported on this robot");
@@ -154,9 +156,6 @@ public class RobotAI : Entity
                 break;
             case State.GATHER:
                 StartGather();
-                break;
-            case State.ATTACHED:
-                StartAttached();
                 break;
             default:
                 Debug.Log($"{newState} is not supported on this robot");
@@ -183,9 +182,6 @@ public class RobotAI : Entity
             case State.GATHER:
                 Gather();
                 break;
-            case State.ATTACHED:
-                Attached();
-                break;
         }
     }
 
@@ -194,6 +190,8 @@ public class RobotAI : Entity
     public virtual void StartIdle()
     {
         _currentState = State.IDLE;
+
+        _bodyAnimator.SetBool("Walking", false);
     }
 
     public virtual void Idle()
@@ -256,7 +254,9 @@ public class RobotAI : Entity
 
         _agent.stoppingDistance = _robotInfo.range;
 
-        _target = GameObject.FindGameObjectWithTag("Enemy").transform;
+        _bodyAnimator.SetBool("Walking", false);
+
+        _target = _target.GetComponentInParent<EnemyAI>().transform;
     }
 
     public virtual void Attack()
@@ -369,45 +369,6 @@ public class RobotAI : Entity
         _collider.isTrigger = false;
     }
 
-    public virtual void CheckForEntityInRange(float radius)
-    {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, radius, _throwLayer);
-
-        for (int i = 0; i < colliders.Length; i++)
-        {
-            if (colliders[i].TryGetComponent<EnemyAI>(out EnemyAI enemy))
-            {
-                if (colliders[i].GetComponent<EnemyAI>().isAlive)
-                {
-                    Debug.Log("ENEMY DETECTED");
-
-                    _target = colliders[i].transform;
-
-                    ChangeState(State.ATTACK);
-
-                    break;
-                }
-                else
-                {
-                    _target = colliders[i].transform;
-
-                    ChangeState(State.GATHER);
-
-                    break;
-                }
-            }
-            else if (colliders[i].TryGetComponent<Scrap>(out Scrap scrap))
-            {
-                _target = colliders[i].GetComponent<Scrap>().transform;
-
-                ChangeState(State.GATHER);
-
-                break;
-            }
-
-        }
-    }
-
     #endregion
 
     #region Gather
@@ -415,6 +376,8 @@ public class RobotAI : Entity
     public virtual void StartGather()
     {
         _currentState = State.GATHER;
+
+        _bodyAnimator.SetBool("Walking", false);
 
         GetNewGatherTargetPosition();
 
@@ -458,7 +421,7 @@ public class RobotAI : Entity
 
     public virtual void GetNewGatherTargetPosition()
     {
-        _target = _target.GetComponent<Scrap>().GetGatherPosition(this);
+        _target = _target.GetComponentInParent<Scrap>().GetGatherPosition(this);
 
         if (_target == null)
         {
@@ -477,30 +440,58 @@ public class RobotAI : Entity
 
     #endregion
 
-    #region Attached
-
-    public virtual void StartAttached()
-    {
-        _currentState = State.ATTACHED;
-
-        transform.SetParent(_target.transform, true);
-    }
-
-    public virtual void Attached()
-    {
-
-    }
-
-    public virtual void StopAttached()
+    public void RemoveAttachMent()
     {
         transform.SetParent(null);
 
+        _agent.enabled = true;
+
         _collider.isTrigger = false;
 
-        _agent.enabled = true; // maybe when hits the floor
+        ChangeState(State.IDLE);
     }
 
-    #endregion
+    public virtual void CheckForEntityInRange(float radius)
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, radius, _detectionLayer);
+
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            switch (colliders[0].GetComponentInParent<Entity>().entityType)
+            {
+                case EntityType.SCRAP:
+                    _target = colliders[0].transform;
+
+                    ChangeState(State.GATHER);
+                    break;
+                case EntityType.ENEMY:
+                    if (colliders[0].GetComponentInParent<Entity>().health > 0)
+                    {
+                        _target = colliders[0].transform;
+
+                        ChangeState(State.ATTACK);
+                    }
+                    else
+                    {
+                        _target = colliders[0].GetComponentInParent<EnemyAI>().transform;
+
+                        ChangeState(State.GATHER);
+                    }
+                    break;
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (_currentState == State.THROWN)
+        {
+            if (other.CompareTag("Enemy"))
+            {
+                other.GetComponentInParent<EnemyAI>().TakeDamage(_robotInfo.impactDamage);
+            }
+        }
+    }
 
     public virtual void CollectScrapAtBase()
     {

@@ -40,7 +40,7 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
                     ""name"": ""Camera"",
                     ""type"": ""Value"",
                     ""id"": ""0201fb0b-c8ae-4201-987c-bbf2af007bdc"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -131,17 +131,6 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""928c5538-f6cf-4cef-be26-d5235deb639f"",
-                    ""path"": ""<Mouse>/delta"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Camera"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""4a56c011-e125-4ab0-b5d7-3a7032329f3a"",
                     ""path"": ""<Mouse>/middleButton"",
                     ""interactions"": """",
@@ -172,6 +161,39 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
                     ""action"": ""Recal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""1aabf463-7736-421d-a5c7-abb26cef7a60"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""87aa868d-0d51-4833-bb29-298cd03c1f99"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""c77ba4e3-feb1-40c7-a616-7f539d451b73"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },

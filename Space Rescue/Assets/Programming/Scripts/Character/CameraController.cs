@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] PlayerController playerController;
 
-    Vector2 _isCamera;
+    [SerializeField] float _isCamera;
 
     [SerializeField] Transform _target;
     [SerializeField] Transform _orientation;
@@ -39,14 +39,14 @@ public class CameraController : MonoBehaviour
 
     void OnCamera(InputAction.CallbackContext context)
     {
-        _isCamera = context.ReadValue<Vector2>();
+        _isCamera = context.ReadValue<float>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentX += _isCamera.x * rotationSpeed * 10 * Time.deltaTime;
-        currentY -= _isCamera.y * rotationSpeed * 10 * Time.deltaTime;
+        currentX += _isCamera * rotationSpeed * 10 * Time.deltaTime;
+        currentY -= _isCamera * rotationSpeed * 10 * Time.deltaTime;
 
         currentY = Mathf.Clamp(currentY, minYAngle, maxYAngle);
 

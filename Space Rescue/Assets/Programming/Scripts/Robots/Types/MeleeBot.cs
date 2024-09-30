@@ -23,6 +23,48 @@ public class MeleeBot : RobotAI
         base.CheckState();
     }
 
+    public override void StartAttack()
+    {
+        _currentState = State.ATTACK;
+        Agent.enabled = false;
+
+
+        Vector3 direction = Target.position - transform.position;
+
+        if (Physics.Raycast(transform.position, direction, out RaycastHit hit, 10f, DetectionLayer))
+        {
+            Debug.Log("Raycast hit: " + hit.collider.name);
+
+            transform.SetParent(Target, true);
+
+            Vector3 forwardDirection = Vector3.ProjectOnPlane(direction, hit.normal).normalized;
+
+            if (forwardDirection != Vector3.zero)
+            {
+                transform.rotation = Quaternion.LookRotation(forwardDirection, hit.normal);
+            }
+            else
+            {
+                Debug.LogWarning("Forward direction is zero, cannot rotate.");
+            }
+        }
+        else
+        {
+            Debug.Log("No raycast hit detected.");
+        }
+
+        Target = Target.GetComponentInParent<EnemyAI>().transform;
+
+        Target.GetComponent<EnemyAI>().AttachRobot(this);
+    }
+
+    public override void Attack()
+    {
+        if (!IsAttacking)
+        {
+            StartCoroutine(StartAttacking());
+        }
+    }
 
     public override IEnumerator Attacking()
     {
