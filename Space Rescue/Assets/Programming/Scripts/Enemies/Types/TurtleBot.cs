@@ -160,4 +160,11 @@ public class TurtleBot : EnemyAI
     {
         base.Regeneration(amount);
     }
+
+    public override void GizmosLogic()
+    {
+        Gizmos.color = Color.green;
+
+        base.GizmosLogic();
+    }
 }

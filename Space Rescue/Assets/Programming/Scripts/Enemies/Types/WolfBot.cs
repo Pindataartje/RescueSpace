@@ -14,4 +14,10 @@ public class WolfBot : EnemyAI
     {
         base.Update();
     }
+
+    public override void GizmosLogic()
+    {
+        Gizmos.color = Color.red;
+        base.GizmosLogic();
+    }
 }

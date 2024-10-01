@@ -31,6 +31,16 @@ public class EnemyAttackController : MonoBehaviour
         _animator.SetTrigger("Attack"); // stomp
     }
 
+    public void CrushStart()
+    {
+        _1attackCollider.DoAttack();
+    }
+
+    public void CrushStop()
+    {
+        _1attackCollider.StopAttack();
+    }
+
     public void StartNeck()
     {
         _1attackCollider.DoAttack();

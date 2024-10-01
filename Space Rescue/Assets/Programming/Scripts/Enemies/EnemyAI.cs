@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -285,7 +286,22 @@ public class EnemyAI : Entity
 
         _canNaturalRegen = true;
 
-        _targetTransform = _patrolPoints[0];
+        Transform closestPatrolPoint = null;
+        float closestDistance = Mathf.Infinity;
+
+        for (int i = 0; i < _patrolPoints.Count; i++)
+        {
+            float distance = Vector3.Distance(transform.position, _patrolPoints[i].position);
+
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestPatrolPoint = _patrolPoints[i];
+                _currentPatrol = i;
+            }
+        }
+
+        _targetTransform = closestPatrolPoint;
     }
 
     public virtual void Patrol()
@@ -527,6 +543,11 @@ public class EnemyAI : Entity
             ChangeState(State.SEARCH);
         }
 
+        if (_distanceFromPatrol > _patrolReturnDistance)
+        {
+            ChangeState(State.PATROL);
+        }
+
         if (_targetTransform != null && _attackRange >= _distanceFromTarget && !_isAttacking)
         {
             _isAttacking = true;
@@ -625,11 +646,15 @@ public class EnemyAI : Entity
 
     [SerializeField] float _gizmoSize;
 
-    private void OnDrawGizmos()
+    public void OnDrawGizmos()
+    {
+        GizmosLogic();
+    }
+
+    public virtual void GizmosLogic()
     {
         for (int i = 0; i < _patrolPoints.Count; i++)
         {
-            Gizmos.color = Color.yellow;
 
             foreach (Transform position in _patrolPoints)
             {
