@@ -158,9 +158,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6952616650772946824}
+  - component: {fileID: 2347217400594371545}
   - component: {fileID: 9174439976876299966}
   - component: {fileID: 9179274219613761791}
-  - component: {fileID: 2347217400594371545}
   m_Layer: 7
   m_Name: BlockBot
   m_TagString: Enemy
@@ -185,6 +185,70 @@ Transform:
   - {fileID: 3091220672843790699}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2347217400594371545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6267110394023435300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8f9682cc8a22c24cacf53ad393e355d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityType: 2
+  type: 0
+  health: 60
+  maxHealth: 60
+  speed: 2.5
+  rotationSpeed: 0
+  damage: 10
+  _regenRate: 3
+  _regenAmount: 10
+  _isInitialized: 1
+  _currentState: 1
+  _enemyInfo: {fileID: 11400000, guid: 62599d65bba10e44396b3ea4564eceef, type: 2}
+  _animator: {fileID: 310434341392980411}
+  _agent: {fileID: 9174439976876299966}
+  _attackController: {fileID: 6359201917640330355}
+  _enemyDetection: {fileID: 7186980783806386523}
+  isAlive: 0
+  _hasPoweredOn: 1
+  _canNaturalRegen: 0
+  _targetTransform: {fileID: 0}
+  _possibleTargets: []
+  _targetVector: {x: 0, y: 0, z: 0}
+  _distanceFromTarget: 0
+  _distanceFromPatrol: 0
+  _patrolReturnDistance: 40
+  _currentPatrol: 0
+  _patrolPointCount: 5
+  _patrolRadius: 20
+  _patrolPoints: []
+  _searchTime: 0
+  _timeToSearch: 1
+  _maxSearchCount: 0
+  _searchCount: 5
+  _detectionHolder: {fileID: 3091220672843790699}
+  _originalDetectionScale: {x: 0, y: 0, z: 0}
+  _detectableObjects: []
+  _scaleSpeed: 0
+  _minScale: 0
+  _maxScale: 0
+  _startSearchPosition: {x: 0, y: 0, z: 0}
+  _newRandomPos: 0
+  _searchRadius: 10
+  _maxAttackRange: 0
+  _minAttackRange: 0
+  _preyMask:
+    serializedVersion: 2
+    m_Bits: 0
+  _isAttacking: 0
+  _deathEffectPrefab: {fileID: 8043584368744636961, guid: 953c254cc5e763b4c8e8bc67df3c95c3,
+    type: 3}
+  _attachedRobots: []
+  _gizmoSize: 0.3
 --- !u!195 &9174439976876299966
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -228,65 +292,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.5, y: 2, z: 1.75}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &2347217400594371545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6267110394023435300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8f9682cc8a22c24cacf53ad393e355d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entityType: 2
-  type: 0
-  health: 60
-  maxHealth: 60
-  speed: 2.5
-  damage: 10
-  _regenRate: 3
-  _regenAmount: 10
-  _isInitialized: 1
-  _currentState: 1
-  _enemyInfo: {fileID: 11400000, guid: 62599d65bba10e44396b3ea4564eceef, type: 2}
-  _animator: {fileID: 310434341392980411}
-  _agent: {fileID: 9174439976876299966}
-  _attackController: {fileID: 6359201917640330355}
-  _enemyDetection: {fileID: 7186980783806386523}
-  isAlive: 0
-  _hasPoweredOn: 1
-  _canNaturalRegen: 0
-  _targetTransform: {fileID: 0}
-  _possibleTargets: []
-  _targetVector: {x: 0, y: 0, z: 0}
-  _distanceFromTarget: 0
-  _distanceFromPatrol: 0
-  _patrolReturnDistance: 40
-  _currentPatrol: 0
-  _patrolPointCount: 5
-  _patrolRadius: 20
-  _patrolPoints: []
-  _searchTime: 0
-  _timeToSearch: 1
-  _maxSearchCount: 0
-  _searchCount: 5
-  _detectionHolder: {fileID: 3091220672843790699}
-  _originalDetectionScale: {x: 0, y: 0, z: 0}
-  _detectableObjects: []
-  _scaleSpeed: 0
-  _minScale: 0
-  _maxScale: 0
-  _startSearchPosition: {x: 0, y: 0, z: 0}
-  _newRandomPos: 0
-  _searchRadius: 10
-  _attackRange: 8
-  _isAttacking: 0
-  _deathEffectPrefab: {fileID: 8043584368744636961, guid: 953c254cc5e763b4c8e8bc67df3c95c3,
-    type: 3}
-  _attachedRobots: []
-  _gizmoSize: 0.3
 --- !u!1 &6931679579104762963
 GameObject:
   m_ObjectHideFlags: 0

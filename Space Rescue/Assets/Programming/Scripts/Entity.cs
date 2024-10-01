@@ -27,6 +27,7 @@ public class Entity : MonoBehaviour
     public float maxHealth;
 
     public float speed;
+    public float rotationSpeed;
     public float damage;
 
     public virtual void Start() { }

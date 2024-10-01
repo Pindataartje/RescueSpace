@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 60
   speed: 2.5
+  rotationSpeed: 40
   damage: 10
-  attackRange: 8
+  maxAttackRange: 7
+  minAttackRange: 0
   regenRate: 3
   regenAmount: 10
   patrolRadius: 20

@@ -53,6 +53,7 @@ MonoBehaviour:
   health: 1
   maxHealth: 1
   speed: 3
+  rotationSpeed: 0
   damage: 1
   _robotInfo: {fileID: 11400000, guid: 8713ae78335bcfb4999399151b58dc4a, type: 2}
   _agent: {fileID: 1512296474607712041}

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -103,7 +104,11 @@ public class EnemyAI : Entity
     [Header("Chase")]
 
     [Header("Attack")]
-    [SerializeField] float _attackRange;
+    [SerializeField] float _maxAttackRange;
+    [SerializeField] float _minAttackRange;
+
+    [SerializeField] LayerMask _preyMask;
+
     [SerializeField] bool _isAttacking;
     public bool IsAttacking
     { get { return _isAttacking; } set { _isAttacking = value; } }
@@ -176,10 +181,18 @@ public class EnemyAI : Entity
             health = maxHealth;
 
             speed = _enemyInfo.speed;
-            if (_agent != null) { _agent.speed = speed; }
+            rotationSpeed = _enemyInfo.rotationSpeed;
+
+            if (_agent != null)
+            {
+                _agent.speed = speed;
+                _agent.angularSpeed = rotationSpeed;
+            }
 
             damage = _enemyInfo.damage;
-            _attackRange = _enemyInfo.attackRange;
+
+            _maxAttackRange = _enemyInfo.maxAttackRange;
+            _minAttackRange = _enemyInfo.minAttackRange;
 
             _regenRate = _enemyInfo.regenRate;
             _regenAmount = _enemyInfo.regenAmount;
@@ -384,7 +397,7 @@ public class EnemyAI : Entity
             ChangeState(State.PATROL);
         }
 
-        if (_attackRange >= _distanceFromTarget)
+        if (_maxAttackRange >= _distanceFromTarget)
         {
             ChangeState(State.ATTACK);
         }
@@ -516,24 +529,54 @@ public class EnemyAI : Entity
 
     public virtual void Attack()
     {
-        if (_targetTransform != null && !IsAttacking)
+        if (_targetTransform != null)
         {
-            _agent.isStopped = false;
-
-            _agent.SetDestination(_targetTransform.position);
-
-            _animator.SetBool("Walking", true);
-
             Vector3 targetWithOffset = new Vector3(_targetTransform.position.x, transform.position.y, _targetTransform.position.z);
-
             _distanceFromTarget = Vector3.Distance(transform.position, targetWithOffset);
 
             Vector3 patrolWithOffset = new Vector3(_patrolPoints[_currentPatrol].position.x, transform.position.y, _patrolPoints[_currentPatrol].position.z);
-
             _distanceFromPatrol = Vector3.Distance(transform.position, patrolWithOffset);
-        }
 
-        if (_targetTransform == null && _possibleTargets.Count > 0 && !_isAttacking)
+            if (!_isAttacking && _distanceFromTarget > _maxAttackRange)
+            {
+                Debug.Log("not in attack range");
+                _agent.isStopped = false;
+                _agent.SetDestination(_targetTransform.position);
+                _animator.SetBool("Walking", true);
+            }
+
+            if (!_isAttacking && Physics.SphereCast(transform.position, 0.1f, transform.forward, out RaycastHit hitInfo, _maxAttackRange, _preyMask))
+            {
+                Debug.Log("Hits");
+                float distanceFromPrey = Vector3.Distance(transform.position, _targetTransform.position);
+
+                if (distanceFromPrey >= _minAttackRange)
+                {
+                    _isAttacking = true;
+
+                    _agent.isStopped = true;
+                    _agent.velocity = Vector3.zero;
+
+                    _animator.SetBool("Walking", false);
+                    _attackController.DoRandomAttack();
+                }
+            }
+            else if (!_isAttacking)
+            {
+                _animator.SetBool("Walking", true);
+
+
+                Vector3 directionToTarget = (targetWithOffset - transform.position).normalized;
+
+                if (directionToTarget != Vector3.zero)
+                {
+                    Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                }
+            }
+        }
+        else if (_targetTransform == null && _possibleTargets.Count > 0 && !_isAttacking)
         {
             for (int i = 0; i < _possibleTargets.Count; i++)
             {
@@ -555,15 +598,6 @@ public class EnemyAI : Entity
         if (_distanceFromPatrol > _patrolReturnDistance)
         {
             ChangeState(State.PATROL);
-        }
-
-        if (_targetTransform != null && _attackRange >= _distanceFromTarget && !_isAttacking)
-        {
-            _isAttacking = true;
-            Debug.Log("DO ATTACK");
-            _agent.isStopped = true;
-            _animator.SetBool("Walking", false);
-            _attackController.DoRandomAttack();
         }
     }
 
