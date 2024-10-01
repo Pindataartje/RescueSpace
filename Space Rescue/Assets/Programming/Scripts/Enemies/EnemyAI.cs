@@ -35,6 +35,9 @@ public class EnemyAI : Entity
     { get { return _animator; } }
 
     [SerializeField] NavMeshAgent _agent;
+    public NavMeshAgent Agent
+    { get { return _agent; } }
+
     [SerializeField] EnemyAttackController _attackController;
     [SerializeField] EnemyDetection _enemyDetection;
 
@@ -47,12 +50,16 @@ public class EnemyAI : Entity
     [SerializeField] bool _canNaturalRegen;
 
     [SerializeField] Transform _targetTransform;
+    public Transform TargetTransform
+    { get { return _targetTransform; } set { _targetTransform = value; } }
 
     [SerializeField] List<Transform> _possibleTargets = new();
 
     [SerializeField] Vector3 _targetVector;
 
     [SerializeField] float _distanceFromTarget;
+    public float DistanceFromTarget
+    { get { return _distanceFromTarget; } set { _distanceFromTarget = value; } }
 
     [Header("Patrol")]
     [SerializeField] float _distanceFromPatrol;
@@ -65,6 +72,8 @@ public class EnemyAI : Entity
 
     [SerializeField] NavMeshHit _navmeshHit;
     [SerializeField] List<Transform> _patrolPoints = new();
+    public List<Transform> PatrolPoints
+    { get { return _patrolPoints; } }
 
     [Header("Search")]
 

@@ -201,7 +201,7 @@ MonoBehaviour:
   _regenRate: 10
   _regenAmount: 5
   _isInitialized: 1
-  _currentState: 0
+  _currentState: 1
   _enemyInfo: {fileID: 11400000, guid: 1f3dfb488e28e394c98e51cb8ea01ffb, type: 2}
   _animator: {fileID: 5991455134888532697}
   _agent: {fileID: 497595841256877330}
@@ -211,6 +211,7 @@ MonoBehaviour:
   _hasPoweredOn: 0
   _canNaturalRegen: 0
   _targetTransform: {fileID: 0}
+  _possibleTargets: []
   _targetVector: {x: 0, y: 0, z: 0}
   _distanceFromTarget: 0
   _distanceFromPatrol: 0
@@ -220,7 +221,7 @@ MonoBehaviour:
   _patrolRadius: 25
   _patrolPoints: []
   _searchTime: 0
-  _timeToSearch: 30
+  _timeToSearch: 3
   _maxSearchCount: 0
   _searchCount: 2
   _detectionHolder: {fileID: 5222762849891520670}
@@ -233,12 +234,21 @@ MonoBehaviour:
   _maxScale: 0
   _startSearchPosition: {x: 0, y: 0, z: 0}
   _newRandomPos: 0
-  _searchRadius: 10
-  _attackRange: 2.9
+  _searchRadius: 1
+  _attackRange: 3.9
+  _isAttacking: 0
   _deathEffectPrefab: {fileID: 8043584368744636961, guid: 953c254cc5e763b4c8e8bc67df3c95c3,
     type: 3}
   _attachedRobots: []
   _gizmoSize: 0.3
+  _isHiding: 0
+  _preyInRange: 0
+  _maxHideTime: 5
+  _hideTime: 0
+  _hideCheckRadius: 0
+  _hideMask:
+    serializedVersion: 2
+    m_Bits: 0
   _ledRenderer: {fileID: 4892194296612423477}
   _onLed: {fileID: 2100000, guid: 776ac09f50013ce4aa6f531c95a226d8, type: 2}
   _offLed: {fileID: 2100000, guid: 30d11f6d16465f549aecdf334ef6a04a, type: 2}

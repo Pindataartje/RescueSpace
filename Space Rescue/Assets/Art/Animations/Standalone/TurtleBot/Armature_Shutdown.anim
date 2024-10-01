@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Armature_Startup
+  m_Name: Armature_Shutdown
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -25544,16 +25544,8 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 3.375
-    functionName: PowerOn
-    data: 
-    objectReferenceParameter: {fileID: 11500000, guid: 2e28a6c2e5e4a234aa1e047474a81225,
-      type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 3.5416667
-    functionName: UnHide
+  - time: 0
+    functionName: Hide
     data: 
     objectReferenceParameter: {fileID: 11500000, guid: 2e28a6c2e5e4a234aa1e047474a81225,
       type: 3}

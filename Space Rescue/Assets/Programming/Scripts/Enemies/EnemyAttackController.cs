@@ -24,6 +24,19 @@ public class EnemyAttackController : MonoBehaviour
     public void PowerOn()
     {
         _enemyAi.HasPoweredOn = true;
+        _enemyAi.GetComponent<TurtleBot>().LedRenderer.material = _enemyAi.GetComponent<TurtleBot>().OnLed;
+    }
+
+    public void Hide()
+    {
+        _enemyAi.GetComponent<TurtleBot>().IsHiding = true;
+        _enemyAi.GetComponent<TurtleBot>().LedRenderer.material = _enemyAi.GetComponent<TurtleBot>().OffLed;
+    }
+
+    public void UnHide()
+    {
+        _enemyAi.GetComponent<TurtleBot>().IsHiding = false;
+        _enemyAi.GetComponent<TurtleBot>().LedRenderer.material = _enemyAi.GetComponent<TurtleBot>().OnLed;
     }
 
     public void DoRandomAttack()

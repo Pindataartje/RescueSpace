@@ -1,10 +1,36 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TurtleBot : EnemyAI
 {
+    [Header("Hiding")]
+    [SerializeField] bool _isHiding;
+    public bool IsHiding
+    { get { return _isHiding; } set { _isHiding = value; } }
+
+    [SerializeField] bool _preyInRange;
+
+    [SerializeField] float _maxHideTime;
+    [SerializeField] float _hideTime;
+
+    [SerializeField] float _hideCheckRadius;
+
+    [SerializeField] LayerMask _hideMask;
+
+
+    [Header("Lights")]
+
     [SerializeField] Renderer _ledRenderer;
+    public Renderer LedRenderer
+    { get { return _ledRenderer; } set { _ledRenderer = value; } }
+
     [SerializeField] Material _onLed;
+    public Material OnLed
+    { get { return _onLed; } }
+
     [SerializeField] Material _offLed;
+    public Material OffLed
+    { get { return _offLed; } }
 
     public override void Start()
     {
@@ -15,12 +41,7 @@ public class TurtleBot : EnemyAI
     {
         if (HasPoweredOn)
         {
-            _ledRenderer.material = _onLed;
             CheckState();
-        }
-        else
-        {
-            _ledRenderer.material = _offLed;
         }
     }
 
@@ -62,7 +83,49 @@ public class TurtleBot : EnemyAI
 
     public override void Patrol()
     {
-        base.Patrol();
+        if (TargetTransform != null && !_isHiding)
+        {
+            Agent.SetDestination(TargetTransform.position);
+
+            Animator.SetBool("Walking", true);
+
+            Vector3 targetWithOffset = new Vector3(TargetTransform.position.x, transform.position.y, TargetTransform.position.z);
+
+            DistanceFromTarget = Vector3.Distance(transform.position, targetWithOffset);
+        }
+
+        if (DistanceFromTarget == 0 && !_isHiding)
+        {
+            _hideTime = 0;
+
+            Animator.SetBool("Walking", false);
+
+            Animator.SetBool("Hide", true);
+        }
+
+        if (_isHiding && _hideTime < _maxHideTime && !_preyInRange && _isHiding)
+        {
+            _hideTime += Time.deltaTime;
+        }
+
+        if (_hideTime >= _maxHideTime && DistanceFromTarget == 0)
+        {
+            List<Transform> temps = PatrolPoints;
+
+            for (int i = 0; i < temps.Count; i++)
+            {
+                if (temps[i] == TargetTransform)
+                {
+                    temps.RemoveAt(i);
+                }
+            }
+
+            TargetTransform = temps[Random.Range(0, temps.Count)];
+
+            Animator.SetBool("Hide", false);
+
+            Animator.SetBool("Walking", true);
+        }
     }
 
     public override void StopPatrol()
