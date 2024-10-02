@@ -14,7 +14,6 @@ public class BlockBot : EnemyAI
 
             if (!IsAttacking && DistanceFromTarget > MaxAttackRange)
             {
-                Debug.Log("not in attack range");
                 Agent.isStopped = false;
                 Agent.SetDestination(TargetTransform.position);
                 Animator.SetBool("Walking", true);
@@ -22,10 +21,9 @@ public class BlockBot : EnemyAI
 
             if (!IsAttacking && Physics.SphereCast(transform.position, 0.1f, transform.forward, out RaycastHit hitInfo, MaxAttackRange, PreyMask))
             {
-                Debug.Log("Hits");
                 float distanceFromPrey = Vector3.Distance(transform.position, TargetTransform.position);
 
-                if (distanceFromPrey <= MaxAttackRange && distanceFromPrey >= MaxAttackRange - 1)
+                if (distanceFromPrey <= MaxAttackRange && distanceFromPrey >= MaxAttackRange - 1.5f)
                 {
                     IsAttacking = true;
 

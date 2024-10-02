@@ -6,7 +6,9 @@ public class EnemyAttackController : MonoBehaviour
 
     [SerializeField] ShockWaveController _shockWaveController;
 
-    [SerializeField] EnemyAttackCollider _1attackCollider;
+    [SerializeField] EnemyAttackCollider[] _attacks;
+
+    [SerializeField] string[] _attackNames;
 
     [SerializeField] Animator _animator;
 
@@ -15,9 +17,12 @@ public class EnemyAttackController : MonoBehaviour
     {
         _enemyAi = GetComponentInParent<EnemyAI>();
 
-        if (_1attackCollider != null)
+        for (int i = 0; i < _attacks.Length; i++)
         {
-            _1attackCollider.InitialzeAttack(_enemyAi.damage);
+            if (_attacks[i] != null)
+            {
+                _attacks[i].InitialzeAttack(_enemyAi.damage);
+            }
         }
     }
 
@@ -41,51 +46,51 @@ public class EnemyAttackController : MonoBehaviour
 
     public void DoRandomAttack()
     {
-        _animator.SetTrigger("Attack"); // stomp
+        _animator.SetTrigger(_attackNames[Random.Range(0, _attackNames.Length)]);
     }
 
     public void SmashStart()
     {
-        _1attackCollider.DoAttack();
+        _attacks[1].DoAttack();
     }
 
     public void SmashStop()
     {
-        _1attackCollider.StopAttack();
+        _attacks[1].StopAttack();
         _enemyAi.IsAttacking = false;
     }
 
     public void CrushStart()
     {
-        _1attackCollider.DoAttack();
+        _attacks[0].DoAttack();
     }
 
     public void CrushStop()
     {
-        _1attackCollider.StopAttack();
+        _attacks[0].StopAttack();
     }
 
     public void StartNeck()
     {
-        _1attackCollider.DoAttack();
+        _attacks[0].DoAttack();
     }
 
     public void StopNeck()
     {
-        _1attackCollider.StopAttack();
+        _attacks[0].StopAttack();
         _enemyAi.IsAttacking = false;
     }
 
     public void StartStomp()
     {
-        _1attackCollider.DoAttack();
+        _attacks[0].DoAttack();
 
         _shockWaveController.Shockwave();
     }
 
     public void StopStomp()
     {
-        _1attackCollider.StopAttack();
+        _attacks[0].StopAttack();
         _enemyAi.IsAttacking = false;
     }
 
@@ -93,5 +98,4 @@ public class EnemyAttackController : MonoBehaviour
     {
         _enemyAi.HasPoweredOn = true;
     }
-
 }

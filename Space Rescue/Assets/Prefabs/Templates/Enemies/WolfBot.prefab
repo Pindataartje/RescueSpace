@@ -286,13 +286,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3867799778103160056}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.5}
-  m_LocalScale: {x: 4, y: 1, z: 4}
+  m_LocalRotation: {x: -0.86860424, y: 0.0000005906898, z: 0.0000010354566, w: 0.49550653}
+  m_LocalPosition: {x: 0, y: 0.00248, z: 0.0118}
+  m_LocalScale: {x: 0.04, y: 0.0100000035, z: 0.04000001}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2875703118755817372}
-  m_Father: {fileID: 6037389109521405546}
+  m_Father: {fileID: 1470514049414856618}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7217989373832538804
 GameObject:
@@ -305,7 +305,6 @@ GameObject:
   - component: {fileID: 6037389109521405546}
   - component: {fileID: 7267021771582976873}
   - component: {fileID: 2090475737085718487}
-  - component: {fileID: 4705998604432851831}
   m_Layer: 7
   m_Name: WolfBot
   m_TagString: Enemy
@@ -327,7 +326,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1274210702266329467}
-  - {fileID: 1888213707991317621}
   - {fileID: 5255398458091861520}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -419,27 +417,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!65 &4705998604432851831
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7217989373832538804}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.5, y: 2, z: 1.75}
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &7045798565102766336
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2142,7 +2119,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7812039225475453395, guid: 2a90d2686fe9a0c419072708c27e1522,
+        type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 1888213707991317621}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7125987330465439160, guid: 2a90d2686fe9a0c419072708c27e1522,
         type: 3}
@@ -2173,6 +2154,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8647369736834133625}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1470514049414856618 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7812039225475453395, guid: 2a90d2686fe9a0c419072708c27e1522,
+    type: 3}
+  m_PrefabInstance: {fileID: 8647369736834133625}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1938016020369617857 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7125987330465439160, guid: 2a90d2686fe9a0c419072708c27e1522,
@@ -2191,9 +2178,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e28a6c2e5e4a234aa1e047474a81225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyAi: {fileID: 0}
+  _enemyAi: {fileID: 7267021771582976873}
   _shockWaveController: {fileID: 2781671509270835514}
-  _1attackCollider: {fileID: 7389875655807279136}
+  _attacks:
+  - {fileID: 7389875655807279136}
+  _attackNames:
+  - Attack
   _animator: {fileID: 617355484889222510}
 --- !u!1 &3645051668890915663 stripped
 GameObject:
@@ -2220,7 +2210,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.01
+  m_Radius: 0.008
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3624302945955862429
 Rigidbody:

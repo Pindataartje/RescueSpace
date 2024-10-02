@@ -24,13 +24,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1328753624715451107}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.5}
-  m_LocalScale: {x: 4, y: 1, z: 4}
+  m_LocalRotation: {x: -0.7161793, y: 0.00000008319812, z: 0.00000008537523, w: 0.69791627}
+  m_LocalPosition: {x: 0.0000000011151261, y: 0.00046084076, z: 0.0061425213}
+  m_LocalScale: {x: 0.04, y: 0.010000006, z: 0.040000014}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3201858815684430931}
-  m_Father: {fileID: 5891106718197098601}
+  m_Father: {fileID: 1539123591165343382}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4579107292961551962
 GameObject:
@@ -176,7 +176,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5061184657235717487}
-  - {fileID: 5222762849891520670}
   - {fileID: 1858897850988195959}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -426,7 +425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d29cbaffd562b04699719158c3a6ff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyAI: {fileID: 0}
+  enemyAI: {fileID: 4702703197392661161}
   detectableObjects: []
 --- !u!1001 &3980090565842959515
 PrefabInstance:
@@ -851,6 +850,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3510175707224251248}
+    - targetCorrespondingSourceObject: {fileID: 6644358884772278510, guid: 156d03722f0210d4ab18554a0478a25c,
+        type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 5222762849891520670}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 296870331348152749, guid: 156d03722f0210d4ab18554a0478a25c,
         type: 3}
@@ -869,6 +872,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7912097040244479321}
   m_SourcePrefab: {fileID: 100100000, guid: 156d03722f0210d4ab18554a0478a25c, type: 3}
+--- !u!4 &1539123591165343382 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6644358884772278510, guid: 156d03722f0210d4ab18554a0478a25c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5289919713069663864}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3509184064504208693 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8780525740839312205, guid: 156d03722f0210d4ab18554a0478a25c,
@@ -969,7 +978,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyAi: {fileID: 4702703197392661161}
   _shockWaveController: {fileID: 0}
-  _1attackCollider: {fileID: 7912097040244479321}
+  _attacks:
+  - {fileID: 7912097040244479321}
+  _attackNames:
+  - Attack
   _animator: {fileID: 5991455134888532697}
 --- !u!4 &5931449577114392615 stripped
 Transform:
