@@ -16,7 +16,7 @@ MonoBehaviour:
   speed: 2.5
   rotationSpeed: 40
   damage: 10
-  maxAttackRange: 7
+  maxAttackRange: 4.5
   minAttackRange: 0
   regenRate: 3
   regenAmount: 10

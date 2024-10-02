@@ -343,14 +343,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5d2ba55876972242a3641ff94d62ce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityType: 0
+  entityType: 2
   type: 0
-  health: 15
-  maxHealth: 15
+  health: 50
+  maxHealth: 50
   speed: 3
+  rotationSpeed: 60
   damage: 8
-  _regenRate: 0
-  _regenAmount: 0
+  _regenRate: 3
+  _regenAmount: 5
   _isInitialized: 1
   _currentState: 1
   _enemyInfo: {fileID: 11400000, guid: 7782fa1d400a7e74c898bae00b2a77da, type: 2}
@@ -386,12 +387,16 @@ MonoBehaviour:
   _startSearchPosition: {x: 0, y: 0, z: 0}
   _newRandomPos: 0
   _searchRadius: 8
-  _attackRange: 0
+  _maxAttackRange: 4.5
+  _minAttackRange: 3.2
+  _preyMask:
+    serializedVersion: 2
+    m_Bits: 0
   _isAttacking: 0
   _deathEffectPrefab: {fileID: 8043584368744636961, guid: 953c254cc5e763b4c8e8bc67df3c95c3,
     type: 3}
   _attachedRobots: []
-  _gizmoSize: 0.5
+  _gizmoSize: 0.3
 --- !u!195 &2090475737085718487
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -405,7 +410,7 @@ NavMeshAgent:
   m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 60
   m_StoppingDistance: 0.8
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -864,6 +869,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2224166479812372343, guid: 2a90d2686fe9a0c419072708c27e1522,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2241348493935541013, guid: 2a90d2686fe9a0c419072708c27e1522,
         type: 3}
@@ -1490,6 +1500,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 6.666916
       objectReference: {fileID: 0}
+    - target: {fileID: 5698067878147849768, guid: 2a90d2686fe9a0c419072708c27e1522,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5766104221707498574, guid: 2a90d2686fe9a0c419072708c27e1522,
         type: 3}
       propertyPath: m_Layer
@@ -1979,6 +1994,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 77.37394
+      objectReference: {fileID: 0}
+    - target: {fileID: 8384016118383437101, guid: 2a90d2686fe9a0c419072708c27e1522,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8392396229832088698, guid: 2a90d2686fe9a0c419072708c27e1522,
         type: 3}

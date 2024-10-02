@@ -40,6 +40,9 @@ public class EnemyAI : Entity
     { get { return _agent; } }
 
     [SerializeField] EnemyAttackController _attackController;
+    public EnemyAttackController AttackController
+    { get { return _attackController; } }
+
     [SerializeField] EnemyDetection _enemyDetection;
 
     [Header("General")]
@@ -55,6 +58,8 @@ public class EnemyAI : Entity
     { get { return _targetTransform; } set { _targetTransform = value; } }
 
     [SerializeField] List<Transform> _possibleTargets = new();
+    public List<Transform> PossibleTargets
+    { get { return _possibleTargets; } }
 
     [SerializeField] Vector3 _targetVector;
 
@@ -64,9 +69,16 @@ public class EnemyAI : Entity
 
     [Header("Patrol")]
     [SerializeField] float _distanceFromPatrol;
+    public float DistanceFromPatrol
+    { get { return _distanceFromPatrol; } set { _distanceFromPatrol = value; } }
 
     [SerializeField] float _patrolReturnDistance;
+    public float PatrolReturnDistance
+    { get { return _patrolReturnDistance; } }
+
     [SerializeField] int _currentPatrol;
+    public int CurrentPatrol
+    { get { return _currentPatrol; } }
 
     [SerializeField] int _patrolPointCount;
     [SerializeField] float _patrolRadius;
@@ -105,9 +117,15 @@ public class EnemyAI : Entity
 
     [Header("Attack")]
     [SerializeField] float _maxAttackRange;
+    public float MaxAttackRange
+    { get { return _maxAttackRange; } }
     [SerializeField] float _minAttackRange;
+    public float MinAttackRange
+    { get { return _minAttackRange; } }
 
     [SerializeField] LayerMask _preyMask;
+    public LayerMask PreyMask
+    { get { return _preyMask; } }
 
     [SerializeField] bool _isAttacking;
     public bool IsAttacking

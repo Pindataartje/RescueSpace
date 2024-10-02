@@ -44,6 +44,17 @@ public class EnemyAttackController : MonoBehaviour
         _animator.SetTrigger("Attack"); // stomp
     }
 
+    public void SmashStart()
+    {
+        _1attackCollider.DoAttack();
+    }
+
+    public void SmashStop()
+    {
+        _1attackCollider.StopAttack();
+        _enemyAi.IsAttacking = false;
+    }
+
     public void CrushStart()
     {
         _1attackCollider.DoAttack();
@@ -75,6 +86,7 @@ public class EnemyAttackController : MonoBehaviour
     public void StopStomp()
     {
         _1attackCollider.StopAttack();
+        _enemyAi.IsAttacking = false;
     }
 
     public void HasPoweredOn()
