@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Scrap", menuName = "Scrap Data", order = 3)]
+[CreateAssetMenu(fileName = "Scrap", menuName = "Entity/ScrapData", order = 3)]
 
 public class ScrapSO : ScriptableObject
 {

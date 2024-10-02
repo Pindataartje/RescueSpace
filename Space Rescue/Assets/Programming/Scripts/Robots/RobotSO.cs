@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Robot", menuName = "Robot Data", order = 1)]
+[CreateAssetMenu(fileName = "Robot", menuName = "Entity/RobotData", order = 1)]
 
 public class RobotSO : ScriptableObject
 {
