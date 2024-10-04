@@ -454,13 +454,17 @@ public class RobotAI : Entity
     public void EnterSquad()
     {
         _isInsideSquad = true;
+        _bodyAnimator.SetBool("Walking", false);
         _agent.isStopped = true;
     }
 
     public void LeaveSquad()
     {
-        _isInsideSquad = false;
-        _agent.isStopped = false;
+        if (_agent.isActiveAndEnabled)
+        {
+            _isInsideSquad = false;
+            _agent.isStopped = false;
+        }
     }
 
     public void RemoveAttachMent()

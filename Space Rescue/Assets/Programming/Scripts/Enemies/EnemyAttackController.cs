@@ -49,6 +49,11 @@ public class EnemyAttackController : MonoBehaviour
         _animator.SetTrigger(_attackNames[Random.Range(0, _attackNames.Length)]);
     }
 
+    public void StopAttackAnimation()
+    {
+        _enemyAi.IsAttacking = false;
+    }
+
     public void SmashStart()
     {
         _attacks[1].DoAttack();
@@ -57,7 +62,6 @@ public class EnemyAttackController : MonoBehaviour
     public void SmashStop()
     {
         _attacks[1].StopAttack();
-        _enemyAi.IsAttacking = false;
     }
 
     public void CrushStart()
@@ -78,7 +82,6 @@ public class EnemyAttackController : MonoBehaviour
     public void StopNeck()
     {
         _attacks[0].StopAttack();
-        _enemyAi.IsAttacking = false;
     }
 
     public void StartStomp()
@@ -91,7 +94,6 @@ public class EnemyAttackController : MonoBehaviour
     public void StopStomp()
     {
         _attacks[0].StopAttack();
-        _enemyAi.IsAttacking = false;
     }
 
     public void HasPoweredOn()

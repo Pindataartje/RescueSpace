@@ -566,9 +566,8 @@ public class EnemyAI : Entity
             if (!_isAttacking && Physics.SphereCast(transform.position, 0.1f, transform.forward, out RaycastHit hitInfo, _maxAttackRange, _preyMask))
             {
                 Debug.Log("Hits");
-                float distanceFromPrey = Vector3.Distance(transform.position, _targetTransform.position);
 
-                if (distanceFromPrey >= _minAttackRange)
+                if (DistanceFromTarget >= _minAttackRange && DistanceFromTarget <= _maxAttackRange)
                 {
                     _isAttacking = true;
 
