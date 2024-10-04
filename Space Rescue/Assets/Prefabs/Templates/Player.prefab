@@ -254,6 +254,7 @@ GameObject:
   - component: {fileID: 1482087099940304695}
   - component: {fileID: 5860251521338836710}
   - component: {fileID: 4083343548935099127}
+  - component: {fileID: 3115308344740164308}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -350,8 +351,8 @@ MonoBehaviour:
   _moveForce: 3.5
   _playerRotationSpeed: 8
   _robotManager: {fileID: 0}
-  _baseSquadXOffset: -1.5
-  _squadXoffset: 0
+  _baseSquadXOffset: 1.5
+  _squadXoffset: 1.5
   _baseSquadSize: 0.15
   _squadSize: 0
   _extraRobotSize: 0.15
@@ -412,6 +413,22 @@ CapsuleCollider:
   m_Height: 1.7
   m_Direction: 1
   m_Center: {x: 0, y: -0.15, z: 0}
+--- !u!208 &3115308344740164308
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3613367777005082089}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.1, y: 0.8, z: 0.1}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: -0.2, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &4439078397225779331
 GameObject:
   m_ObjectHideFlags: 0
