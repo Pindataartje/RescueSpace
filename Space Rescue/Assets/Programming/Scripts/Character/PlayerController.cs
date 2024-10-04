@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject _mouseReticle;
 
     [SerializeField] Transform _throwSpot;
-    public Transform restSpot;
 
     [SerializeField] List<GameObject> _robots = new();
     public List<GameObject> Robots
@@ -51,6 +50,29 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _moveForce;
 
     [SerializeField] float _playerRotationSpeed;
+
+    [SerializeField] RobotManager _robotManager;
+
+
+
+    [SerializeField] RaycastHit hit1;
+    [SerializeField] RaycastHit hit2;
+
+    [SerializeField] float _baseSquadXOffset;
+    [SerializeField] float _squadXoffset;
+
+    [SerializeField] float _baseSquadSize;
+    [SerializeField] float _squadSize;
+    [SerializeField] float _extraRobotSize;
+
+
+    [SerializeField] LayerMask _terrainLayer;
+    [SerializeField] LayerMask _robotLayer;
+
+    [SerializeField] Transform _squadRangePos;
+    public Transform SquadRangePos
+    { get { return _squadRangePos; } }
+
 
     private void Awake()
     {
@@ -92,6 +114,86 @@ public class PlayerController : MonoBehaviour
         playerInput.actions.FindAction("Recal").canceled -= OnRecal;
     }
 
+    private void Start()
+    {
+        _squadXoffset = _baseSquadXOffset; // Initialize squad X offset
+        _squadSize = _baseSquadSize; // Set the initial squad range to the absolute value of _minSquadRange
+        _robotManager = FindObjectOfType<RobotManager>();
+    }
+
+    void HandleSquadPosition()
+    {
+        // Check for ground below
+        if (Physics.Raycast(transform.position, -transform.up, out hit1, 1.7f, _terrainLayer))
+        {
+            Debug.Log("hit ground");
+
+            if (Physics.Raycast(transform.position, -_playerModel.forward, out hit2, 2f, _terrainLayer))
+            {
+                _squadRangePos.position = hit1.point + _playerModel.forward * _squadSize; // Move forward based on player's forward vector
+            }
+            else
+            {
+                _squadRangePos.position = hit1.point - _playerModel.forward * _squadXoffset; // Move backward based on player's forward vector
+            }
+        }
+    }
+
+    void HandleSquad()
+    {
+        // Get all colliders within the squad range using the overlap sphere
+        Collider[] colliders = Physics.OverlapSphere(_squadRangePos.position, _squadSize, _robotLayer);
+
+        List<RobotAI> robotsInRange = new List<RobotAI>();
+        foreach (Collider collider in colliders)
+        {
+            if (collider.TryGetComponent(out RobotAI robotAI) && robotAI._currentState == RobotAI.State.FOLLOW)
+            {
+                RobotAI newrobot = collider.GetComponent<RobotAI>();
+                robotsInRange.Add(newrobot);
+
+                if (!_robotManager.SquadContains(newrobot))
+                {
+                    _robotManager.AddRobotToSquad(newrobot);
+                }
+            }
+        }
+
+        List<RobotAI> robotsToRemove = new List<RobotAI>();
+        foreach (RobotAI robot in _robotManager.unsortedSquad)
+        {
+            if (!robotsInRange.Contains(robot))
+            {
+                robotsToRemove.Add(robot);
+            }
+        }
+
+        foreach (RobotAI robotToRemove in robotsToRemove)
+        {
+            _robotManager.RemoveRobotFromSquad(robotToRemove);
+        }
+
+        HandleSquadRange(); // Update squad range based on current squad composition
+    }
+
+    public void HandleSquadRange()
+    {
+        // Reset the squad offset and range
+        _squadXoffset = _baseSquadXOffset; // Start with the initial offset behind the player
+        _squadSize = _baseSquadSize; // Initialize the squad size (for overlap sphere)
+
+        // Get the number of robots in the squad
+        int robotCount = _robotManager.NumberOfRobotsInSquad;
+
+        // Increase the squad offset and size for each additional robot
+        for (int i = 0; i < robotCount; i++)
+        {
+            _squadXoffset += _extraRobotSize; // Extend the squad further back for each robot
+            _squadSize += _extraRobotSize; // Increase the overlap sphere size
+        }
+    }
+
+
     private void Update()
     {
         _currentMovement = (_orientation.forward * _currentMovementInput.y) + (_orientation.right * _currentMovementInput.x);
@@ -124,6 +226,10 @@ public class PlayerController : MonoBehaviour
         {
             _mouseReticle.GetComponent<TestRecal>().canCheck = false;
         }
+
+        HandleSquadPosition();
+
+        HandleSquad();
 
         // if (_isMouseMovement) // Set Destanation to null if reached
         // {
@@ -291,5 +397,12 @@ public class PlayerController : MonoBehaviour
     private void OnRecal(InputAction.CallbackContext context)
     {
         _isRecal = context.ReadValueAsButton();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.cyan;
+
+        Gizmos.DrawWireSphere(_squadRangePos.position, _squadSize);
     }
 }

@@ -10,47 +10,72 @@ public class RobotManager : MonoBehaviour
     List<RobotAI> _robotsOnTheField = new();
 
     List<List<RobotAI>> _robotsInSquad = new();
+    public List<List<RobotAI>> RobotsInSquad
+    { get { return _robotsInSquad; } }
 
-    public RobotAI _robotToAdd;
+    public List<RobotAI> unsortedSquad;
+
+    [SerializeField] int _numberOfRobotsInSquad;
+    public int NumberOfRobotsInSquad
+    { get { return _numberOfRobotsInSquad; } }
 
     private void Start()
     {
         _robotsInSquad.Add(new List<RobotAI>());
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            AddRobot(_robotToAdd);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            for (int i = 0; i < _robotsInSquad.Count; i++)
-            {
-                for (int j = 0; j < _robotsInSquad[i].Count; j++)
-                {
-                    Debug.Log($"{_robotsInSquad[i][j].name} + {i} + {j}");
-                }
-            }
-        }
-    }
-    public void AddRobot(RobotAI newRobot)
+    public void RemoveRobotFromSquad(RobotAI robotToRemove)
     {
         for (int i = 0; i < _robotsInSquad.Count; i++)
         {
-            if (_robotsInSquad[i].Count > 0 && newRobot.type == _robotsInSquad[i][0].type)
+            if (_robotsInSquad[i].Contains(robotToRemove))
             {
-                _robotsInSquad[i].Add(newRobot);
+                unsortedSquad.Remove(robotToRemove);
+                _robotsInSquad[i].Remove(robotToRemove);
+                robotToRemove.LeaveSquad(); // Call LeaveSquad to perform any necessary cleanup on the robot
+                _numberOfRobotsInSquad--;
+
+                Debug.Log($"Removed robot from squad {i}, remaining count: {_robotsInSquad[i].Count}");
+
+                if (_robotsInSquad[i].Count == 0)
+                {
+                    _robotsInSquad.RemoveAt(i);
+
+                    Debug.Log($"Removed squad {i}");
+
+                }
+
+                return; // Exit after removing to avoid unnecessary iterations
+            }
+        }
+    }
+
+    public void AddRobotToSquad(RobotAI robotToAdd)
+    {
+        if (_robotsInSquad.Count == 0)
+        {
+            _robotsInSquad.Add(new List<RobotAI>());
+        }
+
+        for (int i = 0; i < _robotsInSquad.Count; i++)
+        {
+            if (_robotsInSquad[i].Count > 0 && robotToAdd.type == _robotsInSquad[i][0].type)
+            {
+                unsortedSquad.Add(robotToAdd);
+                _robotsInSquad[i].Add(robotToAdd);
+                robotToAdd.EnterSquad();
+                _numberOfRobotsInSquad++;
 
                 Debug.Log($"Added robot to: {i}, {_robotsInSquad[i].Count}");
                 break;
             }
-            else if (_robotsInSquad[_robotsInSquad.Count - 1].Count > 0 && newRobot.type != _robotsInSquad[_robotsInSquad.Count - 1][0].type)
+            else if (_robotsInSquad[_robotsInSquad.Count - 1].Count > 0 && robotToAdd.type != _robotsInSquad[_robotsInSquad.Count - 1][0].type)
             {
                 _robotsInSquad.Add(new List<RobotAI>());
-                _robotsInSquad[_robotsInSquad.Count - 1].Add(newRobot);
+                unsortedSquad.Add(robotToAdd);
+                _robotsInSquad[_robotsInSquad.Count - 1].Add(robotToAdd);
+                robotToAdd.EnterSquad();
+                _numberOfRobotsInSquad++;
 
                 Debug.Log($"Added robot to new List: {i + 1}, {_robotsInSquad[_robotsInSquad.Count - 1].Count}");
 
@@ -58,7 +83,10 @@ public class RobotManager : MonoBehaviour
             }
             else if (_robotsInSquad[_robotsInSquad.Count - 1].Count == 0)
             {
-                _robotsInSquad[_robotsInSquad.Count - 1].Add(newRobot);
+                unsortedSquad.Add(robotToAdd);
+                _robotsInSquad[_robotsInSquad.Count - 1].Add(robotToAdd);
+                robotToAdd.EnterSquad();
+                _numberOfRobotsInSquad++;
 
                 Debug.Log("Added robot to existing empty list");
             }
@@ -67,5 +95,18 @@ public class RobotManager : MonoBehaviour
             //     // Debug.Log($"Error {i}");
             // }
         }
+    }
+
+    public bool SquadContains(RobotAI robotToCheck)
+    {
+        for (int i = 0; i < unsortedSquad.Count; i++)
+        {
+            if (unsortedSquad[i] == robotToCheck)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

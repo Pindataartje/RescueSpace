@@ -4,9 +4,12 @@ using UnityEngine.AI;
 
 public class RobotAI : Entity
 {
+    [Header("Setup")]
     [SerializeField] RobotSO _robotInfo;
     public RobotSO RobotInfo
     { get { return _robotInfo; } }
+
+    [SerializeField] RobotManager _manager;
 
     [SerializeField] NavMeshAgent _agent;
     public NavMeshAgent Agent
@@ -23,7 +26,7 @@ public class RobotAI : Entity
     public Transform Target
     { get { return _target; } set { _target = value; } }
 
-    [SerializeField] Transform _player;
+    [SerializeField] PlayerController _player;
 
     [SerializeField] Collider _collider;
 
@@ -49,6 +52,8 @@ public class RobotAI : Entity
 
     [SerializeField] GameObject _deathEffectPrefab;
 
+    [SerializeField] bool _isInsideSquad;
+
 
     public override void Start()
     {
@@ -57,7 +62,9 @@ public class RobotAI : Entity
             _agent.speed = _robotInfo.speed;
         }
 
-        _player = FindAnyObjectByType<PlayerController>().transform;
+        _manager = FindAnyObjectByType<RobotManager>();
+
+        _player = FindAnyObjectByType<PlayerController>();
 
         _scrapRobot = FindAnyObjectByType<ScrapRobot>().transform;
 
@@ -212,7 +219,7 @@ public class RobotAI : Entity
     {
         _currentState = State.FOLLOW;
 
-        _target = _player.GetComponent<PlayerController>().restSpot;
+        _target = _player.GetComponent<PlayerController>().SquadRangePos;
 
         _agent.enabled = true;
 
@@ -221,21 +228,25 @@ public class RobotAI : Entity
 
     public virtual void Follow()
     {
-        _agent.SetDestination(_target.position);
-
-        Vector3 targetWithOffset = new Vector3(_target.position.x, transform.position.y, _target.position.z);
-
-        _distanceFromTarget = Vector3.Distance(transform.position, targetWithOffset);
-
-        if (_agent.stoppingDistance >= _distanceFromTarget && !_agent.isStopped)
+        if (!_isInsideSquad)
         {
-            _agent.isStopped = true;
-            _bodyAnimator.SetBool("Walking", false);
-        }
-        else
-        {
-            _agent.isStopped = false;
-            _bodyAnimator.SetBool("Walking", true);
+            _agent.SetDestination(_target.position);
+
+            Vector3 targetWithOffset = new Vector3(_target.position.x, transform.position.y, _target.position.z);
+
+            _distanceFromTarget = Vector3.Distance(transform.position, targetWithOffset);
+
+
+            if (_agent.stoppingDistance >= _distanceFromTarget && !_agent.isStopped)
+            {
+                _agent.isStopped = true;
+                _bodyAnimator.SetBool("Walking", false);
+            }
+            else
+            {
+                _agent.isStopped = false;
+                _bodyAnimator.SetBool("Walking", true);
+            }
         }
     }
 
@@ -439,6 +450,18 @@ public class RobotAI : Entity
     }
 
     #endregion
+
+    public void EnterSquad()
+    {
+        _isInsideSquad = true;
+        _agent.isStopped = true;
+    }
+
+    public void LeaveSquad()
+    {
+        _isInsideSquad = false;
+        _agent.isStopped = false;
+    }
 
     public void RemoveAttachMent()
     {
