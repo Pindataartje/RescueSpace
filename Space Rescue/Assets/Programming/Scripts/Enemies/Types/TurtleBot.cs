@@ -32,6 +32,8 @@ public class TurtleBot : EnemyAI
     public Material OffLed
     { get { return _offLed; } }
 
+    [SerializeField] bool _newPosition;
+
     public override void Start()
     {
         base.Start();
@@ -94,6 +96,7 @@ public class TurtleBot : EnemyAI
     {
         if (TargetTransform != null && !_isHiding)
         {
+            _newPosition = false;
             Agent.SetDestination(TargetTransform.position);
 
             Animator.SetBool("Walking", true);
@@ -119,27 +122,32 @@ public class TurtleBot : EnemyAI
 
 
         // DOES NOT WORK RIGHT NOW ???
-        // if (_hideTime >= _maxHideTime && DistanceFromTarget == 0)
-        // {
-        //     List<Transform> temps = PatrolPoints;
+        if (_hideTime >= _maxHideTime && DistanceFromTarget == 0 && !_newPosition)
+        {
+            _newPosition = true;
 
-        //     if (TargetTransform != null)
-        //     {
-        //         for (int i = 0; i < temps.Count; i++)
-        //         {
-        //             if (temps[i] == TargetTransform)
-        //             {
-        //                 temps.RemoveAt(i);
-        //             }
-        //         }
-        //     }
+            List<Transform> temps = new List<Transform>(PatrolPoints);
 
-        //     // TargetTransform = temps[Random.Range(0, temps.Count)];
+            if (TargetTransform != null)
+            {
+                if (temps.Contains(TargetTransform))
+                {
+                    temps.Remove(TargetTransform);
+                }
+            }
+            else
+            {
+                return;
+            }
 
-        //     Animator.SetBool("Hide", false);
+            TargetTransform = temps[Random.Range(0, temps.Count)];
 
-        //     Animator.SetBool("Walking", true);
-        // }
+            Animator.SetBool("Power", true);
+
+            Animator.SetBool("Hide", false);
+
+            Animator.SetBool("Walking", true);
+        }
     }
 
     public override void StopPatrol()
