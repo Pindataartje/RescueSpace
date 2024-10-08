@@ -4,11 +4,11 @@ using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 
 public class EnemyAI : Entity
 {
-
     [SerializeField] float _regenRate;
     [SerializeField] float _regenAmount;
 
@@ -90,6 +90,10 @@ public class EnemyAI : Entity
     public List<Transform> PatrolPoints
     { get { return _patrolPoints; } }
 
+    [SerializeField] Slider _healthBar;
+    public Slider HealthBar
+    { get { return _healthBar; } set { _healthBar = value; } }
+
     [Header("Search")]
 
     [SerializeField] float _searchTime;
@@ -158,10 +162,16 @@ public class EnemyAI : Entity
         _enemyDetection = GetComponentInChildren<EnemyDetection>();
 
         _enemyDetection.detectableObjects = _detectableObjects;
+
+        _healthBar = GetComponentInChildren<Slider>();
+
+        _healthBar.maxValue = maxHealth;
     }
 
     public override void Update()
     {
+        _healthBar.value = health;
+
         if (_hasPoweredOn)
         {
             CheckState();

@@ -159,11 +159,9 @@ public class ScrapRobot : RobotAI
         WeaponAnimator.SetBool("Maken", true);
         for (int i = 0; i < robotsToSpawn; i++)
         {
-
-
             yield return new WaitForSeconds(_spawnTime);
 
-            Destroy(scrap.gameObject);
+            Destroy(scrap.gameObject); // do not do when removed
 
             GameObject newRobot = Instantiate(_robotPrefabs[Random.Range(0, _robotPrefabs.Length)]);
 

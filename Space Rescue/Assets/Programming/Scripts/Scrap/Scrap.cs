@@ -1,10 +1,13 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class Scrap : Entity
 {
+    [SerializeField] TMP_Text _robotsNeededTxt;
+
     [SerializeField] Transform _objectToCarry;
 
     [SerializeField] NavMeshAgent _agent;
@@ -192,6 +195,8 @@ public class Scrap : Entity
             if (_robotPos[i] == robot.Target && !hasAdded)
             {
                 hasAdded = true;
+
+                _robotsNeededTxt.enabled = true;
                 Debug.Log($"Adding robot at position {i}");
 
                 _atPos[i] = robot;
@@ -205,6 +210,8 @@ public class Scrap : Entity
                 if (_extraRobotPos[i] == robot.Target && !hasAdded)
                 {
                     hasAdded = true;
+
+                    _robotsNeededTxt.enabled = true;
                     Debug.Log($"Adding robot at position {i}");
 
                     _extraAtPos[i] = robot;
@@ -228,6 +235,23 @@ public class Scrap : Entity
             {
                 _robotsCarrying++;
             }
+        }
+
+        _robotsNeededTxt.text = $"{_robotsCarrying}/{_robotsToCarry}";
+
+        if (_robotsCarrying == _robotsToCarry)
+        {
+            _robotsNeededTxt.color = Color.green;
+        }
+
+        if (_robotsCarrying > _robotsToCarry)
+        {
+            _robotsNeededTxt.color = Color.blue;
+        }
+
+        if (_robotsCarrying < _robotsToCarry)
+        {
+            _robotsNeededTxt.color = Color.red;
         }
 
         Debug.Log($"Total robots carrying: {_robotsCarrying}");
@@ -279,6 +303,11 @@ public class Scrap : Entity
             {
                 _extraHoldPos[i] = null;
             }
+        }
+
+        if (_robotsCarrying == 0)
+        {
+            _robotsNeededTxt.enabled = false;
         }
     }
 

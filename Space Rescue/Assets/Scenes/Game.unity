@@ -898,6 +898,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4594240754109683731, guid: 00bff1eea71254548ac79f390ebb596f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6037389109521405546, guid: 00bff1eea71254548ac79f390ebb596f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -953,35 +958,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WolfBot
       objectReference: {fileID: 0}
-    - target: {fileID: 7217989373832538804, guid: 00bff1eea71254548ac79f390ebb596f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7267021771582976873, guid: 00bff1eea71254548ac79f390ebb596f,
         type: 3}
-      propertyPath: _isInitialized
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7267021771582976873, guid: 00bff1eea71254548ac79f390ebb596f,
-        type: 3}
-      propertyPath: _maxAttackRange
-      value: 3.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7267021771582976873, guid: 00bff1eea71254548ac79f390ebb596f,
-        type: 3}
-      propertyPath: _minAttackRange
-      value: 2.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7267021771582976873, guid: 00bff1eea71254548ac79f390ebb596f,
-        type: 3}
-      propertyPath: _preyMask.m_Bits
-      value: 72
-      objectReference: {fileID: 0}
-    - target: {fileID: 7686559840352364822, guid: 00bff1eea71254548ac79f390ebb596f,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
+      propertyPath: _healthBar
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1738,11 +1718,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BlockBot
-      objectReference: {fileID: 0}
-    - target: {fileID: 6267110394023435300, guid: c77c5f10e4154354b956e073873f9bb5,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6952616650772946824, guid: c77c5f10e4154354b956e073873f9bb5,
         type: 3}

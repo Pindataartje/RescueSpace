@@ -45,6 +45,8 @@ public class TurtleBot : EnemyAI
 
     public override void Update()
     {
+        HealthBar.value = health;
+
         if (HasPoweredOn)
         {
             CheckState();
