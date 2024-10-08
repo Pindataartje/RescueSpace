@@ -19,6 +19,10 @@ public class RobotManager : MonoBehaviour
     public int NumberOfRobotsInSquad
     { get { return _numberOfRobotsInSquad; } }
 
+    [SerializeField] int _currentSquad;
+    public int CurrentSquad
+    { get { return _currentSquad; } set { _currentSquad = value; } }
+
     private void Start()
     {
         _robotsInSquad.Add(new List<RobotAI>());

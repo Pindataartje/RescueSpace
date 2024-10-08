@@ -35,6 +35,10 @@ public class TurtleBot : EnemyAI
     public override void Start()
     {
         base.Start();
+
+        // TargetTransform = null;
+
+        IsHiding = true;
     }
 
     public override void Update()
@@ -42,6 +46,11 @@ public class TurtleBot : EnemyAI
         if (HasPoweredOn)
         {
             CheckState();
+        }
+
+        if (Currentstate == State.PATROL)
+        {
+            Patrol();
         }
     }
 
@@ -108,24 +117,29 @@ public class TurtleBot : EnemyAI
             _hideTime += Time.deltaTime;
         }
 
-        if (_hideTime >= _maxHideTime && DistanceFromTarget == 0)
-        {
-            List<Transform> temps = PatrolPoints;
 
-            for (int i = 0; i < temps.Count; i++)
-            {
-                if (temps[i] == TargetTransform)
-                {
-                    temps.RemoveAt(i);
-                }
-            }
+        // DOES NOT WORK RIGHT NOW ???
+        // if (_hideTime >= _maxHideTime && DistanceFromTarget == 0)
+        // {
+        //     List<Transform> temps = PatrolPoints;
 
-            TargetTransform = temps[Random.Range(0, temps.Count)];
+        //     if (TargetTransform != null)
+        //     {
+        //         for (int i = 0; i < temps.Count; i++)
+        //         {
+        //             if (temps[i] == TargetTransform)
+        //             {
+        //                 temps.RemoveAt(i);
+        //             }
+        //         }
+        //     }
 
-            Animator.SetBool("Hide", false);
+        //     // TargetTransform = temps[Random.Range(0, temps.Count)];
 
-            Animator.SetBool("Walking", true);
-        }
+        //     Animator.SetBool("Hide", false);
+
+        //     Animator.SetBool("Walking", true);
+        // }
     }
 
     public override void StopPatrol()

@@ -19,6 +19,8 @@ public class EnemyAI : Entity
     [Header("State")]
 
     [SerializeField] State _currentState;
+    public State Currentstate
+    { get { return _currentState; } }
 
     public enum State
     {

@@ -27,6 +27,8 @@ public class RobotAI : Entity
     { get { return _target; } set { _target = value; } }
 
     [SerializeField] PlayerController _player;
+    public PlayerController Player
+    { get { return _player; } }
 
     [SerializeField] Collider _collider;
 
@@ -450,6 +452,11 @@ public class RobotAI : Entity
     }
 
     #endregion
+
+    public virtual void Recal()
+    {
+        ChangeState(State.FOLLOW);
+    }
 
     public void EnterSquad()
     {

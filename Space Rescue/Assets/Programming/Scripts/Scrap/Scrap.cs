@@ -48,7 +48,7 @@ public class Scrap : Entity
 
         _scrapRobot = FindAnyObjectByType<ScrapRobot>();
 
-        _target = _scrapRobot.GetComponent<Transform>();
+        _target = _scrapRobot.GrabPosition;
     }
 
     public override void Update()
@@ -90,9 +90,7 @@ public class Scrap : Entity
 
                 _robotsCarrying = 0;
 
-                _scrapRobot.CollectScrap(_scrapWorth);
-
-                Destroy(gameObject);
+                _scrapRobot.CollectScrap(_scrapWorth, transform);
             }
         }
         else if (_robotsCarrying < _robotsToCarry && _agent.isActiveAndEnabled && !_agent.isStopped)

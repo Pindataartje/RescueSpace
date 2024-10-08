@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] bool _isThrow;
 
+    [SerializeField] float _scrollTypes;
+
     [SerializeField] bool _isRecal;
 
     [SerializeField] LayerMask _throwLayer;
@@ -27,12 +29,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject _mouseReticle;
 
     [SerializeField] Transform _throwSpot;
-
-    [SerializeField] List<GameObject> _robots = new();
-    public List<GameObject> Robots
-    {
-        get { return _robots; }
-    }
 
     [SerializeField] int _robotTypeIndex;
 
@@ -54,6 +50,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] RobotManager _robotManager;
 
 
+    [SerializeField] int _currentSquadNumber = 0;
 
     [SerializeField] RaycastHit hit1;
     [SerializeField] RaycastHit hit2;
@@ -95,6 +92,10 @@ public class PlayerController : MonoBehaviour
         playerInput.actions.FindAction("Recal").started += OnRecal;
         playerInput.actions.FindAction("Recal").performed += OnRecal;
         playerInput.actions.FindAction("Recal").canceled += OnRecal;
+
+        playerInput.actions.FindAction("ScrollTypes").started += OnScroll;
+        playerInput.actions.FindAction("ScrollTypes").performed += OnScroll;
+        playerInput.actions.FindAction("ScrollTypes").canceled += OnScroll;
     }
 
     private void OnDisable()
@@ -112,6 +113,10 @@ public class PlayerController : MonoBehaviour
         playerInput.actions.FindAction("Recal").started -= OnRecal;
         playerInput.actions.FindAction("Recal").performed -= OnRecal;
         playerInput.actions.FindAction("Recal").canceled -= OnRecal;
+
+        playerInput.actions.FindAction("ScrollTypes").started -= OnScroll;
+        playerInput.actions.FindAction("ScrollTypes").performed -= OnScroll;
+        playerInput.actions.FindAction("ScrollTypes").canceled -= OnScroll;
     }
 
     private void Start()
@@ -192,7 +197,6 @@ public class PlayerController : MonoBehaviour
             _squadSize += _extraRobotSize; // Increase the overlap sphere size
         }
     }
-
 
     private void Update()
     {
@@ -278,11 +282,15 @@ public class PlayerController : MonoBehaviour
 
     void StartThrow(InputAction.CallbackContext context)
     {
-
-        if (_robots.Count > 0)
+        if (_robotManager.RobotsInSquad[_currentSquadNumber].Count > 0)
         {
-            _currentRobot = _robots[0];
-            _robots.RemoveAt(0);
+            _currentRobot = _robotManager.RobotsInSquad[_currentSquadNumber][0].gameObject;
+            _robotManager.RemoveRobotFromSquad(_robotManager.RobotsInSquad[_currentSquadNumber][0]);
+
+            if (_robotManager.RobotsInSquad[_currentSquadNumber].Count == 0)
+            {
+                MoveToNextSquadWithRobots();
+            }
         }
 
         if (_currentRobot != null)
@@ -296,6 +304,27 @@ public class PlayerController : MonoBehaviour
             _currentRobot.GetComponent<RobotAI>().ChangeState(RobotAI.State.THROWN);
         }
 
+    }
+
+    private void MoveToNextSquadWithRobots()
+    {
+        int totalSquads = _robotManager.RobotsInSquad.Count;
+
+        // Loop through squads to find the next one with robots
+        for (int i = 1; i < totalSquads; i++)
+        {
+            int nextSquadNumber = (_currentSquadNumber + i) % totalSquads;
+
+            if (_robotManager.RobotsInSquad[nextSquadNumber].Count > 0)
+            {
+                _currentSquadNumber = nextSquadNumber;
+                Debug.Log("Switched to next squad with robots: Squad " + _currentSquadNumber);
+                return; // Exit once we find the next valid squad
+            }
+        }
+
+        // Optionally, handle the case where no squads have robots left
+        Debug.Log("No squads left with robots.");
     }
 
     void HoldThrow() // maybe change robot state
@@ -321,8 +350,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             _currentRobot = null;
-
-            // Debug.Log("nah");
         }
     }
 
@@ -367,11 +394,6 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
-    public void AddRobot(GameObject robot)
-    {
-        _robots.Add(robot);
-    }
-
     void SpeedControl()
     {
         Vector3 flatVel = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
@@ -397,6 +419,22 @@ public class PlayerController : MonoBehaviour
     private void OnRecal(InputAction.CallbackContext context)
     {
         _isRecal = context.ReadValueAsButton();
+    }
+
+    private void OnScroll(InputAction.CallbackContext context)
+    {
+        float scrollValue = context.ReadValue<float>();
+
+        if (scrollValue > 0) // Scroll up
+        {
+            _currentSquadNumber = (_currentSquadNumber + 1) % _robotManager.RobotsInSquad.Count;
+            _robotManager.CurrentSquad = _currentSquadNumber;
+        }
+        else if (scrollValue < 0) // Scroll down
+        {
+            _currentSquadNumber = (_currentSquadNumber - 1 + _robotManager.RobotsInSquad.Count) % _robotManager.RobotsInSquad.Count;
+            _robotManager.CurrentSquad = _currentSquadNumber;
+        }
     }
 
     private void OnDrawGizmos()

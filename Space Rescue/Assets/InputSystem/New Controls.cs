@@ -71,6 +71,15 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ScrollTypes"",
+                    ""type"": ""Button"",
+                    ""id"": ""02787fdf-d660-4c22-be47-381f61e667c0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -194,6 +203,50 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
                     ""action"": ""Camera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d6c4f536-feae-4ca8-afca-def22db6e29f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ScrollTypes"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""9fa424d6-1bc9-4319-82c3-cf80b676edd2"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ScrollTypes"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""297ee4e3-c2c6-47c4-857d-a40846388c4c"",
+                    ""path"": ""<Mouse>/scroll/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ScrollTypes"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""15f0c470-c001-47a6-a828-49951e654bda"",
+                    ""path"": ""<Mouse>/scroll/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ScrollTypes"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -235,6 +288,7 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
         m_Game_MouseMove = m_Game.FindAction("MouseMove", throwIfNotFound: true);
         m_Game_Throw = m_Game.FindAction("Throw", throwIfNotFound: true);
         m_Game_Recal = m_Game.FindAction("Recal", throwIfNotFound: true);
+        m_Game_ScrollTypes = m_Game.FindAction("ScrollTypes", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Back = m_Menu.FindAction("Back", throwIfNotFound: true);
@@ -304,6 +358,7 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Game_MouseMove;
     private readonly InputAction m_Game_Throw;
     private readonly InputAction m_Game_Recal;
+    private readonly InputAction m_Game_ScrollTypes;
     public struct GameActions
     {
         private @NewControls m_Wrapper;
@@ -313,6 +368,7 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
         public InputAction @MouseMove => m_Wrapper.m_Game_MouseMove;
         public InputAction @Throw => m_Wrapper.m_Game_Throw;
         public InputAction @Recal => m_Wrapper.m_Game_Recal;
+        public InputAction @ScrollTypes => m_Wrapper.m_Game_ScrollTypes;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -337,6 +393,9 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
             @Recal.started += instance.OnRecal;
             @Recal.performed += instance.OnRecal;
             @Recal.canceled += instance.OnRecal;
+            @ScrollTypes.started += instance.OnScrollTypes;
+            @ScrollTypes.performed += instance.OnScrollTypes;
+            @ScrollTypes.canceled += instance.OnScrollTypes;
         }
 
         private void UnregisterCallbacks(IGameActions instance)
@@ -356,6 +415,9 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
             @Recal.started -= instance.OnRecal;
             @Recal.performed -= instance.OnRecal;
             @Recal.canceled -= instance.OnRecal;
+            @ScrollTypes.started -= instance.OnScrollTypes;
+            @ScrollTypes.performed -= instance.OnScrollTypes;
+            @ScrollTypes.canceled -= instance.OnScrollTypes;
         }
 
         public void RemoveCallbacks(IGameActions instance)
@@ -426,6 +488,7 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
         void OnMouseMove(InputAction.CallbackContext context);
         void OnThrow(InputAction.CallbackContext context);
         void OnRecal(InputAction.CallbackContext context);
+        void OnScrollTypes(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

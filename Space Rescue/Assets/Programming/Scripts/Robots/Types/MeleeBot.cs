@@ -28,10 +28,9 @@ public class MeleeBot : RobotAI
         _currentState = State.ATTACK;
         Agent.enabled = false;
 
-
         Vector3 direction = Target.position - transform.position;
 
-        if (Physics.Raycast(transform.position, direction, out RaycastHit hit, 10f, DetectionLayer))
+        if (Physics.Raycast(transform.position, direction, out RaycastHit hit, 0.2f, DetectionLayer))
         {
             Debug.Log("Raycast hit: " + hit.collider.name);
 
@@ -51,6 +50,8 @@ public class MeleeBot : RobotAI
         else
         {
             Debug.Log("No raycast hit detected.");
+
+            ChangeState(State.IDLE);
         }
 
         Target = Target.GetComponentInParent<EnemyAI>().transform;
