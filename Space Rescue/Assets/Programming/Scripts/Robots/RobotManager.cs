@@ -13,19 +13,49 @@ public class RobotManager : MonoBehaviour
     public List<List<RobotAI>> RobotsInSquad
     { get { return _robotsInSquad; } }
 
+    List<List<RobotAI>> _throwableRobots = new();
+
     public List<RobotAI> unsortedSquad;
 
     [SerializeField] int _numberOfRobotsInSquad;
     public int NumberOfRobotsInSquad
     { get { return _numberOfRobotsInSquad; } }
 
+    [SerializeField] RobotAI _currentRobot;
+    public RobotAI CurrentRobot
+    { get { return _currentRobot; } }
+
     [SerializeField] int _currentSquad;
     public int CurrentSquad
     { get { return _currentSquad; } set { _currentSquad = value; } }
 
+
+    // public void AddThrowableRobot(RobotAI robotToAdd)
+    // {
+
+    // }
+
+    // public void RemoveThrowableRobot(RobotAI robotToRemove)
+    // {
+
+    // }
+
+
+
+
     private void Start()
     {
         _robotsInSquad.Add(new List<RobotAI>());
+    }
+
+    public void HandleCurrentSquad()
+    {
+        _currentSquad--;
+
+        if (_currentSquad < 0)
+        {
+            _currentSquad = _robotsInSquad.Count - 1;
+        }
     }
 
     public void RemoveRobotFromSquad(RobotAI robotToRemove)
@@ -44,6 +74,11 @@ public class RobotManager : MonoBehaviour
                 if (_robotsInSquad[i].Count == 0)
                 {
                     _robotsInSquad.RemoveAt(i);
+
+                    if (_currentSquad == i)
+                    {
+                        HandleCurrentSquad();
+                    }
 
                     Debug.Log($"Removed squad {i}");
 

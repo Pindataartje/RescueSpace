@@ -282,14 +282,12 @@ public class PlayerController : MonoBehaviour
 
     void StartThrow(InputAction.CallbackContext context)
     {
-        if (_robotManager.RobotsInSquad[_currentSquadNumber].Count > 0)
+        if (_robotManager.RobotsInSquad.Count > 0)
         {
-            _currentRobot = _robotManager.RobotsInSquad[_currentSquadNumber][0].gameObject;
-            _robotManager.RemoveRobotFromSquad(_robotManager.RobotsInSquad[_currentSquadNumber][0]);
-
-            if (_robotManager.RobotsInSquad[_currentSquadNumber].Count == 0)
+            if (_robotManager.RobotsInSquad[_currentSquadNumber].Count > 0)
             {
-                MoveToNextSquadWithRobots();
+                _currentRobot = _robotManager.RobotsInSquad[_currentSquadNumber][0].gameObject;
+                _robotManager.RemoveRobotFromSquad(_robotManager.RobotsInSquad[_currentSquadNumber][0]);
             }
         }
 
@@ -304,27 +302,6 @@ public class PlayerController : MonoBehaviour
             _currentRobot.GetComponent<RobotAI>().ChangeState(RobotAI.State.THROWN);
         }
 
-    }
-
-    private void MoveToNextSquadWithRobots()
-    {
-        int totalSquads = _robotManager.RobotsInSquad.Count;
-
-        // Loop through squads to find the next one with robots
-        for (int i = 1; i < totalSquads; i++)
-        {
-            int nextSquadNumber = (_currentSquadNumber + i) % totalSquads;
-
-            if (_robotManager.RobotsInSquad[nextSquadNumber].Count > 0)
-            {
-                _currentSquadNumber = nextSquadNumber;
-                Debug.Log("Switched to next squad with robots: Squad " + _currentSquadNumber);
-                return; // Exit once we find the next valid squad
-            }
-        }
-
-        // Optionally, handle the case where no squads have robots left
-        Debug.Log("No squads left with robots.");
     }
 
     void HoldThrow() // maybe change robot state
@@ -427,11 +404,13 @@ public class PlayerController : MonoBehaviour
 
         if (scrollValue > 0) // Scroll up
         {
+            _currentSquadNumber = _robotManager.CurrentSquad;
             _currentSquadNumber = (_currentSquadNumber + 1) % _robotManager.RobotsInSquad.Count;
             _robotManager.CurrentSquad = _currentSquadNumber;
         }
         else if (scrollValue < 0) // Scroll down
         {
+            _currentSquadNumber = _robotManager.CurrentSquad;
             _currentSquadNumber = (_currentSquadNumber - 1 + _robotManager.RobotsInSquad.Count) % _robotManager.RobotsInSquad.Count;
             _robotManager.CurrentSquad = _currentSquadNumber;
         }

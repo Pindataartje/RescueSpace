@@ -16,8 +16,8 @@ MonoBehaviour:
   speed: 3
   rotationSpeed: 60
   damage: 8
-  maxAttackRange: 4.5
-  minAttackRange: 3.2
+  maxAttackRange: 3.4
+  minAttackRange: 2.8
   regenRate: 3
   regenAmount: 5
   patrolRadius: 10
