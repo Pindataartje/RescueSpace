@@ -78,6 +78,7 @@ MonoBehaviour:
   _isThrown: 0
   _deathEffectPrefab: {fileID: 1028437674367691199, guid: 8a667e629ec11b349905b002bac66eba,
     type: 3}
+  _playerStopDistance: 0
   _isInsideSquad: 0
   _currentState: 0
 --- !u!65 &5668596216918850583

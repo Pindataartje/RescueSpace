@@ -54,8 +54,11 @@ public class RobotAI : Entity
 
     [SerializeField] GameObject _deathEffectPrefab;
 
-    [SerializeField] bool _isInsideSquad;
+    [SerializeField] float _playerStopDistance;
+    public float PlayerStopDistance
+    { get { return _playerStopDistance; } set { _playerStopDistance = value; } }
 
+    [SerializeField] bool _isInsideSquad;
 
     public override void Start()
     {
@@ -230,7 +233,9 @@ public class RobotAI : Entity
 
     public virtual void Follow()
     {
-        if (!_isInsideSquad)
+        _playerStopDistance = _player.RobotRemoveDistance;
+
+        if (_target != null)
         {
             _agent.SetDestination(_target.position);
 
@@ -239,7 +244,7 @@ public class RobotAI : Entity
             _distanceFromTarget = Vector3.Distance(transform.position, targetWithOffset);
 
 
-            if (_agent.stoppingDistance >= _distanceFromTarget && !_agent.isStopped)
+            if (_playerStopDistance >= _distanceFromTarget && _isInsideSquad)
             {
                 _agent.isStopped = true;
                 _bodyAnimator.SetBool("Walking", false);
@@ -462,7 +467,7 @@ public class RobotAI : Entity
     {
         _isInsideSquad = true;
         _bodyAnimator.SetBool("Walking", false);
-        _agent.isStopped = true;
+        // _agent.isStopped = true;
     }
 
     public void LeaveSquad()
@@ -470,7 +475,7 @@ public class RobotAI : Entity
         if (_agent.isActiveAndEnabled)
         {
             _isInsideSquad = false;
-            _agent.isStopped = false;
+            // _agent.isStopped = false;
         }
     }
 

@@ -62,6 +62,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _squadSize;
     [SerializeField] float _extraRobotSize;
 
+    [SerializeField] float _baseRobotRemoveDistance;
+    [SerializeField] float _robotRemoveDistance;
+    public float RobotRemoveDistance
+    { get { return _robotRemoveDistance; } }
 
     [SerializeField] LayerMask _terrainLayer;
     [SerializeField] LayerMask _robotLayer;
@@ -114,9 +118,9 @@ public class PlayerController : MonoBehaviour
         playerInput.actions.FindAction("Recal").performed -= OnRecal;
         playerInput.actions.FindAction("Recal").canceled -= OnRecal;
 
-        playerInput.actions.FindAction("ScrollTypes").started -= OnScroll;
+        // playerInput.actions.FindAction("ScrollTypes").started -= OnScroll;
         playerInput.actions.FindAction("ScrollTypes").performed -= OnScroll;
-        playerInput.actions.FindAction("ScrollTypes").canceled -= OnScroll;
+        // playerInput.actions.FindAction("ScrollTypes").canceled -= OnScroll;
     }
 
     private void Start()
@@ -124,6 +128,7 @@ public class PlayerController : MonoBehaviour
         _squadXoffset = _baseSquadXOffset; // Initialize squad X offset
         _squadSize = _baseSquadSize; // Set the initial squad range to the absolute value of _minSquadRange
         _robotManager = FindObjectOfType<RobotManager>();
+        _robotRemoveDistance = _baseRobotRemoveDistance;
     }
 
     void HandleSquadPosition()
@@ -131,8 +136,6 @@ public class PlayerController : MonoBehaviour
         // Check for ground below
         if (Physics.Raycast(transform.position, -transform.up, out hit1, 1.7f, _terrainLayer))
         {
-            Debug.Log("hit ground");
-
             if (Physics.Raycast(transform.position, -_playerModel.forward, out hit2, 2f, _terrainLayer))
             {
                 _squadRangePos.position = hit1.point + _playerModel.forward * _squadSize; // Move forward based on player's forward vector
@@ -160,6 +163,7 @@ public class PlayerController : MonoBehaviour
                 if (!_robotManager.SquadContains(newrobot))
                 {
                     _robotManager.AddRobotToSquad(newrobot);
+                    HandleSquadRange();
                 }
             }
         }
@@ -167,8 +171,14 @@ public class PlayerController : MonoBehaviour
         List<RobotAI> robotsToRemove = new List<RobotAI>();
         foreach (RobotAI robot in _robotManager.unsortedSquad)
         {
-            if (!robotsInRange.Contains(robot))
+            Vector3 playerOffset = new Vector3(transform.position.x, 0, transform.position.z);
+            Vector3 robotOffset = new Vector3(robot.transform.position.x, 0, robot.transform.position.z);
+
+            float distanceFromPlayer = Vector3.Distance(playerOffset, robotOffset);
+
+            if (!robotsInRange.Contains(robot) && distanceFromPlayer > _robotRemoveDistance)
             {
+                Debug.Log("Removing robot");
                 robotsToRemove.Add(robot);
             }
         }
@@ -176,9 +186,8 @@ public class PlayerController : MonoBehaviour
         foreach (RobotAI robotToRemove in robotsToRemove)
         {
             _robotManager.RemoveRobotFromSquad(robotToRemove);
+            HandleSquadRange();
         }
-
-        HandleSquadRange(); // Update squad range based on current squad composition
     }
 
     public void HandleSquadRange()
@@ -186,6 +195,7 @@ public class PlayerController : MonoBehaviour
         // Reset the squad offset and range
         _squadXoffset = _baseSquadXOffset; // Start with the initial offset behind the player
         _squadSize = _baseSquadSize; // Initialize the squad size (for overlap sphere)
+        _robotRemoveDistance = _baseRobotRemoveDistance;
 
         // Get the number of robots in the squad
         int robotCount = _robotManager.NumberOfRobotsInSquad;
@@ -398,23 +408,52 @@ public class PlayerController : MonoBehaviour
         _isRecal = context.ReadValueAsButton();
     }
 
+    private bool _canScroll = true;
+    private float _scrollCooldown = 0.1f; // 100 ms cooldown
+
     private void OnScroll(InputAction.CallbackContext context)
     {
+        if (!_canScroll) return; // Skip if within cooldown
+
         float scrollValue = context.ReadValue<float>();
 
-        if (scrollValue > 0) // Scroll up
+        if (scrollValue != 0)
         {
-            _currentSquadNumber = _robotManager.CurrentSquad;
-            _currentSquadNumber = (_currentSquadNumber + 1) % _robotManager.RobotsInSquad.Count;
-            _robotManager.CurrentSquad = _currentSquadNumber;
-        }
-        else if (scrollValue < 0) // Scroll down
-        {
-            _currentSquadNumber = _robotManager.CurrentSquad;
-            _currentSquadNumber = (_currentSquadNumber - 1 + _robotManager.RobotsInSquad.Count) % _robotManager.RobotsInSquad.Count;
-            _robotManager.CurrentSquad = _currentSquadNumber;
+            _canScroll = false;
+            UpdateCurrentSquad(scrollValue > 0);
+
+            // Start cooldown
+            StartCoroutine(ResetScrollCooldown());
         }
     }
+
+    private IEnumerator ResetScrollCooldown()
+    {
+        yield return new WaitForSeconds(_scrollCooldown);
+        _canScroll = true;
+    }
+
+    private void UpdateCurrentSquad(bool isScrollUp)
+    {
+        int squadCount = _robotManager.RobotsInSquad.Count;
+        _currentSquadNumber = _robotManager.CurrentSquad;
+
+        if (isScrollUp)
+        {
+            // Scroll up
+            _currentSquadNumber = (_currentSquadNumber + 1) % squadCount;
+        }
+        else
+        {
+            // Scroll down
+            _currentSquadNumber = (_currentSquadNumber - 1 + squadCount) % squadCount;
+        }
+
+        _robotManager.CurrentSquad = _currentSquadNumber;
+
+        Debug.Log($"new squad: {_currentSquadNumber}");
+    }
+
 
     private void OnDrawGizmos()
     {

@@ -367,6 +367,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1482087099940304695, guid: 004e271c203668e4db7524d0c54b94ae,
+        type: 3}
+      propertyPath: _robotManager
+      value: 
+      objectReference: {fileID: 1495642488}
+    - target: {fileID: 1482087099940304695, guid: 004e271c203668e4db7524d0c54b94ae,
+        type: 3}
+      propertyPath: _baseSquadSize
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1482087099940304695, guid: 004e271c203668e4db7524d0c54b94ae,
+        type: 3}
+      propertyPath: _extraRobotSize
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1482087099940304695, guid: 004e271c203668e4db7524d0c54b94ae,
+        type: 3}
+      propertyPath: _robotRemoveDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1482087099940304695, guid: 004e271c203668e4db7524d0c54b94ae,
+        type: 3}
+      propertyPath: _baseRobotRemoveDistance
+      value: 3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3613367777005082089, guid: 004e271c203668e4db7524d0c54b94ae,
         type: 3}
       propertyPath: m_Name
@@ -901,7 +926,7 @@ PrefabInstance:
     - target: {fileID: 4594240754109683731, guid: 00bff1eea71254548ac79f390ebb596f,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6037389109521405546, guid: 00bff1eea71254548ac79f390ebb596f,
         type: 3}
@@ -958,10 +983,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: WolfBot
       objectReference: {fileID: 0}
+    - target: {fileID: 7217989373832538804, guid: 00bff1eea71254548ac79f390ebb596f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7267021771582976873, guid: 00bff1eea71254548ac79f390ebb596f,
         type: 3}
       propertyPath: _healthBar
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686559840352364822, guid: 00bff1eea71254548ac79f390ebb596f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1583,6 +1618,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScrapBot (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5550154956106475446, guid: fbfe4f00f63d22644bdbb48b045a55c3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7279389844502198655, guid: fbfe4f00f63d22644bdbb48b045a55c3,
         type: 3}
       propertyPath: _spawnTime
@@ -1641,6 +1681,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2032421042464883760, guid: d30f9a15ee1af7245917ba4f801ad34a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4913891989532649836, guid: d30f9a15ee1af7245917ba4f801ad34a,
         type: 3}
       propertyPath: m_Name
@@ -1649,7 +1694,7 @@ PrefabInstance:
     - target: {fileID: 4913891989532649836, guid: d30f9a15ee1af7245917ba4f801ad34a,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5891106718197098601, guid: d30f9a15ee1af7245917ba4f801ad34a,
         type: 3}
@@ -1719,6 +1764,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlockBot
       objectReference: {fileID: 0}
+    - target: {fileID: 6267110394023435300, guid: c77c5f10e4154354b956e073873f9bb5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6952616650772946824, guid: c77c5f10e4154354b956e073873f9bb5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1768,6 +1818,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7160677447293398945, guid: c77c5f10e4154354b956e073873f9bb5,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

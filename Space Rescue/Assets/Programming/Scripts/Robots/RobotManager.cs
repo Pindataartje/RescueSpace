@@ -30,19 +30,6 @@ public class RobotManager : MonoBehaviour
     { get { return _currentSquad; } set { _currentSquad = value; } }
 
 
-    // public void AddThrowableRobot(RobotAI robotToAdd)
-    // {
-
-    // }
-
-    // public void RemoveThrowableRobot(RobotAI robotToRemove)
-    // {
-
-    // }
-
-
-
-
     private void Start()
     {
         _robotsInSquad.Add(new List<RobotAI>());
@@ -60,6 +47,7 @@ public class RobotManager : MonoBehaviour
 
     public void RemoveRobotFromSquad(RobotAI robotToRemove)
     {
+        Debug.Log("AA");
         for (int i = 0; i < _robotsInSquad.Count; i++)
         {
             if (_robotsInSquad[i].Contains(robotToRemove))
@@ -105,7 +93,7 @@ public class RobotManager : MonoBehaviour
                 robotToAdd.EnterSquad();
                 _numberOfRobotsInSquad++;
 
-                Debug.Log($"Added robot to: {i}, {_robotsInSquad[i].Count}");
+                // Debug.Log($"Added robot to: {i}, {_robotsInSquad[i].Count}");
                 break;
             }
             else if (_robotsInSquad[_robotsInSquad.Count - 1].Count > 0 && robotToAdd.type != _robotsInSquad[_robotsInSquad.Count - 1][0].type)
@@ -116,7 +104,7 @@ public class RobotManager : MonoBehaviour
                 robotToAdd.EnterSquad();
                 _numberOfRobotsInSquad++;
 
-                Debug.Log($"Added robot to new List: {i + 1}, {_robotsInSquad[_robotsInSquad.Count - 1].Count}");
+                // Debug.Log($"Added robot to new List: {i + 1}, {_robotsInSquad[_robotsInSquad.Count - 1].Count}");
 
                 break;
             }
@@ -127,12 +115,8 @@ public class RobotManager : MonoBehaviour
                 robotToAdd.EnterSquad();
                 _numberOfRobotsInSquad++;
 
-                Debug.Log("Added robot to existing empty list");
+                // Debug.Log("Added robot to existing empty list");
             }
-            // else
-            // {
-            //     // Debug.Log($"Error {i}");
-            // }
         }
     }
 
