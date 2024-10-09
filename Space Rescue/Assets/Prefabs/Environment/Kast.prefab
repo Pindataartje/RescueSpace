@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6672852902347711621}
   - component: {fileID: 6490958756262815730}
   - component: {fileID: 3436395132708844757}
+  - component: {fileID: 3794480836694912720}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -83,6 +84,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3794480836694912720
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343278791505793336}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.75279105, y: 0.8005977, z: 0.44281828}
+  m_Center: {x: -0.00000025331974, y: 0.40029886, z: 0.0065823197}
 --- !u!1 &1452291441629583059
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,6 +150,7 @@ GameObject:
   - component: {fileID: 2434518675298307196}
   - component: {fileID: 4641581092509213830}
   - component: {fileID: 4584976822515622276}
+  - component: {fileID: 6793523751387929902}
   m_Layer: 0
   m_Name: Kastjes.001
   m_TagString: Untagged
@@ -200,6 +223,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6793523751387929902
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2335410904998628072}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5755998220888175891, guid: d2c99150eb369784182aaf805c890046, type: 3}
 --- !u!1 &7400429173592182284
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,6 +256,7 @@ GameObject:
   - component: {fileID: 7369025185613611548}
   - component: {fileID: 7744230163538263296}
   - component: {fileID: 5969732612094247051}
+  - component: {fileID: 7102513404968370239}
   m_Layer: 0
   m_Name: Kastjes
   m_TagString: Untagged
@@ -283,3 +329,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7102513404968370239
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7400429173592182284}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7318624483685456335, guid: d2c99150eb369784182aaf805c890046, type: 3}
