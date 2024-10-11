@@ -186,6 +186,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeleeBot
       objectReference: {fileID: 0}
+    - target: {fileID: 9067155408617356733, guid: eac2ab7e78f9426479dbd9cf036c4fe8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -483,6 +488,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeleeBot (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9067155408617356733, guid: eac2ab7e78f9426479dbd9cf036c4fe8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -570,11 +580,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: GunBot (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8273847429328212341, guid: 6ee738e4bf16d384589041f509697db2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ee738e4bf16d384589041f509697db2, type: 3}
+--- !u!4 &344986187 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5222762849891520670, guid: d30f9a15ee1af7245917ba4f801ad34a,
+    type: 3}
+  m_PrefabInstance: {fileID: 5281460772011277894}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &652133795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -637,6 +658,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GunBot
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273847429328212341, guid: 6ee738e4bf16d384589041f509697db2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -706,11 +732,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: GunBot (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8273847429328212341, guid: 6ee738e4bf16d384589041f509697db2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ee738e4bf16d384589041f509697db2, type: 3}
+--- !u!4 &734567098 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1888213707991317621, guid: 00bff1eea71254548ac79f390ebb596f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1035064440}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &841626993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -773,6 +810,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MeleeBot (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9067155408617356733, guid: eac2ab7e78f9426479dbd9cf036c4fe8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -842,6 +884,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeleeBot (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 9067155408617356733, guid: eac2ab7e78f9426479dbd9cf036c4fe8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -909,6 +956,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Scrap
+      objectReference: {fileID: 0}
+    - target: {fileID: 2941487060624864016, guid: 3fd2150f34b77d04bb2608f78aa9b5eb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -993,11 +1045,31 @@ PrefabInstance:
       propertyPath: _healthBar
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7421059898322441881, guid: 00bff1eea71254548ac79f390ebb596f,
+        type: 3}
+      propertyPath: _attackNames.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7421059898322441881, guid: 00bff1eea71254548ac79f390ebb596f,
+        type: 3}
+      propertyPath: _attackNames.Array.data[1]
+      value: Attack2
+      objectReference: {fileID: 0}
     - target: {fileID: 7686559840352364822, guid: 00bff1eea71254548ac79f390ebb596f,
         type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8048034591190856229, guid: 00bff1eea71254548ac79f390ebb596f,
+        type: 3}
+      propertyPath: _holder
+      value: 
+      objectReference: {fileID: 734567098}
+    - target: {fileID: 8048034591190856229, guid: 00bff1eea71254548ac79f390ebb596f,
+        type: 3}
+      propertyPath: _rotationTransform
+      value: 
+      objectReference: {fileID: 1598885023}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1065,6 +1137,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GunBot (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273847429328212341, guid: 6ee738e4bf16d384589041f509697db2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1268,7 +1345,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.5
+  m_VoxelSize: 0.2
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: ba4f5a91e65f07940adcd8712c046070, type: 2}
   m_BuildHeightMesh: 0
@@ -1334,6 +1411,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GunBot (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273847429328212341, guid: 6ee738e4bf16d384589041f509697db2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1451,11 +1533,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scrap (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2941487060624864016, guid: 3fd2150f34b77d04bb2608f78aa9b5eb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fd2150f34b77d04bb2608f78aa9b5eb, type: 3}
+--- !u!4 &1598885023 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1470514049414856618, guid: 00bff1eea71254548ac79f390ebb596f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1035064440}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1604129965
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1519,11 +1612,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeleeBot (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 9067155408617356733, guid: eac2ab7e78f9426479dbd9cf036c4fe8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eac2ab7e78f9426479dbd9cf036c4fe8, type: 3}
+--- !u!4 &1780256812 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1539123591165343382, guid: d30f9a15ee1af7245917ba4f801ad34a,
+    type: 3}
+  m_PrefabInstance: {fileID: 5281460772011277894}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1828556571
 GameObject:
   m_ObjectHideFlags: 0
@@ -1621,7 +1725,7 @@ PrefabInstance:
     - target: {fileID: 5550154956106475446, guid: fbfe4f00f63d22644bdbb48b045a55c3,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7279389844502198655, guid: fbfe4f00f63d22644bdbb48b045a55c3,
         type: 3}
@@ -1686,6 +1790,16 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2912140376665945380, guid: d30f9a15ee1af7245917ba4f801ad34a,
+        type: 3}
+      propertyPath: _holder
+      value: 
+      objectReference: {fileID: 344986187}
+    - target: {fileID: 2912140376665945380, guid: d30f9a15ee1af7245917ba4f801ad34a,
+        type: 3}
+      propertyPath: _rotationTransform
+      value: 
+      objectReference: {fileID: 1780256812}
     - target: {fileID: 4913891989532649836, guid: d30f9a15ee1af7245917ba4f801ad34a,
         type: 3}
       propertyPath: m_Name
@@ -1745,6 +1859,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8876819550459233416, guid: d30f9a15ee1af7245917ba4f801ad34a,
+        type: 3}
+      propertyPath: _attackNames.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8876819550459233416, guid: d30f9a15ee1af7245917ba4f801ad34a,
+        type: 3}
+      propertyPath: _attackNames.Array.data[1]
+      value: Attack2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

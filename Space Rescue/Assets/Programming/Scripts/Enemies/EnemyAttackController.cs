@@ -70,7 +70,6 @@ public class EnemyAttackController : MonoBehaviour
 
     #endregion
 
-
     #region Turtle
 
     public void StartNeck()
@@ -102,8 +101,6 @@ public class EnemyAttackController : MonoBehaviour
 
     #endregion
 
-
-
     #region Wolf
 
     public void StartStomp()
@@ -129,6 +126,4 @@ public class EnemyAttackController : MonoBehaviour
     }
 
     #endregion
-
-
 }

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class EnemyDetection : MonoBehaviour
 {
+    [SerializeField] Transform _rotationTransform;
+
+    [SerializeField] Transform _holder;
+
     [SerializeField] EnemyAI enemyAI;
 
     public string[] detectableObjects;
@@ -11,6 +15,13 @@ public class EnemyDetection : MonoBehaviour
     private void Awake()
     {
         enemyAI = GetComponentInParent<EnemyAI>();
+    }
+
+    private void Update()
+    {
+        _holder.rotation = _rotationTransform.rotation;
+
+        _holder.rotation = new Quaternion(0, _holder.rotation.y, 0, _holder.rotation.w);
     }
 
     private void OnTriggerEnter(Collider other)

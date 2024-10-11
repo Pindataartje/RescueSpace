@@ -214,7 +214,7 @@ public class PlayerController : MonoBehaviour
 
         SpeedControl();
 
-        if (_isMoveAction && !_isThrow)
+        if (_isMoveAction)
         {
             _animator.SetBool("Walking", true);
             Quaternion lookRotation = Quaternion.LookRotation(_currentMovement, Vector3.up);
