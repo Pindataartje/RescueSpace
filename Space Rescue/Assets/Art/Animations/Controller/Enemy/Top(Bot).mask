@@ -1,0 +1,139 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Top(Bot)
+  m_Mask: 00000000010000000100000000000000000000000100000001000000010000000100000000000000000000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: BlokWheel
+    m_Weight: 1
+  - m_Path: LED's
+    m_Weight: 1
+  - m_Path: metarig
+    m_Weight: 1
+  - m_Path: metarig/spine
+    m_Weight: 0
+  - m_Path: metarig/spine/pelvis.L
+    m_Weight: 0
+  - m_Path: metarig/spine/pelvis.L/pelvis.L_end
+    m_Weight: 0
+  - m_Path: metarig/spine/pelvis.R
+    m_Weight: 0
+  - m_Path: metarig/spine/pelvis.R/pelvis.R_end
+    m_Weight: 0
+  - m_Path: metarig/spine/spinePartBlack
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/breast.L
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/breast.L/breast.L_end
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/breast.R
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/breast.R/breast.R_end
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.L
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.L/upper_arm.L
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.L/upper_arm.L/forearm.L
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.L/upper_arm.L/forearm.L/Finger.L
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.L/upper_arm.L/forearm.L/Finger.L/Finger.L.001
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.L/upper_arm.L/forearm.L/Finger.L/Finger.L.001/Finger.L.002
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.L/upper_arm.L/forearm.L/Finger.L/Finger.L.001/Finger.L.002/Finger.L.002_end
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.L/upper_arm.L/forearm.L/Finger.L.003
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.L/upper_arm.L/forearm.L/Finger.L.003/Finger.L.004
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.L/upper_arm.L/forearm.L/Finger.L.003/Finger.L.004/Finger.L.005
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.L/upper_arm.L/forearm.L/Finger.L.003/Finger.L.004/Finger.L.005/Finger.L.005_end
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.L/upper_arm.L/forearm.L/Thumb.L
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.L/upper_arm.L/forearm.L/Thumb.L/Thumb.L.001
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.L/upper_arm.L/forearm.L/Thumb.L/Thumb.L.001/Thumb.L.002
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.L/upper_arm.L/forearm.L/Thumb.L/Thumb.L.001/Thumb.L.002/Thumb.L.002_end
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.R
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.R/upper_arm.R
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.R/upper_arm.R/forearm.R
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.R/upper_arm.R/forearm.R/Finger.R
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.R/upper_arm.R/forearm.R/Finger.R/Finger.R.001
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.R/upper_arm.R/forearm.R/Finger.R/Finger.R.001/Finger.R.002
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.R/upper_arm.R/forearm.R/Finger.R/Finger.R.001/Finger.R.002/Finger.R.002_end
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.R/upper_arm.R/forearm.R/Finger.R.003
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.R/upper_arm.R/forearm.R/Finger.R.003/Finger.R.004
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.R/upper_arm.R/forearm.R/Finger.R.003/Finger.R.004/Finger.R.005
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.R/upper_arm.R/forearm.R/Finger.R.003/Finger.R.004/Finger.R.005/Finger.R.005_end
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.R/upper_arm.R/forearm.R/SmallTurret
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.R/upper_arm.R/forearm.R/SmallTurret/BigTurret
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.R/upper_arm.R/forearm.R/SmallTurret/BigTurret/BigTurret_end
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.R/upper_arm.R/forearm.R/Thumb.R
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.R/upper_arm.R/forearm.R/Thumb.R/Thumb.R.001
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.R/upper_arm.R/forearm.R/Thumb.R/Thumb.R.001/Thumb.R.002
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/shoulder.R/upper_arm.R/forearm.R/Thumb.R/Thumb.R.001/Thumb.R.002/Thumb.R.002_end
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/spine.005
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/spine.005/spine.006
+    m_Weight: 1
+  - m_Path: metarig/spine/spinePartBlack/spinePartMetal/spinePartBlack.001/spinePartMetal.001/spinePartBlack.002/spine.003/spine.005/spine.006/spine.006_end
+    m_Weight: 1
+  - m_Path: metarig/spine/SteelBeam
+    m_Weight: 0
+  - m_Path: metarig/spine/SteelBeam/Wheel
+    m_Weight: 0
+  - m_Path: metarig/spine/SteelBeam/Wheel/Wheel_end
+    m_Weight: 0
+  - m_Path: metarig/spine/thigh.L
+    m_Weight: 0
+  - m_Path: metarig/spine/thigh.L/shin.L.001
+    m_Weight: 0
+  - m_Path: metarig/spine/thigh.L/shin.L.001/shin.L.001_end
+    m_Weight: 0
+  - m_Path: metarig/spine/thigh.R
+    m_Weight: 0
+  - m_Path: metarig/spine/thigh.R/shin.R.001
+    m_Weight: 0
+  - m_Path: metarig/spine/thigh.R/shin.R.001/shin.R.001_end
+    m_Weight: 0
