@@ -429,8 +429,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d29cbaffd562b04699719158c3a6ff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationTransform: {fileID: 0}
-  _holder: {fileID: 0}
+  _rotationTransform: {fileID: 1539123591165343382}
+  _holder: {fileID: 5222762849891520670}
   enemyAI: {fileID: 4702703197392661161}
   detectableObjects: []
 --- !u!1001 &742571080299849814
@@ -441,6 +441,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5891106718197098601}
     m_Modifications:
+    - target: {fileID: 1443741269652140718, guid: 00d5c106fd931cd458ba716cb6603184,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.0075
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443741269652140718, guid: 00d5c106fd931cd458ba716cb6603184,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.0075
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443741269652140718, guid: 00d5c106fd931cd458ba716cb6603184,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.0075
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443741269652140718, guid: 00d5c106fd931cd458ba716cb6603184,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1619809729522314342, guid: 00d5c106fd931cd458ba716cb6603184,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1003,6 +1023,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7912097040244479321}
   m_SourcePrefab: {fileID: 100100000, guid: 156d03722f0210d4ab18554a0478a25c, type: 3}
+--- !u!4 &1539123591165343382 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6644358884772278510, guid: 156d03722f0210d4ab18554a0478a25c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5289919713069663864}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3509184064504208693 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8780525740839312205, guid: 156d03722f0210d4ab18554a0478a25c,
@@ -1107,6 +1133,7 @@ MonoBehaviour:
   - {fileID: 7912097040244479321}
   _attackNames:
   - Attack
+  - Attack2
   _animator: {fileID: 5991455134888532697}
 --- !u!4 &5931449577114392615 stripped
 Transform:
