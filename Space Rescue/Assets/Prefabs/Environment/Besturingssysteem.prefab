@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1782304437208189271}
   - component: {fileID: 8908561405617688170}
   - component: {fileID: 5887242459028776773}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Besturingssysteem
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3796929421061417928}
   - component: {fileID: 4812485855327223609}
   - component: {fileID: 8820740002254119650}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Machine 1.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2506595554783240545}
   - component: {fileID: 7909497389709876119}
   - component: {fileID: 5913254837264174203}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Machine 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3045381412438225594}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Machine 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

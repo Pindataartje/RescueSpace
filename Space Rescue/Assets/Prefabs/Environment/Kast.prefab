@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6490958756262815730}
   - component: {fileID: 3436395132708844757}
   - component: {fileID: 3794480836694912720}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5975887882883580307}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Kast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 4641581092509213830}
   - component: {fileID: 4584976822515622276}
   - component: {fileID: 6793523751387929902}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Kastjes.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 7744230163538263296}
   - component: {fileID: 5969732612094247051}
   - component: {fileID: 7102513404968370239}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Kastjes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
