@@ -9,6 +9,8 @@ public class RobotAI : Entity
     public RobotSO RobotInfo
     { get { return _robotInfo; } }
 
+    [SerializeField] bool _isInitialized;
+
     [SerializeField] RobotManager _manager;
 
     [SerializeField] NavMeshAgent _agent;
@@ -94,8 +96,10 @@ public class RobotAI : Entity
 
     public virtual void InitializeRobotInfo()
     {
-        if (_robotInfo != null)
+        if (_robotInfo != null && !_isInitialized)
         {
+            _isInitialized = true;
+
             maxHealth = _robotInfo.health;
             health = maxHealth;
 
@@ -103,17 +107,6 @@ public class RobotAI : Entity
             if (_agent != null) { _agent.speed = speed; }
 
             damage = _robotInfo.damage;
-
-            // _regenRate = _robotInfo.regenRate;
-            // _regenAmount = _robotInfo.regenAmount;
-
-            // _patrolRadius = _robotInfo.patrolRadius;
-            // _patrolReturnDistance = _robotInfo.patrolReturnDistance;
-            // _patrolPointCount = _robotInfo.patrolPoints;
-
-            // _searchRadius = _robotInfo.searchRadius;
-            // _timeToSearch = _robotInfo.timeToSearch;
-            // _searchCount = _robotInfo.searchCount;
         }
     }
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00014860448, g: 0.00007924404, b: 0.000034361594,
+  m_IndirectSpecularColor: {r: 0.00011523213, g: 0.00008376525, b: 0.000115916984,
     a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -304,6 +304,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MeleeBot
+      objectReference: {fileID: 0}
+    - target: {fileID: 9202191280697303281, guid: eac2ab7e78f9426479dbd9cf036c4fe8,
+        type: 3}
+      propertyPath: _isInitialized
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -602,6 +607,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeleeBot (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9202191280697303281, guid: eac2ab7e78f9426479dbd9cf036c4fe8,
+        type: 3}
+      propertyPath: _isInitialized
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -634,6 +644,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1984554821705642849, guid: 6ee738e4bf16d384589041f509697db2,
+        type: 3}
+      propertyPath: _isInitialized
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2273629952231799186, guid: 6ee738e4bf16d384589041f509697db2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -824,6 +839,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1984554821705642849, guid: 6ee738e4bf16d384589041f509697db2,
+        type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1984554821705642849, guid: 6ee738e4bf16d384589041f509697db2,
+        type: 3}
+      propertyPath: rotationSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1984554821705642849, guid: 6ee738e4bf16d384589041f509697db2,
+        type: 3}
+      propertyPath: _isInitialized
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2273629952231799186, guid: 6ee738e4bf16d384589041f509697db2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -892,6 +922,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1984554821705642849, guid: 6ee738e4bf16d384589041f509697db2,
+        type: 3}
+      propertyPath: _isInitialized
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2273629952231799186, guid: 6ee738e4bf16d384589041f509697db2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1015,6 +1050,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeleeBot (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 9202191280697303281, guid: eac2ab7e78f9426479dbd9cf036c4fe8,
+        type: 3}
+      propertyPath: _isInitialized
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1082,6 +1122,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MeleeBot (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9202191280697303281, guid: eac2ab7e78f9426479dbd9cf036c4fe8,
+        type: 3}
+      propertyPath: _isInitialized
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1252,6 +1297,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1984554821705642849, guid: 6ee738e4bf16d384589041f509697db2,
+        type: 3}
+      propertyPath: _isInitialized
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2273629952231799186, guid: 6ee738e4bf16d384589041f509697db2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1438,6 +1488,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1984554821705642849, guid: 6ee738e4bf16d384589041f509697db2,
+        type: 3}
+      propertyPath: _isInitialized
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2273629952231799186, guid: 6ee738e4bf16d384589041f509697db2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1816,6 +1871,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MeleeBot (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9202191280697303281, guid: eac2ab7e78f9426479dbd9cf036c4fe8,
+        type: 3}
+      propertyPath: _isInitialized
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GunBot
   m_EditorClassIdentifier: 
   health: 1
-  speed: 3
+  speed: 4
   range: 5
   followDistance: 0.6
   damage: 1
