@@ -7,7 +7,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: metarig|Attack(Launch)
+  m_Name: Wolf | Attack (Launch)
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -73,7 +73,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: metarig|Death
+  m_Name: Wolf | Death
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -99,7 +99,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: metarig|Idle
+  m_Name: Wolf | Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -266,7 +266,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: metarig|Attack(Stomp)
+  m_Name: Wolf | Attack (Stomp)
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -293,7 +293,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: metarig|Walking
+  m_Name: Wolf | Walking
   m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
@@ -431,7 +431,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: metarig|Walking(Looking)
+  m_Name: Wolf | Walking (Looking)
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:

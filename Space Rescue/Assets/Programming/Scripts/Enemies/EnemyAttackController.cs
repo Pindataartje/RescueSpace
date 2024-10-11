@@ -49,6 +49,15 @@ public class EnemyAttackController : MonoBehaviour
 
     #region Block
 
+    public void CrushStart()
+    {
+        _attacks[0].DoAttack();
+    }
+
+    public void CrushStop()
+    {
+        _attacks[0].StopAttack();
+    }
     public void SmashStart()
     {
         _attacks[1].DoAttack();
@@ -93,15 +102,7 @@ public class EnemyAttackController : MonoBehaviour
 
     #endregion
 
-    public void CrushStart()
-    {
-        _attacks[0].DoAttack();
-    }
 
-    public void CrushStop()
-    {
-        _attacks[0].StopAttack();
-    }
 
     #region Wolf
 
