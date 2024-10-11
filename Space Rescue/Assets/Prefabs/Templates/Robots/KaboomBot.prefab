@@ -1,0 +1,261 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3335178299160948188
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 485136758308425307}
+  - component: {fileID: 6603255575593780688}
+  - component: {fileID: 4245132372291763190}
+  - component: {fileID: 7123166891008509698}
+  - component: {fileID: 7032170870008050794}
+  - component: {fileID: 4959965405089088270}
+  m_Layer: 6
+  m_Name: KaboomBot
+  m_TagString: Robot
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &485136758308425307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3335178299160948188}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.75, y: 0.5, z: -15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1998862184841931569}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6603255575593780688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3335178299160948188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0766270a2d0068f4ca2310c729381044, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityType: 0
+  type: 0
+  health: 1
+  maxHealth: 1
+  speed: 4
+  rotationSpeed: 0
+  damage: 20
+  _robotInfo: {fileID: 11400000, guid: 1d7ad3281d0ea02498fc84edfceb3068, type: 2}
+  _isInitialized: 1
+  _manager: {fileID: 0}
+  _agent: {fileID: 7123166891008509698}
+  _bodyAnimator: {fileID: 3689737165541890934}
+  _weaponAnimator: {fileID: 2361528138264563906}
+  _target: {fileID: 0}
+  _player: {fileID: 0}
+  _collider: {fileID: 4245132372291763190}
+  _scrapRobot: {fileID: 0}
+  _isAttacking: 0
+  _distanceFromTarget: 0
+  _checkRadius: 0
+  _groundedCheckRadius: 0
+  _detectionLayer:
+    serializedVersion: 2
+    m_Bits: 384
+  _groundMask:
+    serializedVersion: 2
+    m_Bits: 1025
+  _isThrown: 0
+  _deathEffectPrefab: {fileID: 1028437674367691199, guid: 8a667e629ec11b349905b002bac66eba,
+    type: 3}
+  _playerStopDistance: 0
+  _isInsideSquad: 0
+  _currentState: 0
+--- !u!65 &4245132372291763190
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3335178299160948188}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.6, y: 0.3, z: 0.6}
+  m_Center: {x: 0, y: 0.15, z: 0}
+--- !u!195 &7123166891008509698
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3335178299160948188}
+  m_Enabled: 1
+  m_AgentTypeID: -334000983
+  m_Radius: 0.45
+  m_Speed: 4
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.3
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!65 &7032170870008050794
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3335178299160948188}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.75, y: 0.5, z: 0.75}
+  m_Center: {x: 0, y: 0.15, z: 0}
+--- !u!54 &4959965405089088270
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3335178299160948188}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!1001 &7709985913596459814
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 485136758308425307}
+    m_Modifications:
+    - target: {fileID: 3483267434602654628, guid: aeae31314a70ec54f9d1824536dd8211,
+        type: 3}
+      propertyPath: m_Name
+      value: Kaboom bot
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161153402900336663, guid: aeae31314a70ec54f9d1824536dd8211,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161153402900336663, guid: aeae31314a70ec54f9d1824536dd8211,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161153402900336663, guid: aeae31314a70ec54f9d1824536dd8211,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161153402900336663, guid: aeae31314a70ec54f9d1824536dd8211,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161153402900336663, guid: aeae31314a70ec54f9d1824536dd8211,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161153402900336663, guid: aeae31314a70ec54f9d1824536dd8211,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161153402900336663, guid: aeae31314a70ec54f9d1824536dd8211,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161153402900336663, guid: aeae31314a70ec54f9d1824536dd8211,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161153402900336663, guid: aeae31314a70ec54f9d1824536dd8211,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161153402900336663, guid: aeae31314a70ec54f9d1824536dd8211,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: aeae31314a70ec54f9d1824536dd8211, type: 3}
+--- !u!4 &1998862184841931569 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8161153402900336663, guid: aeae31314a70ec54f9d1824536dd8211,
+    type: 3}
+  m_PrefabInstance: {fileID: 7709985913596459814}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2361528138264563906 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5348739251392998372, guid: aeae31314a70ec54f9d1824536dd8211,
+    type: 3}
+  m_PrefabInstance: {fileID: 7709985913596459814}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &3689737165541890934 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6470488705147658320, guid: aeae31314a70ec54f9d1824536dd8211,
+    type: 3}
+  m_PrefabInstance: {fileID: 7709985913596459814}
+  m_PrefabAsset: {fileID: 0}
