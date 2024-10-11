@@ -32,16 +32,9 @@ public class EnemyAttackController : MonoBehaviour
         _enemyAi.GetComponent<TurtleBot>().LedRenderer.material = _enemyAi.GetComponent<TurtleBot>().OnLed;
     }
 
-    public void Hide()
+    public void Die()
     {
-        _enemyAi.GetComponent<TurtleBot>().IsHiding = true;
-        _enemyAi.GetComponent<TurtleBot>().LedRenderer.material = _enemyAi.GetComponent<TurtleBot>().OffLed;
-    }
-
-    public void UnHide()
-    {
-        _enemyAi.GetComponent<TurtleBot>().IsHiding = false;
-        _enemyAi.GetComponent<TurtleBot>().LedRenderer.material = _enemyAi.GetComponent<TurtleBot>().OnLed;
+        _enemyAi.AfterDeath();
     }
 
     public void DoRandomAttack()
@@ -54,6 +47,8 @@ public class EnemyAttackController : MonoBehaviour
         _enemyAi.IsAttacking = false;
     }
 
+    #region Block
+
     public void SmashStart()
     {
         _attacks[1].DoAttack();
@@ -63,6 +58,40 @@ public class EnemyAttackController : MonoBehaviour
     {
         _attacks[1].StopAttack();
     }
+
+    #endregion
+
+
+    #region Turtle
+
+    public void StartNeck()
+    {
+        _attacks[0].DoAttack();
+    }
+
+    public void StopNeck()
+    {
+        _attacks[0].StopAttack();
+    }
+
+    public void Hide()
+    {
+        _enemyAi.GetComponent<TurtleBot>().IsHiding = true;
+        _enemyAi.GetComponent<TurtleBot>().LedRenderer.material = _enemyAi.GetComponent<TurtleBot>().OffLed;
+    }
+
+    public void UnHide()
+    {
+        _enemyAi.GetComponent<TurtleBot>().IsHiding = false;
+        _enemyAi.GetComponent<TurtleBot>().LedRenderer.material = _enemyAi.GetComponent<TurtleBot>().OnLed;
+    }
+
+    public void HasPoweredOn()
+    {
+        _enemyAi.HasPoweredOn = true;
+    }
+
+    #endregion
 
     public void CrushStart()
     {
@@ -74,15 +103,7 @@ public class EnemyAttackController : MonoBehaviour
         _attacks[0].StopAttack();
     }
 
-    public void StartNeck()
-    {
-        _attacks[0].DoAttack();
-    }
-
-    public void StopNeck()
-    {
-        _attacks[0].StopAttack();
-    }
+    #region Wolf
 
     public void StartStomp()
     {
@@ -96,8 +117,17 @@ public class EnemyAttackController : MonoBehaviour
         _attacks[0].StopAttack();
     }
 
-    public void HasPoweredOn()
+    public void LungeStart()
     {
-        _enemyAi.HasPoweredOn = true;
+        _attacks[1].DoAttack();
     }
+
+    public void LungeStop()
+    {
+        _attacks[1].StopAttack();
+    }
+
+    #endregion
+
+
 }

@@ -189,9 +189,15 @@ public class EnemyAI : Entity
             _attachedRobots[i].RemoveAttachMent();
         }
 
-        Destroy(effect, 1f);
+        _animator.SetTrigger("Death");
 
-        base.Death();
+        Destroy(effect, 1f);
+    }
+
+    public virtual void AfterDeath()
+    {
+        // spawn scrap items
+        Debug.Log("After death");
     }
 
     void InitializeEnemyInfo()
