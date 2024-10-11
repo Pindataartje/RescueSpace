@@ -163,6 +163,8 @@ public class EnemyAI : Entity
 
         _healthBar = GetComponentInChildren<Slider>();
 
+        _healthBar.gameObject.SetActive(false);
+
         _healthBar.maxValue = maxHealth;
     }
 
@@ -190,6 +192,24 @@ public class EnemyAI : Entity
         _animator.SetTrigger("Death");
 
         Destroy(effect, 1f);
+    }
+
+    public override void TakeDamage(float damage)
+    {
+        StopCoroutine(RefreshHealthbar(0));
+
+        base.TakeDamage(damage);
+
+        _healthBar.gameObject.SetActive(true);
+
+        StartCoroutine(RefreshHealthbar(10f));
+    }
+
+    IEnumerator RefreshHealthbar(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        _healthBar.gameObject.SetActive(false);
     }
 
     public virtual void AfterDeath()
@@ -640,11 +660,6 @@ public class EnemyAI : Entity
     }
 
     #endregion
-
-    public override void TakeDamage(float damage)
-    {
-        base.TakeDamage(damage);
-    }
 
     public virtual void GeneratePatrol(int patrolPoints)
     {
