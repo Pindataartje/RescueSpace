@@ -4,6 +4,10 @@ using UnityEngine.AI;
 
 public class RobotAI : Entity
 {
+    [SerializeField] PlayManager _playManager;
+    public PlayManager PlayManager
+    { get { return _playManager; } }
+
     [Header("Setup")]
     [SerializeField] RobotSO _robotInfo;
     public RobotSO RobotInfo
@@ -41,6 +45,8 @@ public class RobotAI : Entity
     { get { return _isAttacking; } }
 
     [SerializeField] float _distanceFromTarget;
+    public float DistanceFromTarget
+    { get { return _distanceFromTarget; } set { _distanceFromTarget = value; } }
 
     [SerializeField] float _checkRadius;
     [SerializeField] float _groundedCheckRadius;
@@ -64,6 +70,8 @@ public class RobotAI : Entity
 
     public override void Start()
     {
+        _playManager = FindObjectOfType<PlayManager>();
+
         if (_robotInfo != null)
         {
             _agent.speed = _robotInfo.speed;
@@ -90,6 +98,8 @@ public class RobotAI : Entity
         effect.transform.position = transform.position;
 
         Destroy(effect, 1f);
+
+        _playManager.OnRobotDeath(this);
 
         base.Death();
     }
@@ -272,18 +282,11 @@ public class RobotAI : Entity
 
     public virtual void Attack()
     {
-        // if (_agent.isActiveAndEnabled)
-        // {
-        //     _agent.SetDestination(GameObject.FindGameObjectWithTag("Enemy").transform.position);
-        // }
-
-
         if (_target != null)
         {
             _distanceFromTarget = Vector3.Distance(transform.position, _target.position);
             transform.LookAt(_target);
         }
-
 
         if (_agent.stoppingDistance > _distanceFromTarget && !_isAttacking)
         {

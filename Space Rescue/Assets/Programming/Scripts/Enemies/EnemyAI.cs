@@ -29,7 +29,11 @@ public class EnemyAI : Entity
         ATTACK,
     }
 
+
+
     [Header("Setup")]
+    [SerializeField] PlayManager _playManager;
+
     [SerializeField] EnemySO _enemyInfo;
     [SerializeField] Animator _animator;
     public Animator Animator
@@ -142,6 +146,8 @@ public class EnemyAI : Entity
 
     public override void Start()
     {
+        _playManager = FindObjectOfType<PlayManager>();
+
         InitializeEnemyInfo();
 
         if (health > 0)
@@ -188,6 +194,8 @@ public class EnemyAI : Entity
         {
             _attachedRobots[i].RemoveAttachMent();
         }
+
+        _playManager.OnEnemyDeath(this);
 
         _animator.SetTrigger("Death");
 
@@ -756,5 +764,4 @@ public class EnemyAI : Entity
             }
         }
     }
-
 }

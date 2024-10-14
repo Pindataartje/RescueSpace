@@ -30,12 +30,12 @@ public class EnemyAttackCollider : MonoBehaviour
     {
         if (other.CompareTag("Robot"))
         {
-
             other.GetComponent<RobotAI>().TakeDamage(_damage);
         }
         if (other.CompareTag("Player"))
         {
-            // add player stuff
+            Debug.Log("Player damage");
+            other.GetComponent<PlayerController>().TakeDamage(_damage);
         }
     }
 }

@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private PlayerInput playerInput = null;
     public PlayerInput PlayerInput => playerInput;
+
+    [SerializeField] PlayManager _playManager;
+
+    [SerializeField] Slider _healthBar;
+
+    [SerializeField] float _health;
+    [SerializeField] float _maxHealth;
 
     [SerializeField] Animator _animator;
 
@@ -125,10 +133,29 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        _playManager = FindObjectOfType<PlayManager>();
+
+        _healthBar.maxValue = _maxHealth;
+
+        _health = _maxHealth;
+        _healthBar.value = _health;
+
         _squadXoffset = _baseSquadXOffset; // Initialize squad X offset
         _squadSize = _baseSquadSize; // Set the initial squad range to the absolute value of _minSquadRange
         _robotManager = FindObjectOfType<RobotManager>();
         _robotRemoveDistance = _baseRobotRemoveDistance;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        _health -= damage;
+
+        _healthBar.value = _health;
+
+        if (_health <= 0)
+        {
+            _playManager.OnPlayerDeath();
+        }
     }
 
     void HandleSquadPosition()

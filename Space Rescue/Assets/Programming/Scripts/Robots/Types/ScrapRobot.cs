@@ -165,8 +165,22 @@ public class ScrapRobot : RobotAI
 
             GameObject newRobot = Instantiate(_robotPrefabs[Random.Range(0, _robotPrefabs.Length)]);
 
-            newRobot.transform.position = _spawnPosition.position;
+            newRobot.GetComponent<Rigidbody>().position = _spawnPosition.position;
+
+            PlayManager.OnRobotSpawned(newRobot.GetComponent<RobotAI>());
         }
         WeaponAnimator.SetBool("Maken", false);
+    }
+
+    public void RobotFailSafe()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            GameObject newRobot = Instantiate(_robotPrefabs[0]);
+
+            newRobot.GetComponent<Rigidbody>().position = _spawnPosition.position;
+
+            PlayManager.OnRobotSpawned(newRobot.GetComponent<RobotAI>());
+        }
     }
 }
