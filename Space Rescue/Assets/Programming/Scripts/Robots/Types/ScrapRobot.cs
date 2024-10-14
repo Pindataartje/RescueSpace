@@ -8,6 +8,8 @@ public class ScrapRobot : RobotAI
 
     [SerializeField] GameObject[] _robotPrefabs;
 
+    [SerializeField] GameObject _robotToSpawn;
+
     [SerializeField] Transform _spawnPosition;
 
     [SerializeField] Transform _grabBone;
@@ -19,6 +21,8 @@ public class ScrapRobot : RobotAI
     [SerializeField] Transform _scrapToCollect;
 
     [SerializeField] float _stopDistance;
+
+
 
     public bool hasPoweredOn;
 
@@ -163,7 +167,7 @@ public class ScrapRobot : RobotAI
 
             Destroy(scrap.gameObject); // do not do when removed
 
-            GameObject newRobot = Instantiate(_robotPrefabs[Random.Range(0, _robotPrefabs.Length)]);
+            GameObject newRobot = Instantiate(_robotToSpawn);
 
             newRobot.GetComponent<Rigidbody>().position = _spawnPosition.position;
 
@@ -182,5 +186,10 @@ public class ScrapRobot : RobotAI
 
             PlayManager.OnRobotSpawned(newRobot.GetComponent<RobotAI>());
         }
+    }
+
+    public void ChangeRobot(int robotIndex)
+    {
+        _robotToSpawn = _robotPrefabs[robotIndex];
     }
 }
