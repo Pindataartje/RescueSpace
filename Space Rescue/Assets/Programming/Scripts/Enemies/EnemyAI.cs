@@ -206,20 +206,9 @@ public class EnemyAI : Entity
 
     public override void TakeDamage(float damage)
     {
-        StopCoroutine(RefreshHealthbar(0));
-
         base.TakeDamage(damage);
 
         _healthBar.gameObject.SetActive(true);
-
-        StartCoroutine(RefreshHealthbar(10f));
-    }
-
-    IEnumerator RefreshHealthbar(float time)
-    {
-        yield return new WaitForSeconds(time);
-
-        _healthBar.gameObject.SetActive(false);
     }
 
     public virtual void AfterDeath()

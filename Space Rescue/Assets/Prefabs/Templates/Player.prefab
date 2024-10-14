@@ -620,7 +620,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _recalLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 8256
   canCheck: 0
   _startScale: 1
   _maxScale: 5
