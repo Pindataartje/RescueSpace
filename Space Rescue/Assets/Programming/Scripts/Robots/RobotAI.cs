@@ -49,7 +49,11 @@ public class RobotAI : Entity
     { get { return _distanceFromTarget; } set { _distanceFromTarget = value; } }
 
     [SerializeField] float _checkRadius;
+    public float CheckRadius
+    { get { return _checkRadius; } }
     [SerializeField] float _groundedCheckRadius;
+    public float GroundedCheckRadius
+    { get { return _groundedCheckRadius; } }
 
     [SerializeField] LayerMask _detectionLayer;
     public LayerMask DetectionLayer
@@ -57,8 +61,12 @@ public class RobotAI : Entity
 
 
     [SerializeField] LayerMask _groundMask;
+    public LayerMask GroundMask
+    { get { return _groundMask; } }
 
     [SerializeField] bool _isThrown;
+    public bool IsThrown
+    { get { return _isThrown; } }
 
     [SerializeField] GameObject _deathEffectPrefab;
 
@@ -503,13 +511,11 @@ public class RobotAI : Entity
                     if (colliders[0].GetComponentInParent<Entity>().health > 0)
                     {
                         _target = colliders[0].transform;
-
                         ChangeState(State.ATTACK);
                     }
                     else
                     {
                         _target = colliders[0].GetComponentInParent<EnemyAI>().transform;
-
                         ChangeState(State.GATHER);
                     }
                     break;

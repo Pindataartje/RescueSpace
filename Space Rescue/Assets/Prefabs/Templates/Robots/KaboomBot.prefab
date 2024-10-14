@@ -49,13 +49,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0766270a2d0068f4ca2310c729381044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityType: 0
+  entityType: 1
   type: 0
   health: 1
   maxHealth: 1
   speed: 4
   rotationSpeed: 0
   damage: 20
+  _playManager: {fileID: 0}
   _robotInfo: {fileID: 11400000, guid: 1d7ad3281d0ea02498fc84edfceb3068, type: 2}
   _isInitialized: 1
   _manager: {fileID: 0}
@@ -82,6 +83,9 @@ MonoBehaviour:
   _playerStopDistance: 0
   _isInsideSquad: 0
   _currentState: 0
+  _range: 0.6
+  _attackExplosion: {fileID: 1028437674367691199, guid: 6bacb6125f61cde488594019b9d0084a,
+    type: 3}
 --- !u!65 &4245132372291763190
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -239,7 +243,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3763745446103761626, guid: aeae31314a70ec54f9d1824536dd8211,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6081340955104493431}
   m_SourcePrefab: {fileID: 100100000, guid: aeae31314a70ec54f9d1824536dd8211, type: 3}
 --- !u!4 &1998862184841931569 stripped
 Transform:
@@ -259,3 +267,23 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 7709985913596459814}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6828826872351881724 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3763745446103761626, guid: aeae31314a70ec54f9d1824536dd8211,
+    type: 3}
+  m_PrefabInstance: {fileID: 7709985913596459814}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6081340955104493431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6828826872351881724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9a3df93ce65fde46b1e1638dbf08bd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scrapRobot: {fileID: 0}
+  _robot: {fileID: 6603255575593780688}

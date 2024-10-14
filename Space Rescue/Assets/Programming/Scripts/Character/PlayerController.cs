@@ -467,15 +467,17 @@ public class PlayerController : MonoBehaviour
         int squadCount = _robotManager.RobotsInSquad.Count;
         _currentSquadNumber = _robotManager.CurrentSquad;
 
-        if (isScrollUp)
+        if (isScrollUp && squadCount > 0)
         {
-            // Scroll up
             _currentSquadNumber = (_currentSquadNumber + 1) % squadCount;
+        }
+        else if (!isScrollUp && squadCount > 0)
+        {
+            _currentSquadNumber = (_currentSquadNumber - 1 + squadCount) % squadCount;
         }
         else
         {
-            // Scroll down
-            _currentSquadNumber = (_currentSquadNumber - 1 + squadCount) % squadCount;
+            _currentSquadNumber = 0;
         }
 
         _robotManager.CurrentSquad = _currentSquadNumber;

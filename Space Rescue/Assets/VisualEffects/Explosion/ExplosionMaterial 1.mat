@@ -70,6 +70,6 @@ Material:
     - _ZWrite: 1
     - _ZWriteControl: 0
     m_Colors:
-    - _FireColor: {r: 0, g: 4.2370954, b: 3.650653, a: 0}
+    - _FireColor: {r: 0.20997226, g: 5.656855, b: 0, a: 0}
     - _SmokeColor: {r: 0.38364768, g: 0.38364768, b: 0.38364768, a: 0}
   m_BuildTextureStacks: []
