@@ -7,11 +7,11 @@ public class PlayManager : MonoBehaviour
 {
     public bool killedAllEnemies;
 
-    [SerializeField] List<EnemyAI> enemies;
+    [SerializeField] List<EnemyAI> _enemies;
 
-    [SerializeField] List<RobotAI> robots;
+    [SerializeField] List<RobotAI> _robots;
 
-    [SerializeField] ScrapRobot scrapRobot;
+    [SerializeField] ScrapRobot _scrapRobot;
 
     [SerializeField] NavigationSystem _navigationSystem;
 
@@ -20,21 +20,23 @@ public class PlayManager : MonoBehaviour
 
     private void Awake()
     {
-        enemies = FindObjectsOfType<EnemyAI>().ToList();
+        _enemies = FindObjectsOfType<EnemyAI>().ToList();
 
-        robots = FindObjectsOfType<RobotAI>().ToList();
+        _robots = FindObjectsOfType<RobotAI>().ToList();
 
-        scrapRobot = FindObjectOfType<ScrapRobot>();
+        _scrapRobot = FindObjectOfType<ScrapRobot>();
+
+        _navigationSystem = FindObjectOfType<NavigationSystem>();
     }
 
     public void OnEnemyDeath(EnemyAI enemy)
     {
-        if (enemies.Contains(enemy))
+        if (_enemies.Contains(enemy))
         {
-            enemies.Remove(enemy);
+            _enemies.Remove(enemy);
         }
 
-        if (enemies.Count == 0)
+        if (_enemies.Count == 0)
         {
             killedAllEnemies = true;
 
@@ -47,24 +49,24 @@ public class PlayManager : MonoBehaviour
 
     public void OnRobotSpawned(RobotAI robot)
     {
-        if (robots.Contains(robot))
+        if (_robots.Contains(robot))
         {
             return;
         }
         else
         {
-            robots.Add(robot);
+            _robots.Add(robot);
         }
     }
 
     public void OnRobotDeath(RobotAI robot)
     {
-        if (robots.Contains(robot))
+        if (_robots.Contains(robot))
         {
-            robots.Remove(robot);
+            _robots.Remove(robot);
         }
 
-        if (robots.Count == 0)
+        if (_robots.Count == 0)
         {
             RobotFailSafe();
         }
@@ -86,6 +88,6 @@ public class PlayManager : MonoBehaviour
 
     public void RobotFailSafe()
     {
-        scrapRobot.RobotFailSafe();
+        _scrapRobot.RobotFailSafe();
     }
 }

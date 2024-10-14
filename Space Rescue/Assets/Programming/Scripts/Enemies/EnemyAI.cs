@@ -191,10 +191,6 @@ public class EnemyAI : Entity
         {
             isAlive = false;
 
-            GameObject effect = Instantiate(_deathEffectPrefab);
-
-            effect.transform.position = transform.position;
-
             for (int i = 0; i < _attachedRobots.Count; i++)
             {
                 _attachedRobots[i].RemoveAttachMent();
@@ -202,15 +198,9 @@ public class EnemyAI : Entity
 
             _playManager.OnEnemyDeath(this);
 
-            _animator.SetBool("Walking", false);
-
-            _animator.SetBool("Power", false);
-
-
             Debug.Log("Die");
             _animator.SetTrigger("Die");
 
-            Destroy(effect, 1f);
         }
     }
 
@@ -234,6 +224,12 @@ public class EnemyAI : Entity
 
     public virtual void AfterDeath()
     {
+        GameObject effect = Instantiate(_deathEffectPrefab);
+
+        effect.transform.position = transform.position;
+
+        Destroy(effect, 1f);
+
         Destroy(gameObject);
     }
 
