@@ -49,6 +49,10 @@ public class PlayManager : MonoBehaviour
                 _navigationSystem.canWin = true;
             }
         }
+
+        _killCount++;
+
+        _killCountTxt.text = $"{_killCount}";
     }
 
     public void OnRobotSpawned(RobotAI robot)
@@ -74,9 +78,7 @@ public class PlayManager : MonoBehaviour
         {
             RobotFailSafe();
         }
-        _killCount++;
 
-        _killCountTxt.text = $"{_killCount}";
     }
 
     public void OnPlayerDeath()
