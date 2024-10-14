@@ -135,6 +135,8 @@ public class PlayerController : MonoBehaviour
     {
         _playManager = FindObjectOfType<PlayManager>();
 
+        _healthBar = GetComponentInChildren<Slider>();
+
         _healthBar.maxValue = _maxHealth;
 
         _health = _maxHealth;
