@@ -2447,6 +2447,12 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6474811816807983899, guid: 3b91286c49095914db153983668d48b2,
+        type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: d045d894622cee44283aa276ab745157,
+        type: 2}
     - target: {fileID: 6479496829069545943, guid: 3b91286c49095914db153983668d48b2,
         type: 3}
       propertyPath: m_Carve
