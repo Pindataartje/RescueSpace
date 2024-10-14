@@ -523,7 +523,11 @@ public class RobotAI : Entity
         {
             if (other.CompareTag("Enemy"))
             {
+                Debug.Log("Hit ENEMY");
+
                 other.GetComponentInParent<EnemyAI>().TakeDamage(_robotInfo.impactDamage);
+
+                ChangeState(State.ATTACK);
             }
         }
     }

@@ -51,6 +51,7 @@ public class EnemyAI : Entity
 
     [Header("General")]
     public bool isAlive;
+
     [SerializeField] bool _hasPoweredOn;
     public bool HasPoweredOn
     { get { return _hasPoweredOn; } set { _hasPoweredOn = value; } }
@@ -186,20 +187,31 @@ public class EnemyAI : Entity
 
     public override void Death()
     {
-        GameObject effect = Instantiate(_deathEffectPrefab);
-
-        effect.transform.position = transform.position;
-
-        for (int i = 0; i < _attachedRobots.Count; i++)
+        if (isAlive)
         {
-            _attachedRobots[i].RemoveAttachMent();
+            isAlive = false;
+
+            GameObject effect = Instantiate(_deathEffectPrefab);
+
+            effect.transform.position = transform.position;
+
+            for (int i = 0; i < _attachedRobots.Count; i++)
+            {
+                _attachedRobots[i].RemoveAttachMent();
+            }
+
+            _playManager.OnEnemyDeath(this);
+
+            _animator.SetBool("Walking", false);
+
+            _animator.SetBool("Power", false);
+
+
+            Debug.Log("Die");
+            _animator.SetTrigger("Die");
+
+            Destroy(effect, 1f);
         }
-
-        _playManager.OnEnemyDeath(this);
-
-        _animator.SetTrigger("Death");
-
-        Destroy(effect, 1f);
     }
 
     public override void TakeDamage(float damage)
@@ -222,8 +234,7 @@ public class EnemyAI : Entity
 
     public virtual void AfterDeath()
     {
-        // spawn scrap items
-        Debug.Log("After death");
+        Destroy(gameObject);
     }
 
     void InitializeEnemyInfo()

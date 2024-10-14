@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -30,7 +31,7 @@ public class MeleeBot : RobotAI
 
         Vector3 direction = Target.position - transform.position;
 
-        if (Physics.Raycast(transform.position, direction, out RaycastHit hit, 0.2f, DetectionLayer))
+        if (Physics.Raycast(transform.position, direction, out RaycastHit hit, 0.3f, DetectionLayer))
         {
             Debug.Log("Raycast hit: " + hit.collider.name);
 
@@ -64,6 +65,35 @@ public class MeleeBot : RobotAI
         if (!IsAttacking)
         {
             StartCoroutine(StartAttacking());
+        }
+    }
+
+    public override void CheckForEntityInRange(float radius)
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, radius, DetectionLayer);
+
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            switch (colliders[0].GetComponentInParent<Entity>().entityType)
+            {
+                case EntityType.SCRAP:
+                    Target = colliders[0].transform;
+
+                    ChangeState(State.GATHER);
+                    break;
+                case EntityType.ENEMY:
+                    if (colliders[0].GetComponentInParent<Entity>().health > 0)
+                    {
+                        Target = colliders[0].transform;
+                    }
+                    else
+                    {
+                        Target = colliders[0].GetComponentInParent<EnemyAI>().transform;
+
+                        ChangeState(State.GATHER);
+                    }
+                    break;
+            }
         }
     }
 

@@ -38,7 +38,10 @@ public class PlayManager : MonoBehaviour
         {
             killedAllEnemies = true;
 
-            _navigationSystem.canWin = true;
+            if (_navigationSystem != null)
+            {
+                _navigationSystem.canWin = true;
+            }
         }
     }
 
