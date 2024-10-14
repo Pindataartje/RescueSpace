@@ -103,7 +103,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 7014ad2ffb446e24ba51b0fe6ea35281, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 9cb7296cc5b3a934f835b8919fde8de5, type: 2}
   m_BuildHeightMesh: 0
 --- !u!114 &3435270931679190021
 MonoBehaviour:
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.2
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: d04c36f480a7e954493818410fed3d90, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 2925fd080b98593489428fc483c16ec5, type: 2}
   m_BuildHeightMesh: 0
 --- !u!114 &3139902988454697033
 MonoBehaviour:
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: be7209c3e4012d54db0e363a181f5686, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 18046628963358b448da5e2fa67ea0f6, type: 2}
   m_BuildHeightMesh: 0
 --- !u!114 &1992090524514968066
 MonoBehaviour:
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.33333334
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: e75f882de5e0fab428cd7260dc8f23fe, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 9abb7a47e21c55d47a7a07f28f00f06e, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &1041617216360430640
 GameObject:
@@ -860,6 +860,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HallwayCorner (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4733688315818629396, guid: 9fdf00184c67eac449067d08357d0337,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4733688315818629396, guid: 9fdf00184c67eac449067d08357d0337,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8978904927267041268, guid: 9fdf00184c67eac449067d08357d0337,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 8978904927267041268, guid: 9fdf00184c67eac449067d08357d0337,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.65
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
