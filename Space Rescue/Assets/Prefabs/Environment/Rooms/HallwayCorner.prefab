@@ -115,7 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9024386869054013728}
   - component: {fileID: 3111428569599218177}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -587,7 +587,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4245171454257475119}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Trap hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -622,7 +622,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1997483069739870969}
   - component: {fileID: 8048289288618991645}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GameObject (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1515,7 +1515,7 @@ GameObject:
   m_Component:
   - component: {fileID: 730496528296255064}
   - component: {fileID: 819925426232455330}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GameObject (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
