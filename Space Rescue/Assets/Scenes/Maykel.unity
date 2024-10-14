@@ -577,25 +577,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5049184266202210746, guid: c77c5f10e4154354b956e073873f9bb5,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5049184266202210746, guid: c77c5f10e4154354b956e073873f9bb5,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 14
-      objectReference: {fileID: 0}
     - target: {fileID: 6267110394023435300, guid: c77c5f10e4154354b956e073873f9bb5,
         type: 3}
       propertyPath: m_Name
       value: BlockBot
-      objectReference: {fileID: 0}
-    - target: {fileID: 6267110394023435300, guid: c77c5f10e4154354b956e073873f9bb5,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6952616650772946824, guid: c77c5f10e4154354b956e073873f9bb5,
         type: 3}
@@ -645,11 +630,6 @@ PrefabInstance:
     - target: {fileID: 6952616650772946824, guid: c77c5f10e4154354b956e073873f9bb5,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7160677447293398945, guid: c77c5f10e4154354b956e073873f9bb5,
-        type: 3}
-      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
