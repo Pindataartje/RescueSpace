@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class PlayManager : MonoBehaviour
 {
     public bool killedAllEnemies;
+
+    [SerializeField] int _killCount;
+    [SerializeField] TMP_Text _killCountTxt;
 
     [SerializeField] List<EnemyAI> _enemies;
 
@@ -70,6 +74,9 @@ public class PlayManager : MonoBehaviour
         {
             RobotFailSafe();
         }
+        _killCount++;
+
+        _killCountTxt.text = $"{_killCount}";
     }
 
     public void OnPlayerDeath()
