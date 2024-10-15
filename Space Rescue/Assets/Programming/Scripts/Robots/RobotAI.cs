@@ -527,11 +527,6 @@ public class RobotAI : Entity
                         _target = colliders[0].transform;
                         ChangeState(State.ATTACK);
                     }
-                    else
-                    {
-                        _target = colliders[0].GetComponentInParent<EnemyAI>().transform;
-                        ChangeState(State.GATHER);
-                    }
                     break;
             }
         }
