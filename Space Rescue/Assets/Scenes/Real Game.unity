@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00011523213, g: 0.00008376525, b: 0.000115916984,
+  m_IndirectSpecularColor: {r: 0.00014860448, g: 0.00007924404, b: 0.000034361594,
     a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -1140,6 +1140,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -263.90588
       objectReference: {fileID: 0}
+    - target: {fileID: 1624780407724375968, guid: 5e544623312d29b46b382d218d42cc20,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 232853210}
+    - target: {fileID: 1624780407724375968, guid: 5e544623312d29b46b382d218d42cc20,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeRobot
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714161711187838513, guid: 5e544623312d29b46b382d218d42cc20,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 232853210}
+    - target: {fileID: 1714161711187838513, guid: 5e544623312d29b46b382d218d42cc20,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeRobot
+      objectReference: {fileID: 0}
     - target: {fileID: 2045773318115591113, guid: 5e544623312d29b46b382d218d42cc20,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1169,6 +1189,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -79.164276
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189241583367288421, guid: 5e544623312d29b46b382d218d42cc20,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 232853210}
+    - target: {fileID: 4189241583367288421, guid: 5e544623312d29b46b382d218d42cc20,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeRobot
       objectReference: {fileID: 0}
     - target: {fileID: 5032423348750737541, guid: 5e544623312d29b46b382d218d42cc20,
         type: 3}
