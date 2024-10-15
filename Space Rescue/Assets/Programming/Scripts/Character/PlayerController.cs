@@ -448,6 +448,15 @@ public class PlayerController : MonoBehaviour
     private void OpenPause(InputAction.CallbackContext context)
     {
         _pausePanel.SetActive(!_pausePanel.activeSelf);
+
+        if (_pausePanel.activeSelf)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
     }
 
 

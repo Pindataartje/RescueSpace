@@ -9,21 +9,11 @@ public class Menu : MonoBehaviour
     [SerializeField] GameObject _losePanel;
     [SerializeField] GameObject _winPanel;
 
-    private void Update()
-    {
-        if (!_pausePanel.activeSelf || !_losePanel.activeSelf || !_winPanel.activeSelf)
-        {
-            Time.timeScale = 0;
-        }
-        else
-        {
-            Time.timeScale = 1;
-        }
-    }
-
     public void Resume(GameObject panelToClose)
     {
         panelToClose.SetActive(false);
+
+        Time.timeScale = 1;
     }
 
     public void Retry()
