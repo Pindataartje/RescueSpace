@@ -672,7 +672,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_Extents: {x: 0.5, y: 0.5, z: 1.25}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -899,7 +899,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.75}
+  m_Extents: {x: 0.5, y: 0.5, z: 1.25}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -1057,7 +1057,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.75}
+  m_Extents: {x: 0.5, y: 0.5, z: 1.25}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -1246,7 +1246,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_Extents: {x: 0.5, y: 0.5, z: 1.25}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -1368,7 +1368,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.75}
+  m_Extents: {x: 0.5, y: 0.5, z: 1.25}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -1700,7 +1700,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.75}
+  m_Extents: {x: 0.5, y: 0.5, z: 1.25}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -1822,7 +1822,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.75}
+  m_Extents: {x: 0.5, y: 0.5, z: 1.25}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -2085,7 +2085,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.75}
+  m_Extents: {x: 0.5, y: 0.5, z: 1.25}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -2374,7 +2374,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_Extents: {x: 0.5, y: 0.5, z: 1.25}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -2496,7 +2496,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.75}
+  m_Extents: {x: 0.5, y: 0.5, z: 1.25}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -2618,7 +2618,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.75}
+  m_Extents: {x: 0.5, y: 0.5, z: 1.25}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -2666,7 +2666,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_Extents: {x: 0.5, y: 0.5, z: 1.25}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -3884,6 +3884,22 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 74cec720045984443ac57d0245c260cd,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 4888478481561934149}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 74cec720045984443ac57d0245c260cd,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7301379103986920605}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 74cec720045984443ac57d0245c260cd,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2681630696516381953}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 74cec720045984443ac57d0245c260cd,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1166204477231431592}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 74cec720045984443ac57d0245c260cd,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 8847480771988139409}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 74cec720045984443ac57d0245c260cd,
         type: 3}
@@ -4025,22 +4041,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4898958499191402017}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 74cec720045984443ac57d0245c260cd,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4888478481561934149}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 74cec720045984443ac57d0245c260cd,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7301379103986920605}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 74cec720045984443ac57d0245c260cd,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2681630696516381953}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 74cec720045984443ac57d0245c260cd,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1166204477231431592}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 74cec720045984443ac57d0245c260cd,
         type: 3}
