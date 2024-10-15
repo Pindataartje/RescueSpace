@@ -179,6 +179,13 @@ public class EnemyAI : Entity
     {
         _healthBar.value = health;
 
+        if (health <= 0)
+        {
+            isAlive = true;
+
+            Death();
+        }
+
         if (_hasPoweredOn && isAlive)
         {
             CheckState();
