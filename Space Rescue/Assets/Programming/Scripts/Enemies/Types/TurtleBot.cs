@@ -40,6 +40,8 @@ public class TurtleBot : EnemyAI
 
         // TargetTransform = null;
 
+        transform.position = PatrolPoints[Random.Range(0, PatrolPoints.Count)].position;
+
         IsHiding = true;
     }
 
@@ -108,7 +110,7 @@ public class TurtleBot : EnemyAI
             DistanceFromTarget = Vector3.Distance(transform.position, targetWithOffset);
         }
 
-        if (DistanceFromTarget == 0 && !_isHiding)
+        if (DistanceFromTarget <= 0.8f && !_isHiding)
         {
             _hideTime = 0;
 
