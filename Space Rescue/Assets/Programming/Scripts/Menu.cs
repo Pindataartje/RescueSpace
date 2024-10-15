@@ -11,7 +11,7 @@ public class Menu : MonoBehaviour
 
     private void Update()
     {
-        if (!_pausePanel.activeSelf || !_losePanel.activeSelf || !_losePanel.activeSelf)
+        if (!_pausePanel.activeSelf || !_losePanel.activeSelf || !_winPanel.activeSelf)
         {
             Time.timeScale = 0;
         }
