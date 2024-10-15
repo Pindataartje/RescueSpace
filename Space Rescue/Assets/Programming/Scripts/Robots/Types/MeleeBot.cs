@@ -35,7 +35,6 @@ public class MeleeBot : RobotAI
         {
             Debug.Log("Raycast hit: " + hit.collider.name);
 
-
             transform.SetParent(Target, true);
 
             transform.position = hit.point;

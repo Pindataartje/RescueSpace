@@ -50,7 +50,7 @@ public class KaboomBot : RobotAI
 
         Vector3 direction = Target.position - transform.position;
 
-        if (Physics.Raycast(transform.position, direction, out RaycastHit hit, 0.3f, DetectionLayer))
+        if (Physics.Raycast(transform.position, direction, out RaycastHit hit, 4f, DetectionLayer))
         {
             Target = Target.GetComponentInParent<EnemyAI>().transform;
 
@@ -59,6 +59,8 @@ public class KaboomBot : RobotAI
             Debug.Log("Raycast hit: " + hit.collider.name);
 
             transform.SetParent(Target, true);
+
+            transform.position = hit.point;
 
             WeaponAnimator.SetTrigger("Ready");
 
