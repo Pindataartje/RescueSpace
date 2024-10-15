@@ -179,7 +179,7 @@ public class EnemyAI : Entity
     {
         _healthBar.value = health;
 
-        if (_hasPoweredOn)
+        if (_hasPoweredOn && isAlive)
         {
             CheckState();
         }
