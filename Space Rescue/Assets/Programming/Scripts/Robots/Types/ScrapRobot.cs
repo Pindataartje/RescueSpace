@@ -151,7 +151,9 @@ public class ScrapRobot : RobotAI
     {
         scrap.GetComponent<NavMeshAgent>().enabled = false;
 
-        scrap.transform.localScale = Vector3.one * 0.4f;
+        // scrap.transform.localScale = Vector3.one * 0.4f;
+
+        scrap.position = _grabBone.position;
 
         scrap.SetParent(_grabBone);
 

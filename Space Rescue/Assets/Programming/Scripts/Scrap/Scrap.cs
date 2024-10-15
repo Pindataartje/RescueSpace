@@ -43,6 +43,8 @@ public class Scrap : Entity
 
     [SerializeField] ScrapRobot _scrapRobot;
 
+    [SerializeField] float _deliverRange;
+
     public override void Start()
     {
         GeneratePositionTransforms();
@@ -69,7 +71,7 @@ public class Scrap : Entity
 
             _distanceFromTarget = Vector3.Distance(transform.position, targetWithOffset);
 
-            if (_agent.stoppingDistance >= _distanceFromTarget && _agent.isActiveAndEnabled && !_agent.isStopped)
+            if (_deliverRange >= _distanceFromTarget && _agent.isActiveAndEnabled && !_agent.isStopped)
             {
                 for (int i = 0; i < _atPos.Length; i++)
                 {

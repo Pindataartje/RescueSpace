@@ -82,6 +82,8 @@ public class PlayerController : MonoBehaviour
     public Transform SquadRangePos
     { get { return _squadRangePos; } }
 
+    [SerializeField] GameObject _robotTypePanel;
+    [SerializeField] GameObject _pausePanel;
 
     private void Awake()
     {
@@ -108,6 +110,9 @@ public class PlayerController : MonoBehaviour
         playerInput.actions.FindAction("ScrollTypes").started += OnScroll;
         playerInput.actions.FindAction("ScrollTypes").performed += OnScroll;
         playerInput.actions.FindAction("ScrollTypes").canceled += OnScroll;
+
+        playerInput.actions.FindAction("Open").started += OnOpenTypes;
+        playerInput.actions.FindAction("Pause").started += OpenPause;
     }
 
     private void OnDisable()
@@ -129,6 +134,9 @@ public class PlayerController : MonoBehaviour
         // playerInput.actions.FindAction("ScrollTypes").started -= OnScroll;
         playerInput.actions.FindAction("ScrollTypes").performed -= OnScroll;
         // playerInput.actions.FindAction("ScrollTypes").canceled -= OnScroll;
+
+        playerInput.actions.FindAction("Open").started -= OnOpenTypes;
+        playerInput.actions.FindAction("Pause").started -= OpenPause;
     }
 
     private void Start()
@@ -431,6 +439,18 @@ public class PlayerController : MonoBehaviour
         _currentMovementInput = context.ReadValue<Vector2>().normalized;
         _isMoveAction = _currentMovementInput.x != 0 || _currentMovementInput.y != 0;
     }
+
+    private void OnOpenTypes(InputAction.CallbackContext context)
+    {
+        _robotTypePanel.SetActive(!_robotTypePanel.activeSelf);
+    }
+
+    private void OpenPause(InputAction.CallbackContext context)
+    {
+        _pausePanel.SetActive(!_pausePanel.activeSelf);
+    }
+
+
 
     private void OnMouseMovement(InputAction.CallbackContext context)
     {

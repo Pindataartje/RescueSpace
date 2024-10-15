@@ -80,6 +80,24 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Open"",
+                    ""type"": ""Button"",
+                    ""id"": ""aa78f903-c0ce-47fb-9eac-288796c23ae3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""cedda45b-d5ab-48f2-8ebb-32f11c1d139c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -247,6 +265,28 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
                     ""action"": ""ScrollTypes"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9115615d-9d65-4a56-926a-14679fdb3e6b"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Open"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fd272154-de2a-4b89-b1ad-9111e536da99"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -289,6 +329,8 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
         m_Game_Throw = m_Game.FindAction("Throw", throwIfNotFound: true);
         m_Game_Recal = m_Game.FindAction("Recal", throwIfNotFound: true);
         m_Game_ScrollTypes = m_Game.FindAction("ScrollTypes", throwIfNotFound: true);
+        m_Game_Open = m_Game.FindAction("Open", throwIfNotFound: true);
+        m_Game_Pause = m_Game.FindAction("Pause", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Back = m_Menu.FindAction("Back", throwIfNotFound: true);
@@ -359,6 +401,8 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Game_Throw;
     private readonly InputAction m_Game_Recal;
     private readonly InputAction m_Game_ScrollTypes;
+    private readonly InputAction m_Game_Open;
+    private readonly InputAction m_Game_Pause;
     public struct GameActions
     {
         private @NewControls m_Wrapper;
@@ -369,6 +413,8 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
         public InputAction @Throw => m_Wrapper.m_Game_Throw;
         public InputAction @Recal => m_Wrapper.m_Game_Recal;
         public InputAction @ScrollTypes => m_Wrapper.m_Game_ScrollTypes;
+        public InputAction @Open => m_Wrapper.m_Game_Open;
+        public InputAction @Pause => m_Wrapper.m_Game_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -396,6 +442,12 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
             @ScrollTypes.started += instance.OnScrollTypes;
             @ScrollTypes.performed += instance.OnScrollTypes;
             @ScrollTypes.canceled += instance.OnScrollTypes;
+            @Open.started += instance.OnOpen;
+            @Open.performed += instance.OnOpen;
+            @Open.canceled += instance.OnOpen;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IGameActions instance)
@@ -418,6 +470,12 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
             @ScrollTypes.started -= instance.OnScrollTypes;
             @ScrollTypes.performed -= instance.OnScrollTypes;
             @ScrollTypes.canceled -= instance.OnScrollTypes;
+            @Open.started -= instance.OnOpen;
+            @Open.performed -= instance.OnOpen;
+            @Open.canceled -= instance.OnOpen;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IGameActions instance)
@@ -489,6 +547,8 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
         void OnThrow(InputAction.CallbackContext context);
         void OnRecal(InputAction.CallbackContext context);
         void OnScrollTypes(InputAction.CallbackContext context);
+        void OnOpen(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

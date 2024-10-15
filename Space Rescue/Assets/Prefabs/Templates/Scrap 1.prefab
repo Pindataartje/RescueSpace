@@ -173,6 +173,7 @@ MonoBehaviour:
   _distanceFromTarget: 0
   _scrapWorth: 1
   _scrapRobot: {fileID: 0}
+  _deliverRange: 2.1
   gizmoSize: 0.1
 --- !u!195 &1762539857872525301
 NavMeshAgent:
