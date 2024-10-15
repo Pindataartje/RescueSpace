@@ -9,6 +9,7 @@ public class PlayManager : MonoBehaviour
     public bool killedAllEnemies;
 
     [SerializeField] int _killCount;
+    [SerializeField] int _enemyCount;
     [SerializeField] TMP_Text _killCountTxt;
 
     [SerializeField] List<EnemyAI> _enemies;
@@ -22,15 +23,23 @@ public class PlayManager : MonoBehaviour
     [SerializeField] GameObject _winScreen;
     [SerializeField] GameObject _loseScreen;
 
+
+
     private void Awake()
     {
         _enemies = FindObjectsOfType<EnemyAI>().ToList();
+        _enemyCount = _enemies.Count;
 
         _robots = FindObjectsOfType<RobotAI>().ToList();
 
         _scrapRobot = FindObjectOfType<ScrapRobot>();
 
         _navigationSystem = FindObjectOfType<NavigationSystem>();
+
+        if (_killCountTxt != null)
+        {
+            _killCountTxt.text = $"{_enemies.Count - _killCount}/{_enemies.Count}";
+        }
     }
 
     public void OnEnemyDeath(EnemyAI enemy)
@@ -54,7 +63,7 @@ public class PlayManager : MonoBehaviour
 
         if (_killCountTxt != null)
         {
-            _killCountTxt.text = $"{_killCount}/{_enemies.Count}";
+            _killCountTxt.text = $"{_enemyCount - _killCount}/{_enemyCount}";
         }
     }
 

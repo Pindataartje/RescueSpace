@@ -22,7 +22,7 @@ public class ScrapRobot : RobotAI
 
     [SerializeField] float _stopDistance;
 
-
+    [SerializeField] bool _isSpawning;
 
     public bool hasPoweredOn;
 
@@ -149,21 +149,26 @@ public class ScrapRobot : RobotAI
 
     public void CollectScrap(int scrapWorth, Transform scrap)
     {
-        scrap.GetComponent<NavMeshAgent>().enabled = false;
+        if (!_isSpawning)
+        {
+            scrap.GetComponent<NavMeshAgent>().enabled = false;
 
-        // scrap.transform.localScale = Vector3.one * 0.4f;
+            // scrap.transform.localScale = Vector3.one * 0.4f;
 
-        scrap.position = _grabBone.position;
+            scrap.position = _grabBone.position;
 
-        scrap.SetParent(_grabBone);
+            scrap.SetParent(_grabBone);
 
-        WeaponAnimator.SetTrigger("Oppakken");
+            WeaponAnimator.SetTrigger("Oppakken");
 
-        StartCoroutine(SpawnNewRobot(scrapWorth, scrap));
+
+            StartCoroutine(SpawnNewRobot(scrapWorth, scrap));
+        }
     }
 
     IEnumerator SpawnNewRobot(int robotsToSpawn, Transform scrap)
     {
+        _isSpawning = true;
         WeaponAnimator.SetBool("Maken", true);
         for (int i = 0; i < robotsToSpawn; i++)
         {
@@ -180,6 +185,7 @@ public class ScrapRobot : RobotAI
         Destroy(scrap.gameObject); // do not do when removed
 
         WeaponAnimator.SetBool("Maken", false);
+        _isSpawning = false;
     }
 
     public void RobotFailSafe()
