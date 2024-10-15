@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0627ca21446312844ac8ffb83e471ed6, type: 3}
   m_Name: TurtleBot
   m_EditorClassIdentifier: 
-  health: 80
+  health: 180
   speed: 2
   rotationSpeed: 18
   damage: 5

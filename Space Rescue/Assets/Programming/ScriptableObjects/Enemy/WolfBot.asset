@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0627ca21446312844ac8ffb83e471ed6, type: 3}
   m_Name: WolfBot
   m_EditorClassIdentifier: 
-  health: 50
+  health: 80
   speed: 3
   rotationSpeed: 60
   damage: 8

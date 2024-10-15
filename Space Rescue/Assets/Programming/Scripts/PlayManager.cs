@@ -54,7 +54,7 @@ public class PlayManager : MonoBehaviour
 
         if (_killCountTxt != null)
         {
-            _killCountTxt.text = $"{_killCount}";
+            _killCountTxt.text = $"{_killCount}/{_enemies.Count}";
         }
     }
 

@@ -239,6 +239,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (_health <= 0)
+        {
+            _playManager.OnPlayerDeath();
+        }
+
         _currentMovement = (_orientation.forward * _currentMovementInput.y) + (_orientation.right * _currentMovementInput.x);
 
         SpeedControl();
