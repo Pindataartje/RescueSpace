@@ -86,12 +86,6 @@ public class MeleeBot : RobotAI
                     {
                         Target = colliders[0].transform;
                     }
-                    else
-                    {
-                        Target = colliders[0].GetComponentInParent<EnemyAI>().transform;
-
-                        ChangeState(State.GATHER);
-                    }
                     break;
             }
         }

@@ -37,6 +37,11 @@ public class CameraController : MonoBehaviour
         playerInput.actions.FindAction("Camera").canceled -= OnCamera;
     }
 
+    private void Awake()
+    {
+        Cursor.visible = false;
+    }
+
     void OnCamera(InputAction.CallbackContext context)
     {
         _isCamera = context.ReadValue<float>();

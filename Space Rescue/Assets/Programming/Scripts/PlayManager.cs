@@ -52,7 +52,10 @@ public class PlayManager : MonoBehaviour
 
         _killCount++;
 
-        _killCountTxt.text = $"{_killCount}";
+        if (_killCountTxt != null)
+        {
+            _killCountTxt.text = $"{_killCount}";
+        }
     }
 
     public void OnRobotSpawned(RobotAI robot)

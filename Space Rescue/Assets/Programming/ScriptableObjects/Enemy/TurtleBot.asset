@@ -20,8 +20,8 @@ MonoBehaviour:
   minAttackRange: 3
   regenRate: 10
   regenAmount: 5
-  patrolRadius: 25
-  patrolReturnDistance: 35
+  patrolRadius: 15
+  patrolReturnDistance: 20
   patrolPoints: 8
   searchRadius: 1
   timeToSearch: 3
