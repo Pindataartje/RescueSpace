@@ -36,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 287.52005, y: -245.64}
-  m_SizeDelta: {x: 375.0401, y: 291.28}
+  m_AnchoredPosition: {x: 287.52005, y: -263.90588}
+  m_SizeDelta: {x: 375.0401, y: 327.81177}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8884410985480147809
 CanvasRenderer:
@@ -675,8 +675,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 484.66656, y: -73.68503}
-  m_SizeDelta: {x: 181.86662, y: 147.37006}
+  m_AnchoredPosition: {x: 484.66656, y: -79.164276}
+  m_SizeDelta: {x: 181.86662, y: 158.32855}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1191738043513715127
 CanvasRenderer:
@@ -759,7 +759,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7015495721053112346}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ScrapRobot, Assembly-CSharp
+        m_MethodName: ChangeRobot
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1766740509594324216
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,7 +837,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Robots left:'
+  m_text: 'Enemies left:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1974,8 +1986,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100.93331, y: -73.68503}
-  m_SizeDelta: {x: 181.86662, y: 147.37006}
+  m_AnchoredPosition: {x: 100.93331, y: -79.164276}
+  m_SizeDelta: {x: 181.86662, y: 158.32855}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4850233519761745362
 CanvasRenderer:
@@ -2060,12 +2072,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+        m_TargetAssemblyTypeName: ScrapRobot, Assembly-CSharp
+        m_MethodName: ChangeRobot
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2940,8 +2952,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 862.5602, y: -245.64}
-  m_SizeDelta: {x: 375.0401, y: 291.28}
+  m_AnchoredPosition: {x: 862.5602, y: -263.90588}
+  m_SizeDelta: {x: 375.0401, y: 327.81177}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1349689688100424260
 CanvasRenderer:
@@ -3470,8 +3482,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 292.79993, y: -73.68503}
-  m_SizeDelta: {x: 181.86662, y: 147.37006}
+  m_AnchoredPosition: {x: 292.79993, y: -79.164276}
+  m_SizeDelta: {x: 181.86662, y: 158.32855}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8954242314981794439
 CanvasRenderer:
@@ -3554,7 +3566,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2109152108366442496}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ScrapRobot, Assembly-CSharp
+        m_MethodName: ChangeRobot
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8945493367552667770
 GameObject:
   m_ObjectHideFlags: 0

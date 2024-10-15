@@ -56,10 +56,12 @@ public class MeleeBot : RobotAI
 
             ChangeState(State.IDLE);
         }
+        if (Target != null)
+        {
+            Target = Target.GetComponentInParent<EnemyAI>().transform;
 
-        Target = Target.GetComponentInParent<EnemyAI>().transform;
-
-        Target.GetComponent<EnemyAI>().AttachRobot(this);
+            Target.GetComponent<EnemyAI>().AttachRobot(this);
+        }
     }
 
     public override void Attack()

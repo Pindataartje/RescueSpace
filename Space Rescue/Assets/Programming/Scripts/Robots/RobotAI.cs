@@ -296,7 +296,10 @@ public class RobotAI : Entity
 
         _bodyAnimator.SetBool("Walking", false);
 
-        _target = _target.GetComponentInParent<EnemyAI>().transform;
+        if (_target != null)
+        {
+            _target = _target.GetComponentInParent<EnemyAI>().transform;
+        }
     }
 
     public virtual void Attack()
