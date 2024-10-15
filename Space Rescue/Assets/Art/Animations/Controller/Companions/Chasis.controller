@@ -7,7 +7,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Chasis arma|Chasis_Inklappen
+  m_Name: BityBot | Sleep
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -21,8 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -3599333553483323483, guid: 98c2a3f40ed65c24ba41bef6d3f88a9b,
-    type: 3}
+  m_Motion: {fileID: 7400000, guid: 53e7c5aa132c71c4993b203716d09af0, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -70,7 +69,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Chasis arma|Chasis_Uitklappen
+  m_Name: BityBot | Power On
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -84,8 +83,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -2921174667553596334, guid: 98c2a3f40ed65c24ba41bef6d3f88a9b,
-    type: 3}
+  m_Motion: {fileID: 7400000, guid: 0cba8342f20052445adc6ab68609b62a, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -138,7 +136,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Chasis arma|Chasis_Idle
+  m_Name: BityBot | Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -153,8 +151,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 6350756015189642918, guid: 98c2a3f40ed65c24ba41bef6d3f88a9b,
-    type: 3}
+  m_Motion: {fileID: 7400000, guid: 07993c911dc14e24fbdb6ff1f8c589ba, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -189,7 +186,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Chasis arma|Chasis_Lopen
+  m_Name: BityBot | Walking
   m_Speed: 4
   m_CycleOffset: 0
   m_Transitions:
@@ -203,8 +200,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -2700264781821780747, guid: 98c2a3f40ed65c24ba41bef6d3f88a9b,
-    type: 3}
+  m_Motion: {fileID: 7400000, guid: 0e9750b33b8f6644c80ff7f9fad9f6a7, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -289,7 +285,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Chasis arma|Chasis_Recoil
+  m_Name: BityBot | Recoil
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -303,8 +299,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -374041526339765100, guid: 98c2a3f40ed65c24ba41bef6d3f88a9b,
-    type: 3}
+  m_Motion: {fileID: 7400000, guid: e7cbb9ff3bfd3e34790d8649aa4dc6ce, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

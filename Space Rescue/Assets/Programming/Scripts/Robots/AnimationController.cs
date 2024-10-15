@@ -9,8 +9,8 @@ public class AnimationController : MonoBehaviour
 
     public void PowerOn()
     {
-        Debug.Log("Animation");
         _scrapRobot.hasPoweredOn = true;
+        _scrapRobot.Activate();
     }
 
     public void PowerOff()
@@ -18,9 +18,9 @@ public class AnimationController : MonoBehaviour
         _scrapRobot.hasPoweredOn = false;
     }
 
-    public void Started()
+    public void Activate()
     {
-        // canwalk for base robot
+        _robot.Activate();
     }
 
     public void Explosion()

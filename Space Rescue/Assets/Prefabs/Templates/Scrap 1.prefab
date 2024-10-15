@@ -160,8 +160,8 @@ MonoBehaviour:
   _maxRobots: 0
   _robotsCarrying: 0
   _extraRobotPercent: 2
-  _radius: 1.8
-  _extraRadius: 1.5
+  _radius: 1
+  _extraRadius: 1.2
   _player: {fileID: 0}
   _target: {fileID: 0}
   _robotPos: []
@@ -171,7 +171,7 @@ MonoBehaviour:
   _atPos: []
   _extraAtPos: []
   _distanceFromTarget: 0
-  _scrapWorth: 5
+  _scrapWorth: 1
   _scrapRobot: {fileID: 0}
   gizmoSize: 0.1
 --- !u!195 &1762539857872525301

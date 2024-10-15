@@ -30,6 +30,8 @@ public class ScrapRobot : RobotAI
     {
         base.Start();
 
+        _robotToSpawn = _robotPrefabs[0];
+
         Target = Player.GetComponent<PlayerController>().SquadRangePos;
     }
 
@@ -165,14 +167,16 @@ public class ScrapRobot : RobotAI
         {
             yield return new WaitForSeconds(_spawnTime);
 
-            Destroy(scrap.gameObject); // do not do when removed
 
             GameObject newRobot = Instantiate(_robotToSpawn);
 
-            newRobot.GetComponent<Rigidbody>().position = _spawnPosition.position;
+            newRobot.transform.position = _spawnPosition.position;
 
             PlayManager.OnRobotSpawned(newRobot.GetComponent<RobotAI>());
         }
+
+        Destroy(scrap.gameObject); // do not do when removed
+
         WeaponAnimator.SetBool("Maken", false);
     }
 

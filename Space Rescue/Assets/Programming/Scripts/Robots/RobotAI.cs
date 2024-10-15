@@ -40,6 +40,8 @@ public class RobotAI : Entity
 
     [SerializeField] Transform _scrapRobot;
 
+    [SerializeField] bool _startUp;
+
     [SerializeField] bool _isAttacking;
     public bool IsAttacking
     { get { return _isAttacking; } }
@@ -94,9 +96,18 @@ public class RobotAI : Entity
         _bodyAnimator = GetComponentInChildren<Animator>();
     }
 
+    public void Activate()
+    {
+        _agent.enabled = true;
+        _startUp = true;
+    }
+
     public override void Update()
     {
-        CheckState();
+        if (_startUp)
+        {
+            CheckState();
+        }
     }
 
     public override void Death()

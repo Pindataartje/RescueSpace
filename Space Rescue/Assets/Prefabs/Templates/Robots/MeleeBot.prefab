@@ -56,6 +56,7 @@ MonoBehaviour:
   speed: 4
   rotationSpeed: 0
   damage: 0.1
+  _playManager: {fileID: 0}
   _robotInfo: {fileID: 11400000, guid: bb1a913f7ec672a4385a515a88ac1de7, type: 2}
   _isInitialized: 1
   _manager: {fileID: 0}
@@ -110,7 +111,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9067155408617356733}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: -334000983
   m_Radius: 0.45
   m_Speed: 4
@@ -239,8 +240,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7373229081118266096, guid: 56c66dba4f8f2e44e98599a2f434407d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6546179567056024463}
   m_SourcePrefab: {fileID: 100100000, guid: 56c66dba4f8f2e44e98599a2f434407d, type: 3}
+--- !u!1 &1355692879812075275 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7373229081118266096, guid: 56c66dba4f8f2e44e98599a2f434407d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8395443857300114939}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6546179567056024463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355692879812075275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9a3df93ce65fde46b1e1638dbf08bd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scrapRobot: {fileID: 0}
+  _robot: {fileID: 9202191280697303281}
 --- !u!4 &6036323221078058168 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2830451110237923651, guid: 56c66dba4f8f2e44e98599a2f434407d,
