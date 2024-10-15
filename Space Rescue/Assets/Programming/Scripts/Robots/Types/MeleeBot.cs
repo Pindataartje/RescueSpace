@@ -31,11 +31,14 @@ public class MeleeBot : RobotAI
 
         Vector3 direction = Target.position - transform.position;
 
-        if (Physics.Raycast(transform.position, direction, out RaycastHit hit, 0.3f, DetectionLayer))
+        if (Physics.Raycast(transform.position, direction, out RaycastHit hit, 4f, DetectionLayer))
         {
             Debug.Log("Raycast hit: " + hit.collider.name);
 
+
             transform.SetParent(Target, true);
+
+            transform.position = hit.point;
 
             Vector3 forwardDirection = Vector3.ProjectOnPlane(direction, hit.normal).normalized;
 
