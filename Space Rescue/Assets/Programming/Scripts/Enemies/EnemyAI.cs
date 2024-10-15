@@ -193,7 +193,10 @@ public class EnemyAI : Entity
 
             for (int i = 0; i < _attachedRobots.Count; i++)
             {
-                _attachedRobots[i].RemoveAttachMent();
+                if (_attachedRobots[i] != null)
+                {
+                    _attachedRobots[i].RemoveAttachMent();
+                }
             }
 
             _playManager.OnEnemyDeath(this);

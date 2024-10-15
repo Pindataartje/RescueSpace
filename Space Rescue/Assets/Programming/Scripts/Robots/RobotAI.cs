@@ -496,7 +496,10 @@ public class RobotAI : Entity
 
     public void RemoveAttachMent()
     {
-        transform.SetParent(null);
+        if (transform.parent != null)
+        {
+            transform.SetParent(null);
+        }
 
         _agent.enabled = true;
 
