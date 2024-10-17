@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.020735312, g: 0.015324659, b: 0.023006132, a: 1}
+  m_IndirectSpecularColor: {r: 0.023655126, g: 0.01740468, b: 0.025199115, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -395,7 +395,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 231610083}
-  - component: {fileID: 231610085}
   - component: {fileID: 231610084}
   m_Layer: 0
   m_Name: GameObject
@@ -434,21 +433,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   height: 0.5
---- !u!114 &231610085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 231610082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2c5df397637b8e47a097cea859e2bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _camera: {fileID: 0}
-  _forward: 0
-  _speed: 2.5
 --- !u!1 &238877513
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,7 +518,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 131.85
+  m_fontSize: 110.2
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1442,7 +1426,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 131.85
+  m_fontSize: 110.2
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2105,7 +2089,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 131.85
+  m_fontSize: 110.2
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
