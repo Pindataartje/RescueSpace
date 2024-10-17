@@ -2651,6 +2651,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HallwayCorner (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2586169980268797477, guid: 9fdf00184c67eac449067d08357d0337,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15.875
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2970,6 +2975,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HallwayCorner (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8936136834934497330, guid: 9fdf00184c67eac449067d08357d0337,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 15.875
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
