@@ -262,8 +262,12 @@ public class PlayerController : MonoBehaviour
         if (_isMoveAction)
         {
             _animator.SetBool("Walking", true);
-            Quaternion lookRotation = Quaternion.LookRotation(_currentMovement, Vector3.up);
-            _playerModel.transform.rotation = Quaternion.Slerp(_playerModel.transform.rotation, lookRotation, Time.deltaTime * _playerRotationSpeed);
+
+            if (!_isThrow)
+            {
+                Quaternion lookRotation = Quaternion.LookRotation(_currentMovement, Vector3.up);
+                _playerModel.transform.rotation = Quaternion.Slerp(_playerModel.transform.rotation, lookRotation, Time.deltaTime * _playerRotationSpeed);
+            }
         }
         else
         {
@@ -273,6 +277,8 @@ public class PlayerController : MonoBehaviour
         if (_isThrow)
         {
             HoldThrow();
+
+            _playerModel.LookAt(_mouseReticle.transform.position);
         }
 
         HandleMouseReticle();
