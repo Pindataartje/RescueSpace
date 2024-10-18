@@ -422,24 +422,31 @@ public class RobotAI : Entity
 
     public virtual void Gather()
     {
-        if (_agent.isActiveAndEnabled)
+        if (!_target.GetComponentInParent<Scrap>().canGrabScrap)
         {
-            _agent.SetDestination(_target.position);
+            ChangeState(State.IDLE);
         }
-
-        Vector3 targetWithOffset = new Vector3(_target.position.x, transform.position.y, _target.position.z);
-
-        _distanceFromTarget = Vector3.Distance(transform.position, targetWithOffset);
-
-        if (_agent.stoppingDistance >= _distanceFromTarget && _agent.isActiveAndEnabled && !_agent.isStopped)
+        if (_target != null)
         {
-            Debug.Log("Stop");
+            if (_agent.isActiveAndEnabled)
+            {
+                _agent.SetDestination(_target.position);
+            }
 
-            _target.GetComponentInParent<Scrap>().AddRobot(this);
+            Vector3 targetWithOffset = new Vector3(_target.position.x, transform.position.y, _target.position.z);
 
-            _agent.enabled = false;
+            _distanceFromTarget = Vector3.Distance(transform.position, targetWithOffset);
 
-            transform.SetParent(_target);
+            if (_agent.stoppingDistance >= _distanceFromTarget && _agent.isActiveAndEnabled && !_agent.isStopped)
+            {
+                Debug.Log("Stop");
+
+                _target.GetComponentInParent<Scrap>().AddRobot(this);
+
+                _agent.enabled = false;
+
+                transform.SetParent(_target);
+            }
         }
     }
 

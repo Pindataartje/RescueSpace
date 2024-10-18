@@ -45,6 +45,9 @@ public class Scrap : Entity
 
     [SerializeField] float _deliverRange;
 
+    [SerializeField] bool _collectingScrap;
+    public bool canGrabScrap;
+
     public override void Start()
     {
         GeneratePositionTransforms();
@@ -54,6 +57,8 @@ public class Scrap : Entity
         _scrapRobot = FindAnyObjectByType<ScrapRobot>();
 
         _target = _scrapRobot.GrabPosition;
+
+        canGrabScrap = true;
     }
 
     public override void Update()
@@ -73,13 +78,20 @@ public class Scrap : Entity
 
             if (_deliverRange >= _distanceFromTarget && _agent.isActiveAndEnabled && !_agent.isStopped)
             {
+                canGrabScrap = false;
+
                 for (int i = 0; i < _atPos.Length; i++)
                 {
                     if (_atPos[i] != null)
                     {
                         _atPos[i].CollectScrapAtBase();
                         _atPos[i] = null;
-                        _holdPos[i] = null;
+
+                        if (_holdPos[i] != null)
+                        {
+                            _holdPos[i].CollectScrapAtBase();
+                            _holdPos[i] = null;
+                        }
                     }
 
                 }
@@ -89,9 +101,16 @@ public class Scrap : Entity
                     {
                         _extraAtPos[i].CollectScrapAtBase();
                         _extraAtPos[i] = null;
-                        _extraHoldPos[i] = null;
+
+                        if (_extraHoldPos[i] != null)
+                        {
+                            _extraHoldPos[i].CollectScrapAtBase();
+                            _extraHoldPos[i] = null;
+                        }
                     }
                 }
+
+                _collectingScrap = true;
 
                 _robotsCarrying = 0;
 
@@ -101,6 +120,15 @@ public class Scrap : Entity
         else if (_robotsCarrying < _robotsToCarry && _agent.isActiveAndEnabled && !_agent.isStopped)
         {
             _agent.isStopped = true;
+
+            if (!_collectingScrap)
+            {
+                canGrabScrap = true;
+            }
+        }
+        if (_robotsCarrying == _maxRobots)
+        {
+            canGrabScrap = false;
         }
     }
 
@@ -165,6 +193,11 @@ public class Scrap : Entity
 
     public Transform GetGatherPosition(RobotAI robot)
     {
+        if (!canGrabScrap)
+        {
+            return null;
+        }
+
         for (int i = 0; i < _holdPos.Length; i++)
         {
             if (_holdPos[i] == null)

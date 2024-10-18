@@ -19,10 +19,12 @@ public class Menu : MonoBehaviour
     public void Retry()
     {
         SceneManager.LoadScene("Real Game");
+        Time.timeScale = 1;
     }
 
     public void Quit()
     {
         SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1;
     }
 }
