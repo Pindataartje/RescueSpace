@@ -208,15 +208,18 @@ public class PlayerController : MonoBehaviour
         List<RobotAI> robotsToRemove = new List<RobotAI>();
         foreach (RobotAI robot in _robotManager.unsortedSquad)
         {
-            Vector3 playerOffset = new Vector3(transform.position.x, 0, transform.position.z);
-            Vector3 robotOffset = new Vector3(robot.transform.position.x, 0, robot.transform.position.z);
-
-            float distanceFromPlayer = Vector3.Distance(playerOffset, robotOffset);
-
-            if (!robotsInRange.Contains(robot) && distanceFromPlayer > _robotRemoveDistance)
+            if (robot != null)
             {
-                Debug.Log("Removing robot");
-                robotsToRemove.Add(robot);
+                Vector3 playerOffset = new Vector3(transform.position.x, 0, transform.position.z);
+                Vector3 robotOffset = new Vector3(robot.transform.position.x, 0, robot.transform.position.z);
+
+                float distanceFromPlayer = Vector3.Distance(playerOffset, robotOffset);
+
+                if (!robotsInRange.Contains(robot) && distanceFromPlayer > _robotRemoveDistance)
+                {
+                    Debug.Log("Removing robot");
+                    robotsToRemove.Add(robot);
+                }
             }
         }
 

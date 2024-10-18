@@ -43,6 +43,8 @@ public class TurtleBot : EnemyAI
         transform.position = PatrolPoints[Random.Range(0, PatrolPoints.Count)].position;
 
         IsHiding = true;
+
+        ChangeState(State.PATROL);
     }
 
     public override void Update()

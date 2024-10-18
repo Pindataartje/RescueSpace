@@ -17,11 +17,11 @@ MonoBehaviour:
   rotationSpeed: 18
   damage: 5
   maxAttackRange: 4.3
-  minAttackRange: 3
+  minAttackRange: 1.8
   regenRate: 10
   regenAmount: 5
-  patrolRadius: 20
-  patrolReturnDistance: 25
+  patrolRadius: 18
+  patrolReturnDistance: 23
   patrolPoints: 8
   searchRadius: 1
   timeToSearch: 3

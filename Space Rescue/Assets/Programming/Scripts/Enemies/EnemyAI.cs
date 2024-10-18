@@ -73,6 +73,8 @@ public class EnemyAI : Entity
     { get { return _distanceFromTarget; } set { _distanceFromTarget = value; } }
 
     [Header("Patrol")]
+    #region Patrol
+
     [SerializeField] float _distanceFromPatrol;
     public float DistanceFromPatrol
     { get { return _distanceFromPatrol; } set { _distanceFromPatrol = value; } }
@@ -97,7 +99,10 @@ public class EnemyAI : Entity
     public Slider HealthBar
     { get { return _healthBar; } set { _healthBar = value; } }
 
+    #endregion
+
     [Header("Search")]
+    #region Search
 
     [SerializeField] float _searchTime;
     [SerializeField] float _timeToSearch;
@@ -122,9 +127,13 @@ public class EnemyAI : Entity
 
     [SerializeField] float _searchRadius;
 
+    #endregion
+
     [Header("Chase")]
 
     [Header("Attack")]
+    #region Attack
+
     [SerializeField] float _maxAttackRange;
     public float MaxAttackRange
     { get { return _maxAttackRange; } }
@@ -136,6 +145,8 @@ public class EnemyAI : Entity
     public LayerMask PreyMask
     { get { return _preyMask; } }
 
+    [SerializeField] float _preyRange;
+
     [SerializeField] bool _isAttacking;
     public bool IsAttacking
     { get { return _isAttacking; } set { _isAttacking = value; } }
@@ -144,6 +155,8 @@ public class EnemyAI : Entity
 
     [Header("Robots")]
     [SerializeField] List<RobotAI> _attachedRobots = new();
+
+    #endregion
 
     public override void Start()
     {
@@ -178,13 +191,6 @@ public class EnemyAI : Entity
     public override void Update()
     {
         _healthBar.value = health;
-
-        if (health <= 0)
-        {
-            isAlive = true;
-
-            Death();
-        }
 
         if (_hasPoweredOn && isAlive)
         {
@@ -376,6 +382,8 @@ public class EnemyAI : Entity
 
         _canNaturalRegen = true;
 
+        _animator.SetBool("CanLook", true);
+
         Transform closestPatrolPoint = null;
         float closestDistance = Mathf.Infinity;
 
@@ -489,6 +497,8 @@ public class EnemyAI : Entity
         _targetTransform = null;
 
         _startSearchPosition = transform.position;
+
+        _animator.SetBool("CanLook", true);
     }
 
     public virtual void Search()
@@ -593,6 +603,8 @@ public class EnemyAI : Entity
     public virtual void StartAttack()
     {
         _currentState = State.ATTACK;
+
+        _animator.SetBool("CanLook", false);
     }
 
     public virtual void Attack()
