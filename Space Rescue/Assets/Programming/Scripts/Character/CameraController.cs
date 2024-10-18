@@ -9,12 +9,17 @@ public class CameraController : MonoBehaviour
     [SerializeField] PlayerController playerController;
 
     [SerializeField] float _isCamera;
+    [SerializeField] float _isZoom;
 
     [SerializeField] Transform _target;
     [SerializeField] Transform _orientation;
 
-    [SerializeField] float distanceFromPlayer = 5.0f; // Camera distance from the player
-    [SerializeField] float rotationSpeed = 5.0f; // Speed at which the camera rotates
+    [SerializeField] float _minHeightAbovePlayer = 10.0f;
+    [SerializeField] float heightAbovePlayer = 5.0f;
+    [SerializeField] float _maxHeightAbovePlayer = 30.0f;
+
+    [SerializeField] float rotationSpeed = 5.0f;
+    [SerializeField] float zoomSpeed = 5.0f;
 
     [SerializeField] float _playerRotationSpeed;
 
@@ -28,6 +33,10 @@ public class CameraController : MonoBehaviour
         playerInput.actions.FindAction("Camera").started += OnCamera;
         playerInput.actions.FindAction("Camera").performed += OnCamera;
         playerInput.actions.FindAction("Camera").canceled += OnCamera;
+
+        playerInput.actions.FindAction("Zoom").started += OnZoom;
+        playerInput.actions.FindAction("Zoom").performed += OnZoom;
+        playerInput.actions.FindAction("Zoom").canceled += OnZoom;
     }
 
     private void OnDisable()
@@ -35,6 +44,10 @@ public class CameraController : MonoBehaviour
         playerInput.actions.FindAction("Camera").started -= OnCamera;
         playerInput.actions.FindAction("Camera").performed -= OnCamera;
         playerInput.actions.FindAction("Camera").canceled -= OnCamera;
+
+        playerInput.actions.FindAction("Zoom").started -= OnZoom;
+        playerInput.actions.FindAction("Zoom").performed -= OnZoom;
+        playerInput.actions.FindAction("Zoom").canceled -= OnZoom;
     }
 
     private void Awake()
@@ -47,11 +60,20 @@ public class CameraController : MonoBehaviour
         _isCamera = context.ReadValue<float>();
     }
 
+    void OnZoom(InputAction.CallbackContext context)
+    {
+        _isZoom = context.ReadValue<float>();
+    }
+
     // Update is called once per frame
     void Update()
     {
         currentX += _isCamera * rotationSpeed * 10 * Time.deltaTime;
         currentY -= _isCamera * rotationSpeed * 10 * Time.deltaTime;
+
+        heightAbovePlayer += _isZoom * zoomSpeed * 10 * Time.deltaTime;
+
+        heightAbovePlayer = Mathf.Clamp(heightAbovePlayer, _minHeightAbovePlayer, _maxHeightAbovePlayer);
 
         currentY = Mathf.Clamp(currentY, minYAngle, maxYAngle);
 
@@ -61,7 +83,7 @@ public class CameraController : MonoBehaviour
 
     private void LateUpdate()
     {
-        Vector3 direction = new Vector3(0, 0, -distanceFromPlayer);
+        Vector3 direction = new Vector3(0, 0, -heightAbovePlayer);
         Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
         transform.position = _target.position + rotation * direction;
         transform.LookAt(_target.position);

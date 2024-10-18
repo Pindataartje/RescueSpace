@@ -82,6 +82,15 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Zoom"",
+                    ""type"": ""Button"",
+                    ""id"": ""253562d2-f876-471e-bd45-925284576124"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Open"",
                     ""type"": ""Button"",
                     ""id"": ""aa78f903-c0ce-47fb-9eac-288796c23ae3"",
@@ -223,17 +232,6 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""d6c4f536-feae-4ca8-afca-def22db6e29f"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ScrollTypes"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
                     ""name"": ""1D Axis"",
                     ""id"": ""9fa424d6-1bc9-4319-82c3-cf80b676edd2"",
                     ""path"": ""1DAxis"",
@@ -287,6 +285,61 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""556535e5-b6e7-45ca-a328-4a4e627335e8"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""e505c737-15d3-4ce3-b4ac-fe6411909100"",
+                    ""path"": ""<Keyboard>/minus"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""302606c0-7d64-491e-bfae-6e5081c0d7a1"",
+                    ""path"": ""<Keyboard>/numpadMinus"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""19efdeac-0aaa-4e30-9e3e-4d44605a1f39"",
+                    ""path"": ""<Keyboard>/equals"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""310a756a-dc5d-4620-993d-afe789ef5564"",
+                    ""path"": ""<Keyboard>/numpadPlus"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -329,6 +382,7 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
         m_Game_Throw = m_Game.FindAction("Throw", throwIfNotFound: true);
         m_Game_Recal = m_Game.FindAction("Recal", throwIfNotFound: true);
         m_Game_ScrollTypes = m_Game.FindAction("ScrollTypes", throwIfNotFound: true);
+        m_Game_Zoom = m_Game.FindAction("Zoom", throwIfNotFound: true);
         m_Game_Open = m_Game.FindAction("Open", throwIfNotFound: true);
         m_Game_Pause = m_Game.FindAction("Pause", throwIfNotFound: true);
         // Menu
@@ -401,6 +455,7 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Game_Throw;
     private readonly InputAction m_Game_Recal;
     private readonly InputAction m_Game_ScrollTypes;
+    private readonly InputAction m_Game_Zoom;
     private readonly InputAction m_Game_Open;
     private readonly InputAction m_Game_Pause;
     public struct GameActions
@@ -413,6 +468,7 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
         public InputAction @Throw => m_Wrapper.m_Game_Throw;
         public InputAction @Recal => m_Wrapper.m_Game_Recal;
         public InputAction @ScrollTypes => m_Wrapper.m_Game_ScrollTypes;
+        public InputAction @Zoom => m_Wrapper.m_Game_Zoom;
         public InputAction @Open => m_Wrapper.m_Game_Open;
         public InputAction @Pause => m_Wrapper.m_Game_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
@@ -442,6 +498,9 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
             @ScrollTypes.started += instance.OnScrollTypes;
             @ScrollTypes.performed += instance.OnScrollTypes;
             @ScrollTypes.canceled += instance.OnScrollTypes;
+            @Zoom.started += instance.OnZoom;
+            @Zoom.performed += instance.OnZoom;
+            @Zoom.canceled += instance.OnZoom;
             @Open.started += instance.OnOpen;
             @Open.performed += instance.OnOpen;
             @Open.canceled += instance.OnOpen;
@@ -470,6 +529,9 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
             @ScrollTypes.started -= instance.OnScrollTypes;
             @ScrollTypes.performed -= instance.OnScrollTypes;
             @ScrollTypes.canceled -= instance.OnScrollTypes;
+            @Zoom.started -= instance.OnZoom;
+            @Zoom.performed -= instance.OnZoom;
+            @Zoom.canceled -= instance.OnZoom;
             @Open.started -= instance.OnOpen;
             @Open.performed -= instance.OnOpen;
             @Open.canceled -= instance.OnOpen;
@@ -547,6 +609,7 @@ public partial class @NewControls: IInputActionCollection2, IDisposable
         void OnThrow(InputAction.CallbackContext context);
         void OnRecal(InputAction.CallbackContext context);
         void OnScrollTypes(InputAction.CallbackContext context);
+        void OnZoom(InputAction.CallbackContext context);
         void OnOpen(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
     }
