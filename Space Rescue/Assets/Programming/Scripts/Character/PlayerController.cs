@@ -452,6 +452,15 @@ public class PlayerController : MonoBehaviour
     private void OnOpenTypes(InputAction.CallbackContext context)
     {
         _robotTypePanel.SetActive(!_robotTypePanel.activeSelf);
+
+        if (_robotTypePanel.activeSelf)
+        {
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.visible = false;
+        }
     }
 
     private void OpenPause(InputAction.CallbackContext context)

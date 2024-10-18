@@ -13,6 +13,8 @@ public class Menu : MonoBehaviour
     {
         panelToClose.SetActive(false);
 
+        Cursor.visible = false;
+
         Time.timeScale = 1;
     }
 

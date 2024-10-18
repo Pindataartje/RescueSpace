@@ -98,6 +98,8 @@ public class PlayManager : MonoBehaviour
         Time.timeScale = 0;
 
         _loseScreen.SetActive(true);
+
+        Cursor.visible = true;
     }
 
     public void OnWin()
@@ -105,6 +107,8 @@ public class PlayManager : MonoBehaviour
         _navigationSystem.canWin = false;
 
         _winScreen.SetActive(true);
+
+        Cursor.visible = true;
     }
 
     public void RobotFailSafe()
