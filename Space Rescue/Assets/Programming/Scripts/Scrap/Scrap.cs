@@ -48,6 +48,8 @@ public class Scrap : Entity
     [SerializeField] bool _collectingScrap;
     public bool canGrabScrap;
 
+    [SerializeField] bool _isWalking;
+
     public override void Start()
     {
         GeneratePositionTransforms();
@@ -68,6 +70,26 @@ public class Scrap : Entity
             if (_agent.isActiveAndEnabled)
             {
                 _agent.SetDestination(_target.position);
+
+                if (!_isWalking)
+                {
+                    for (int i = 0; i < _atPos.Length; i++)
+                    {
+                        if (_atPos[i] != null)
+                        {
+                            _atPos[i].BodyAnimator.SetBool("Walking", true);
+                        }
+                    }
+                    for (int i = 0; i < _extraAtPos.Length; i++)
+                    {
+                        if (_extraAtPos[i] != null)
+                        {
+                            _extraAtPos[i].BodyAnimator.SetBool("Walking", true);
+                        }
+                    }
+                }
+
+                _isWalking = true;
 
                 _agent.isStopped = false;
             }
@@ -117,9 +139,29 @@ public class Scrap : Entity
                 _scrapRobot.CollectScrap(_scrapWorth, transform);
             }
         }
-        else if (_robotsCarrying < _robotsToCarry && _agent.isActiveAndEnabled && !_agent.isStopped)
+        else if (_robotsCarrying < _robotsToCarry && _agent.isActiveAndEnabled)
         {
             _agent.isStopped = true;
+
+            if (_isWalking)
+            {
+                for (int i = 0; i < _atPos.Length; i++)
+                {
+                    if (_atPos[i] != null)
+                    {
+                        _atPos[i].BodyAnimator.SetBool("Walking", false);
+                    }
+                }
+                for (int i = 0; i < _extraAtPos.Length; i++)
+                {
+                    if (_extraAtPos[i] != null)
+                    {
+                        _extraAtPos[i].BodyAnimator.SetBool("Walking", false);
+                    }
+                }
+            }
+
+            _isWalking = false;
 
             if (!_collectingScrap)
             {

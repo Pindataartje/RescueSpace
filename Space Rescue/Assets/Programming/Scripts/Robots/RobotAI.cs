@@ -413,8 +413,6 @@ public class RobotAI : Entity
     {
         _currentState = State.GATHER;
 
-        _bodyAnimator.SetBool("Walking", false);
-
         GetNewGatherTargetPosition();
 
         _agent.stoppingDistance = 0.1f;
@@ -430,6 +428,8 @@ public class RobotAI : Entity
         {
             if (_agent.isActiveAndEnabled)
             {
+                _bodyAnimator.SetBool("Walking", true);
+
                 _agent.SetDestination(_target.position);
             }
 
@@ -440,6 +440,8 @@ public class RobotAI : Entity
             if (_agent.stoppingDistance >= _distanceFromTarget && _agent.isActiveAndEnabled && !_agent.isStopped)
             {
                 Debug.Log("Stop");
+
+                _bodyAnimator.SetBool("Walking", false);
 
                 _target.GetComponentInParent<Scrap>().AddRobot(this);
 
