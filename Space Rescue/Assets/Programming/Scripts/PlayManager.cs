@@ -38,7 +38,7 @@ public class PlayManager : MonoBehaviour
 
         if (_killCountTxt != null)
         {
-            _killCountTxt.text = $"{_enemies.Count - _killCount}/{_enemies.Count}";
+            _killCountTxt.text = $"Enemies left: {_enemyCount - _killCount}/{_enemyCount}";
         }
     }
 
