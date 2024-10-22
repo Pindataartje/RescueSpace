@@ -128,7 +128,7 @@ public class TurtleBot : EnemyAI
 
 
         // DOES NOT WORK RIGHT NOW ???
-        if (_hideTime >= _maxHideTime && DistanceFromTarget == 0 && !_newPosition)
+        if (_hideTime >= _maxHideTime && DistanceFromTarget <= 0.8f && !_newPosition)
         {
             _newPosition = true;
 
