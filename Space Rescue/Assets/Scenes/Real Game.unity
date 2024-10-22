@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00011523213, g: 0.00008376525, b: 0.000115916984,
+  m_IndirectSpecularColor: {r: 0.00014860448, g: 0.00007924404, b: 0.000034361594,
     a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -1619,7 +1619,6 @@ GameObject:
   m_Component:
   - component: {fileID: 967795068}
   - component: {fileID: 967795067}
-  - component: {fileID: 967795066}
   - component: {fileID: 967795065}
   m_Layer: 0
   m_Name: Camera
@@ -1672,14 +1671,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!81 &967795066
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 967795064}
-  m_Enabled: 1
 --- !u!20 &967795067
 Camera:
   m_ObjectHideFlags: 0
@@ -3217,41 +3208,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Map
       objectReference: {fileID: 0}
-    - target: {fileID: 3213788991016211439, guid: 3b91286c49095914db153983668d48b2,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -18.695
-      objectReference: {fileID: 0}
-    - target: {fileID: 4651630053591737644, guid: 3b91286c49095914db153983668d48b2,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4651630053591737644, guid: 3b91286c49095914db153983668d48b2,
-        type: 3}
-      propertyPath: m_NavMeshData
-      value: 
-      objectReference: {fileID: 23800000, guid: 8cc5f5b1865f29743905df45b83767c4,
-        type: 2}
-    - target: {fileID: 6474811816807983899, guid: 3b91286c49095914db153983668d48b2,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6474811816807983899, guid: 3b91286c49095914db153983668d48b2,
-        type: 3}
-      propertyPath: m_NavMeshData
-      value: 
-      objectReference: {fileID: 23800000, guid: 3ef4170060e2d664a8b290d36bab0768,
-        type: 2}
-    - target: {fileID: 6474811816807983899, guid: 3b91286c49095914db153983668d48b2,
-        type: 3}
-      propertyPath: m_OverrideVoxelSize
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 524078796941647908, guid: 3b91286c49095914db153983668d48b2, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b91286c49095914db153983668d48b2, type: 3}
@@ -3477,7 +3435,7 @@ Transform:
   m_GameObject: {fileID: 919132148372745706}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 21, z: 0}
+  m_LocalPosition: {x: 0, y: 40, z: 0}
   m_LocalScale: {x: 10, y: 20, z: 20}
   m_ConstrainProportionsScale: 1
   m_Children: []
