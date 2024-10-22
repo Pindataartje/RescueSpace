@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00014860448, g: 0.00007924404, b: 0.000034361594,
+  m_IndirectSpecularColor: {r: 0.00011523213, g: 0.00008376525, b: 0.000115916984,
     a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -539,7 +539,7 @@ PrefabInstance:
     - target: {fileID: 1482087099940304695, guid: 004e271c203668e4db7524d0c54b94ae,
         type: 3}
       propertyPath: _throwLayer.m_Bits
-      value: 1152
+      value: 17536
       objectReference: {fileID: 0}
     - target: {fileID: 1482087099940304695, guid: 004e271c203668e4db7524d0c54b94ae,
         type: 3}

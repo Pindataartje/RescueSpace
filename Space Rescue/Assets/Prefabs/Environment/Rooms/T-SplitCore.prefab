@@ -1404,6 +1404,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: T-SplitCore
       objectReference: {fileID: 0}
+    - target: {fileID: 4514200820076054894, guid: 2e1e8b6e6d939d44e886c09727157e0e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 4746871927067681831, guid: 2e1e8b6e6d939d44e886c09727157e0e,
         type: 3}
       propertyPath: m_LocalPosition.y

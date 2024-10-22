@@ -493,6 +493,7 @@ MonoBehaviour:
   _preyMask:
     serializedVersion: 2
     m_Bits: 72
+  _preyRange: 0
   _isAttacking: 0
   _deathEffectPrefab: {fileID: 8043584368744636961, guid: 953c254cc5e763b4c8e8bc67df3c95c3,
     type: 3}
@@ -677,6 +678,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5255398458091861520}
     m_Modifications:
+    - target: {fileID: 822910811530076182, guid: 6e6e4fe9c94bd8845b279e234b817d09,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2248895296836396672, guid: 6e6e4fe9c94bd8845b279e234b817d09,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2248895296836396672, guid: 6e6e4fe9c94bd8845b279e234b817d09,
         type: 3}
       propertyPath: m_InitialEventNameOverriden
