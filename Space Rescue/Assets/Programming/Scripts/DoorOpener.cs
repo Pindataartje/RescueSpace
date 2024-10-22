@@ -18,6 +18,10 @@ public class DoorOpener : MonoBehaviour
                 _doorAnimator.SetBool("Open", true);
             }
         }
+        if (other.CompareTag("Player"))
+        {
+            _doorAnimator.SetBool("Open", true);
+        }
     }
 
     private void OnTriggerExit(Collider other)
