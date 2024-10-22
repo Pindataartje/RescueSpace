@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerInput playerInput = null;
     public PlayerInput PlayerInput => playerInput;
 
+    [SerializeField] bool _isAlive;
+
     [SerializeField] PlayManager _playManager;
 
     [SerializeField] Slider _healthBar;
@@ -150,6 +152,11 @@ public class PlayerController : MonoBehaviour
         _health = _maxHealth;
         _healthBar.value = _health;
 
+        if (_health > 0)
+        {
+            _isAlive = true;
+        }
+
         _squadXoffset = _baseSquadXOffset; // Initialize squad X offset
         _squadSize = _baseSquadSize; // Set the initial squad range to the absolute value of _minSquadRange
         _robotManager = FindObjectOfType<RobotManager>();
@@ -162,8 +169,9 @@ public class PlayerController : MonoBehaviour
 
         _healthBar.value = _health;
 
-        if (_health <= 0)
+        if (_health <= 0 && _isAlive)
         {
+            _isAlive = false;
             _playManager.OnPlayerDeath();
         }
     }
@@ -250,8 +258,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (_health <= 0)
+        if (_health <= 0 && _isAlive)
         {
+            _isAlive = false;
             _playManager.OnPlayerDeath();
         }
 
@@ -469,10 +478,12 @@ public class PlayerController : MonoBehaviour
 
         if (_pausePanel.activeSelf)
         {
+            Cursor.visible = true;
             Time.timeScale = 0;
         }
         else
         {
+            Cursor.visible = false;
             Time.timeScale = 1;
         }
     }

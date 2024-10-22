@@ -95,6 +95,7 @@ public class PlayManager : MonoBehaviour
 
     public void OnPlayerDeath()
     {
+        Debug.Log("PlayerDeath");
         Time.timeScale = 0;
 
         _loseScreen.SetActive(true);
