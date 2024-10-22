@@ -354,10 +354,19 @@ public class PlayerController : MonoBehaviour
     {
         if (_robotManager.RobotsInSquad.Count > 0)
         {
-            if (_robotManager.RobotsInSquad[_currentSquadNumber].Count > 0)
+            if (_currentSquadNumber >= 0)
             {
-                _currentRobot = _robotManager.RobotsInSquad[_currentSquadNumber][0].gameObject;
-                _robotManager.RemoveRobotFromSquad(_robotManager.RobotsInSquad[_currentSquadNumber][0]);
+                // Debug.Log($"Cant throw squad number is : {_currentSquadNumber} and squad count is {_robotManager.RobotsInSquad.Count} also {_robotManager.RobotsInSquad[_currentSquadNumber].Count}");
+
+                if (_robotManager.RobotsInSquad[_currentSquadNumber].Count > 0)
+                {
+                    _currentRobot = _robotManager.RobotsInSquad[_currentSquadNumber][0].gameObject;
+                    _robotManager.RemoveRobotFromSquad(_robotManager.RobotsInSquad[_currentSquadNumber][0]);
+                }
+            }
+            else
+            {
+                Debug.Log($"Cant throw squad number is : {_currentSquadNumber}");
             }
         }
 

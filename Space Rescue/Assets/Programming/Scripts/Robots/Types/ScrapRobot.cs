@@ -113,6 +113,11 @@ public class ScrapRobot : RobotAI
         _currentState = State.IDLE;
 
         BodyAnimator.SetBool("Walking", false);
+
+        if (Agent.isActiveAndEnabled && !Agent.isStopped)
+        {
+            Agent.isStopped = true;
+        }
     }
 
     public override void StartFollow()

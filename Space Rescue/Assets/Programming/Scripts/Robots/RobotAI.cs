@@ -94,6 +94,8 @@ public class RobotAI : Entity
         _scrapRobot = FindAnyObjectByType<ScrapRobot>().transform;
 
         _bodyAnimator = GetComponentInChildren<Animator>();
+
+        ChangeState(State.FOLLOW);
     }
 
     public void Activate()
