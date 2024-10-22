@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00011523213, g: 0.00008376525, b: 0.000115916984,
+  m_IndirectSpecularColor: {r: 0.00014860448, g: 0.00007924404, b: 0.000034361594,
     a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -1215,6 +1215,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1624780407724375968, guid: 5e544623312d29b46b382d218d42cc20,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 232853210}
+    - target: {fileID: 1624780407724375968, guid: 5e544623312d29b46b382d218d42cc20,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeRobot
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714161711187838513, guid: 5e544623312d29b46b382d218d42cc20,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 232853210}
+    - target: {fileID: 1714161711187838513, guid: 5e544623312d29b46b382d218d42cc20,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeRobot
+      objectReference: {fileID: 0}
     - target: {fileID: 1919317493345965686, guid: 5e544623312d29b46b382d218d42cc20,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1300,6 +1320,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1970542302}
+    - target: {fileID: 4189241583367288421, guid: 5e544623312d29b46b382d218d42cc20,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 232853210}
+    - target: {fileID: 4189241583367288421, guid: 5e544623312d29b46b382d218d42cc20,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeRobot
+      objectReference: {fileID: 0}
     - target: {fileID: 4408361999760732347, guid: 5e544623312d29b46b382d218d42cc20,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3378,10 +3408,20 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 6474811816807983899, guid: 3b91286c49095914db153983668d48b2,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6474811816807983899, guid: 3b91286c49095914db153983668d48b2,
+        type: 3}
       propertyPath: m_NavMeshData
       value: 
       objectReference: {fileID: 23800000, guid: 3ef4170060e2d664a8b290d36bab0768,
         type: 2}
+    - target: {fileID: 6474811816807983899, guid: 3b91286c49095914db153983668d48b2,
+        type: 3}
+      propertyPath: m_OverrideVoxelSize
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 524078796941647908, guid: 3b91286c49095914db153983668d48b2, type: 3}
