@@ -118,6 +118,8 @@ public class RobotAI : Entity
 
         Destroy(effect, 1f);
 
+        _manager.RemoveRobotFromSquad(this);
+
         _playManager.OnRobotDeath(this);
 
         base.Death();
