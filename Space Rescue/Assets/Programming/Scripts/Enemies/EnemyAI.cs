@@ -186,6 +186,8 @@ public class EnemyAI : Entity
         _healthBar.gameObject.SetActive(false);
 
         _healthBar.maxValue = maxHealth;
+
+        ChangeState(State.PATROL);
     }
 
     public override void Update()

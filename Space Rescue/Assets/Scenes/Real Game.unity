@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00014860448, g: 0.00007924404, b: 0.000034361594,
+  m_IndirectSpecularColor: {r: 0.00011523213, g: 0.00008376525, b: 0.000115916984,
     a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -3360,13 +3360,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Map
       objectReference: {fileID: 0}
+    - target: {fileID: 3213788991016211439, guid: 3b91286c49095914db153983668d48b2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -18.695
+      objectReference: {fileID: 0}
     - target: {fileID: 4651630053591737644, guid: 3b91286c49095914db153983668d48b2,
         type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4651630053591737644, guid: 3b91286c49095914db153983668d48b2,
+        type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 8cc5f5b1865f29743905df45b83767c4,
+        type: 2}
+    - target: {fileID: 6474811816807983899, guid: 3b91286c49095914db153983668d48b2,
+        type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 3ef4170060e2d664a8b290d36bab0768,
+        type: 2}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 524078796941647908, guid: 3b91286c49095914db153983668d48b2, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b91286c49095914db153983668d48b2, type: 3}
