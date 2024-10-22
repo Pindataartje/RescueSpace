@@ -420,12 +420,12 @@ public class RobotAI : Entity
 
     public virtual void Gather()
     {
-        if (!_target.GetComponentInParent<Scrap>().canGrabScrap)
-        {
-            ChangeState(State.IDLE);
-        }
         if (_target != null)
         {
+            if (!_target.GetComponentInParent<Scrap>().canGrabScrap)
+            {
+                ChangeState(State.IDLE);
+            }
             if (_agent.isActiveAndEnabled)
             {
                 _bodyAnimator.SetBool("Walking", true);

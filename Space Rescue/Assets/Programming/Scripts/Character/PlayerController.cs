@@ -545,7 +545,7 @@ public class PlayerController : MonoBehaviour
 
         _robotManager.CurrentSquad = _currentSquadNumber;
 
-        Debug.Log($"new squad: {_currentSquadNumber}");
+        // Debug.Log($"new squad: {_currentSquadNumber}");
     }
 
 

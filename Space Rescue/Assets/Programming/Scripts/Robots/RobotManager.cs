@@ -42,6 +42,8 @@ public class RobotManager : MonoBehaviour
         if (_currentSquad < 0)
         {
             _currentSquad = _robotsInSquad.Count - 1;
+
+            // Debug.Log($"{_currentSquad} squad number");
         }
     }
 
@@ -86,36 +88,40 @@ public class RobotManager : MonoBehaviour
 
         for (int i = 0; i < _robotsInSquad.Count; i++)
         {
-            if (_robotsInSquad[i].Count > 0 && robotToAdd.type == _robotsInSquad[i][0].type)
+            if (_robotsInSquad[_robotsInSquad.Count - 1].Count == 0)
+            {
+                unsortedSquad.Add(robotToAdd);
+                _robotsInSquad[_robotsInSquad.Count - 1].Add(robotToAdd);
+                robotToAdd.EnterSquad();
+                _numberOfRobotsInSquad++;
+                Debug.Log("Added robot to existing empty squad");
+                return;
+            }
+            else if (_robotsInSquad[i].Count > 0 && robotToAdd.type == _robotsInSquad[i][0].type)
             {
                 unsortedSquad.Add(robotToAdd);
                 _robotsInSquad[i].Add(robotToAdd);
                 robotToAdd.EnterSquad();
                 _numberOfRobotsInSquad++;
 
-                // Debug.Log($"Added robot to: {i}, {_robotsInSquad[i].Count}");
-                break;
+                Debug.Log($"Added robot to: {i}, {_robotsInSquad[i].Count} squad that already has the same robot");
+                return;
             }
-            else if (_robotsInSquad[_robotsInSquad.Count - 1].Count > 0 && robotToAdd.type != _robotsInSquad[_robotsInSquad.Count - 1][0].type)
+            if (i == _robotsInSquad.Count - 1)
             {
-                _robotsInSquad.Add(new List<RobotAI>());
-                unsortedSquad.Add(robotToAdd);
-                _robotsInSquad[_robotsInSquad.Count - 1].Add(robotToAdd);
-                robotToAdd.EnterSquad();
-                _numberOfRobotsInSquad++;
+                Debug.Log("Last try");
+                if (robotToAdd.type != _robotsInSquad[_robotsInSquad.Count - 1][0].type)
+                {
+                    _robotsInSquad.Add(new List<RobotAI>());
+                    unsortedSquad.Add(robotToAdd);
+                    _robotsInSquad[_robotsInSquad.Count - 1].Add(robotToAdd);
+                    robotToAdd.EnterSquad();
+                    _numberOfRobotsInSquad++;
 
-                // Debug.Log($"Added robot to new List: {i + 1}, {_robotsInSquad[_robotsInSquad.Count - 1].Count}");
+                    Debug.Log($"Added robot to new squad: {i + 1}, {_robotsInSquad[_robotsInSquad.Count - 1].Count}");
 
-                break;
-            }
-            else if (_robotsInSquad[_robotsInSquad.Count - 1].Count == 0)
-            {
-                unsortedSquad.Add(robotToAdd);
-                _robotsInSquad[_robotsInSquad.Count - 1].Add(robotToAdd);
-                robotToAdd.EnterSquad();
-                _numberOfRobotsInSquad++;
-
-                // Debug.Log("Added robot to existing empty list");
+                    break;
+                }
             }
         }
     }
