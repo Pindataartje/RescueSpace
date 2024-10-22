@@ -26,6 +26,7 @@ public class ShockWaveController : MonoBehaviour
 
     private void Start()
     {
+        _shockWaveEffect.enabled = false;
         _currentInnerRadius = _initialInnerRadius;
         _currentOuterRadius = _initialOuterRadius;
     }
@@ -34,6 +35,7 @@ public class ShockWaveController : MonoBehaviour
     {
         if (canShockwave)
         {
+            _shockWaveEffect.enabled = true;
             _shockWaveEffect.Play();
             if (_currentOuterRadius < _maxRadius)
             {
@@ -47,6 +49,7 @@ public class ShockWaveController : MonoBehaviour
                 _collider.enabled = false;
 
                 _shockWaveEffect.Stop();
+                _shockWaveEffect.enabled = false;
 
                 transform.localScale = Vector3.one * _initialInnerRadius;
 
