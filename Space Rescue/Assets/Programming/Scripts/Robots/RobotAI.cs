@@ -94,8 +94,6 @@ public class RobotAI : Entity
         _scrapRobot = FindAnyObjectByType<ScrapRobot>().transform;
 
         _bodyAnimator = GetComponentInChildren<Animator>();
-
-        ChangeState(State.FOLLOW);
     }
 
     public void Activate()
@@ -248,7 +246,15 @@ public class RobotAI : Entity
     {
         _currentState = State.FOLLOW;
 
-        _target = _player.GetComponent<PlayerController>().SquadRangePos;
+        if (_player != null)
+        {
+            _target = _player.GetComponent<PlayerController>().SquadRangePos;
+        }
+        else
+        {
+            _player = FindAnyObjectByType<PlayerController>();
+            _target = _player.GetComponent<PlayerController>().SquadRangePos;
+        }
 
         _agent.enabled = true;
 
@@ -563,7 +569,7 @@ public class RobotAI : Entity
 
     public virtual void CollectScrapAtBase()
     {
-        ChangeState(State.IDLE);
+        ChangeState(State.FOLLOW);
     }
 
     public void OnValidate()

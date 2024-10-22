@@ -184,6 +184,8 @@ public class ScrapRobot : RobotAI
 
             newRobot.transform.position = _spawnPosition.position;
 
+            newRobot.GetComponent<RobotAI>().ChangeState(State.FOLLOW);
+
             PlayManager.OnRobotSpawned(newRobot.GetComponent<RobotAI>());
         }
 
