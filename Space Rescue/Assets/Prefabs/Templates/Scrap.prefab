@@ -155,6 +155,7 @@ MonoBehaviour:
   _robotsNeededTxt: {fileID: 1240091409544014320}
   _objectToCarry: {fileID: 1073502272091545421}
   _agent: {fileID: 1762539857872525301}
+  scrapSizeModified: 0.4
   _robotsToCarry: 5
   _extraRobots: 0
   _maxRobots: 0
@@ -174,6 +175,9 @@ MonoBehaviour:
   _scrapWorth: 5
   _scrapRobot: {fileID: 0}
   _deliverRange: 2.4
+  _collectingScrap: 0
+  canGrabScrap: 0
+  _isWalking: 0
   gizmoSize: 0.1
 --- !u!195 &1762539857872525301
 NavMeshAgent:

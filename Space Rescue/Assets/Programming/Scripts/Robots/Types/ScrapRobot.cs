@@ -175,10 +175,12 @@ public class ScrapRobot : RobotAI
     {
         _isSpawning = true;
         WeaponAnimator.SetBool("Maken", true);
+
+        scrap.localScale = Vector3.one * scrap.GetComponent<Scrap>().scrapSizeModified;
+
         for (int i = 0; i < robotsToSpawn; i++)
         {
             yield return new WaitForSeconds(_spawnTime);
-
 
             GameObject newRobot = Instantiate(_robotToSpawn);
 

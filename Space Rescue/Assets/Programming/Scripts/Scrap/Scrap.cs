@@ -12,6 +12,8 @@ public class Scrap : Entity
 
     [SerializeField] NavMeshAgent _agent;
 
+    public float scrapSizeModified;
+
     [SerializeField] int _robotsToCarry;
     [SerializeField] int _extraRobots;
 
