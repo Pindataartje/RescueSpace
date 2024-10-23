@@ -297,9 +297,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityType: 2
   type: 0
-  health: 60
-  maxHealth: 60
-  speed: 2.5
+  health: 100
+  maxHealth: 100
+  speed: 3.5
   rotationSpeed: 40
   damage: 10
   _regenRate: 3
@@ -346,6 +346,7 @@ MonoBehaviour:
   _preyMask:
     serializedVersion: 2
     m_Bits: 72
+  _preyRange: 0
   _isAttacking: 0
   _deathEffectPrefab: {fileID: 8043584368744636961, guid: 953c254cc5e763b4c8e8bc67df3c95c3,
     type: 3}
@@ -361,11 +362,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: -1923039037
   m_Radius: 1.5
-  m_Speed: 2.5
+  m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 40
-  m_StoppingDistance: 0.8
+  m_StoppingDistance: 1.2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

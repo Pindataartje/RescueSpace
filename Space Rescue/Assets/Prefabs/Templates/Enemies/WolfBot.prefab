@@ -444,8 +444,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityType: 2
   type: 0
-  health: 50
-  maxHealth: 50
+  health: 80
+  maxHealth: 80
   speed: 3
   rotationSpeed: 60
   damage: 8
@@ -513,7 +513,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 60
-  m_StoppingDistance: 0.8
+  m_StoppingDistance: 1.2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
