@@ -6,6 +6,8 @@ public class RobotManagerEditor : Editor
 {
     public override void OnInspectorGUI()
     {
+        base.OnInspectorGUI();
+
         RobotManager squadManager = (RobotManager)target;
 
         // Check if the squad manager has squads

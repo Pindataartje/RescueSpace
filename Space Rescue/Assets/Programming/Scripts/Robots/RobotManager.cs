@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class RobotManager : MonoBehaviour
 {
+    [SerializeField] PlayerController _player;
+
     List<RobotAI> _allRobots = new();
 
     List<RobotAI> _robotsOnTheField = new();
@@ -12,8 +14,6 @@ public class RobotManager : MonoBehaviour
     List<List<RobotAI>> _robotsInSquad = new();
     public List<List<RobotAI>> RobotsInSquad
     { get { return _robotsInSquad; } }
-
-    List<List<RobotAI>> _throwableRobots = new();
 
     public List<RobotAI> unsortedSquad;
 
@@ -30,8 +30,14 @@ public class RobotManager : MonoBehaviour
     { get { return _currentSquad; } set { _currentSquad = value; } }
 
 
+    [SerializeField] GameObject _meleeBotPanel;
+    [SerializeField] GameObject _gunBotPanel;
+    [SerializeField] GameObject _kaboomBotPanel;
+
     private void Start()
     {
+        _player = FindAnyObjectByType<PlayerController>();
+
         _robotsInSquad.Add(new List<RobotAI>());
     }
 
@@ -43,7 +49,55 @@ public class RobotManager : MonoBehaviour
         {
             _currentSquad = _robotsInSquad.Count - 1;
 
-            // Debug.Log($"{_currentSquad} squad number");
+            if (_currentSquad < 0)
+            {
+                _currentSquad = 0;
+            }
+        }
+
+        _player.CurrentSquadNumber = _currentSquad;
+
+        SquadUi();
+    }
+
+    public void SquadUi()
+    {
+        Debug.Log($"{_robotsInSquad.Count} and {_currentSquad}");
+        if (_robotsInSquad.Count > _currentSquad)
+        {
+            if (_robotsInSquad[_currentSquad].Count > 0)
+            {
+                if (_robotsInSquad[_currentSquad][0].TryGetComponent(out MeleeBot meleeBot) && meleeBot != null)
+                {
+                    _meleeBotPanel.SetActive(true);
+                    _gunBotPanel.SetActive(false);
+                    _kaboomBotPanel.SetActive(false);
+                }
+                else if (_robotsInSquad[_currentSquad][0].TryGetComponent(out GunBot gunBot) && gunBot != null)
+                {
+                    _meleeBotPanel.SetActive(false);
+                    _gunBotPanel.SetActive(true);
+                    _kaboomBotPanel.SetActive(false);
+                }
+                else if (_robotsInSquad[_currentSquad][0].TryGetComponent(out KaboomBot kaboomBot) && kaboomBot != null)
+                {
+                    _meleeBotPanel.SetActive(false);
+                    _gunBotPanel.SetActive(false);
+                    _kaboomBotPanel.SetActive(true);
+                }
+            }
+            else
+            {
+                _meleeBotPanel.SetActive(false);
+                _gunBotPanel.SetActive(false);
+                _kaboomBotPanel.SetActive(false);
+            }
+        }
+        else
+        {
+            _meleeBotPanel.SetActive(false);
+            _gunBotPanel.SetActive(false);
+            _kaboomBotPanel.SetActive(false);
         }
     }
 
@@ -94,6 +148,8 @@ public class RobotManager : MonoBehaviour
                 _robotsInSquad[_robotsInSquad.Count - 1].Add(robotToAdd);
                 robotToAdd.EnterSquad();
                 _numberOfRobotsInSquad++;
+                SquadUi();
+
                 Debug.Log("Added robot to existing empty squad");
                 return;
             }
@@ -103,6 +159,7 @@ public class RobotManager : MonoBehaviour
                 _robotsInSquad[i].Add(robotToAdd);
                 robotToAdd.EnterSquad();
                 _numberOfRobotsInSquad++;
+                SquadUi();
 
                 Debug.Log($"Added robot to: {i}, {_robotsInSquad[i].Count} squad that already has the same robot");
                 return;
@@ -119,8 +176,9 @@ public class RobotManager : MonoBehaviour
                     _numberOfRobotsInSquad++;
 
                     Debug.Log($"Added robot to new squad: {i + 1}, {_robotsInSquad[_robotsInSquad.Count - 1].Count}");
+                    SquadUi();
 
-                    break;
+                    return;
                 }
             }
         }

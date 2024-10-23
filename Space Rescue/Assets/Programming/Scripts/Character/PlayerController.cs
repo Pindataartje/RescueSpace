@@ -61,6 +61,8 @@ public class PlayerController : MonoBehaviour
 
 
     [SerializeField] int _currentSquadNumber = 0;
+    public int CurrentSquadNumber
+    { get { return _currentSquadNumber; } set { _currentSquadNumber = value; } }
 
     [SerializeField] RaycastHit hit1;
     [SerializeField] RaycastHit hit2;
@@ -356,7 +358,7 @@ public class PlayerController : MonoBehaviour
         {
             if (_currentSquadNumber >= 0)
             {
-                // Debug.Log($"Cant throw squad number is : {_currentSquadNumber} and squad count is {_robotManager.RobotsInSquad.Count} also {_robotManager.RobotsInSquad[_currentSquadNumber].Count}");
+                Debug.Log($"Cant throw squad number is : {_currentSquadNumber} and squad count is {_robotManager.RobotsInSquad.Count}");
 
                 if (_robotManager.RobotsInSquad[_currentSquadNumber].Count > 0)
                 {
@@ -554,6 +556,7 @@ public class PlayerController : MonoBehaviour
 
         _robotManager.CurrentSquad = _currentSquadNumber;
 
+        _robotManager.SquadUi();
         // Debug.Log($"new squad: {_currentSquadNumber}");
     }
 

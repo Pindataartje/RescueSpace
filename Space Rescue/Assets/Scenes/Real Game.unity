@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00014860448, g: 0.00007924404, b: 0.000034361594,
+  m_IndirectSpecularColor: {r: 0.00011523213, g: 0.00008376525, b: 0.000115916984,
     a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -1094,6 +1094,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1970542302}
+    - target: {fileID: 4018510535760441457, guid: 5e544623312d29b46b382d218d42cc20,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4076977034030910762, guid: 5e544623312d29b46b382d218d42cc20,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1109,6 +1114,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1970542302}
+    - target: {fileID: 4806218962364426476, guid: 5e544623312d29b46b382d218d42cc20,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5289214938964278619, guid: 5e544623312d29b46b382d218d42cc20,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1219,6 +1229,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1970542302}
+    - target: {fileID: 7473734558500508607, guid: 5e544623312d29b46b382d218d42cc20,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8777096056332708343, guid: 5e544623312d29b46b382d218d42cc20,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1238,6 +1253,24 @@ GameObject:
 --- !u!1 &349638374 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8531263901051004634, guid: 5e544623312d29b46b382d218d42cc20,
+    type: 3}
+  m_PrefabInstance: {fileID: 349638372}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &349638375 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4018510535760441457, guid: 5e544623312d29b46b382d218d42cc20,
+    type: 3}
+  m_PrefabInstance: {fileID: 349638372}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &349638376 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7473734558500508607, guid: 5e544623312d29b46b382d218d42cc20,
+    type: 3}
+  m_PrefabInstance: {fileID: 349638372}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &349638377 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4806218962364426476, guid: 5e544623312d29b46b382d218d42cc20,
     type: 3}
   m_PrefabInstance: {fileID: 349638372}
   m_PrefabAsset: {fileID: 0}
@@ -1818,6 +1851,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RobotManager (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 925873325794972926, guid: bdb9ad548f73dc547aca6277e618f474,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2738764125884124848, guid: bdb9ad548f73dc547aca6277e618f474,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1868,6 +1906,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8687579759677731595, guid: bdb9ad548f73dc547aca6277e618f474,
+        type: 3}
+      propertyPath: _gunBotPanel
+      value: 
+      objectReference: {fileID: 349638376}
+    - target: {fileID: 8687579759677731595, guid: bdb9ad548f73dc547aca6277e618f474,
+        type: 3}
+      propertyPath: _meleeBotPanel
+      value: 
+      objectReference: {fileID: 349638377}
+    - target: {fileID: 8687579759677731595, guid: bdb9ad548f73dc547aca6277e618f474,
+        type: 3}
+      propertyPath: _kaboomBotPanel
+      value: 
+      objectReference: {fileID: 349638375}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
