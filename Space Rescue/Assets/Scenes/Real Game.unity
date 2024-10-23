@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00014860448, g: 0.00007924404, b: 0.000034361594,
+  m_IndirectSpecularColor: {r: 0.00011523213, g: 0.00008376525, b: 0.000115916984,
     a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -300,35 +300,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7298241273879622761, guid: eac2ab7e78f9426479dbd9cf036c4fe8,
-        type: 3}
-      propertyPath: m_Speed
-      value: 4.5
-      objectReference: {fileID: 0}
     - target: {fileID: 9067155408617356733, guid: eac2ab7e78f9426479dbd9cf036c4fe8,
         type: 3}
       propertyPath: m_Name
       value: MeleeBot
-      objectReference: {fileID: 0}
-    - target: {fileID: 9202191280697303281, guid: eac2ab7e78f9426479dbd9cf036c4fe8,
-        type: 3}
-      propertyPath: speed
-      value: 4.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9202191280697303281, guid: eac2ab7e78f9426479dbd9cf036c4fe8,
-        type: 3}
-      propertyPath: health
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9202191280697303281, guid: eac2ab7e78f9426479dbd9cf036c4fe8,
-        type: 3}
-      propertyPath: maxHealth
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9202191280697303281, guid: eac2ab7e78f9426479dbd9cf036c4fe8,
-        type: 3}
-      propertyPath: _isInitialized
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3562,21 +3537,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: KaboomBot
-      objectReference: {fileID: 0}
-    - target: {fileID: 6603255575593780688, guid: 6f3f573a45282e54bb16963fd58c15f0,
-        type: 3}
-      propertyPath: speed
-      value: 4.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6603255575593780688, guid: 6f3f573a45282e54bb16963fd58c15f0,
-        type: 3}
-      propertyPath: _isInitialized
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7123166891008509698, guid: 6f3f573a45282e54bb16963fd58c15f0,
-        type: 3}
-      propertyPath: m_Speed
-      value: 4.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

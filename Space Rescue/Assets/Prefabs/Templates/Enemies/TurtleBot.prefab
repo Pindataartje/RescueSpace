@@ -105,29 +105,29 @@ MonoBehaviour:
   _targetVector: {x: 0, y: 0, z: 0}
   _distanceFromTarget: 0
   _distanceFromPatrol: 0
-  _patrolReturnDistance: 25
+  _patrolReturnDistance: 23
   _currentPatrol: 0
   _patrolPointCount: 8
-  _patrolRadius: 20
+  _patrolRadius: 18
   _patrolPoints: []
   _healthBar: {fileID: 0}
   _searchTime: 0
-  _timeToSearch: 3
-  _maxSearchCount: 0
-  _searchCount: 2
+  _timeToSearch: 8
+  _maxSearchCount: 6
+  _searchCount: 6
   _detectionHolder: {fileID: 5222762849891520670}
   _originalDetectionScale: {x: 0, y: 0, z: 0}
   _detectableObjects:
   - Player
   - Robot
-  _scaleSpeed: 0
-  _minScale: 0
-  _maxScale: 0
+  _scaleSpeed: 1
+  _minScale: 1
+  _maxScale: 2
   _startSearchPosition: {x: 0, y: 0, z: 0}
   _newRandomPos: 0
-  _searchRadius: 1
+  _searchRadius: 10
   _maxAttackRange: 4.3
-  _minAttackRange: 3
+  _minAttackRange: 1.8
   _preyMask:
     serializedVersion: 2
     m_Bits: 72

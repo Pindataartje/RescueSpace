@@ -23,6 +23,6 @@ MonoBehaviour:
   patrolRadius: 18
   patrolReturnDistance: 23
   patrolPoints: 8
-  searchRadius: 1
-  timeToSearch: 3
-  searchCount: 2
+  searchRadius: 10
+  timeToSearch: 8
+  searchCount: 6

@@ -279,7 +279,8 @@ public class EnemyAI : Entity
 
             _searchRadius = _enemyInfo.searchRadius;
             _timeToSearch = _enemyInfo.timeToSearch;
-            _searchCount = _enemyInfo.searchCount;
+            _maxSearchCount = _enemyInfo.searchCount;
+            _searchCount = _maxSearchCount;
         }
     }
 
@@ -496,6 +497,8 @@ public class EnemyAI : Entity
 
         _searchCount = _maxSearchCount;
 
+        _searchTime = _timeToSearch;
+
         _targetTransform = null;
 
         _startSearchPosition = transform.position;
@@ -505,8 +508,15 @@ public class EnemyAI : Entity
 
     public virtual void Search()
     {
+        if (_targetTransform != null)
+        {
+            Debug.Log("Chase");
+            ChangeState(State.CHASE);
+        }
+
         if (_newRandomPos)
         {
+            Debug.Log("Random pos");
             _agent.SetDestination(_targetVector);
 
             _animator.SetBool("Walking", true);
@@ -543,6 +553,7 @@ public class EnemyAI : Entity
             }
         }
 
+
     }
 
     public virtual void StopSearch()
@@ -563,18 +574,38 @@ public class EnemyAI : Entity
     {
         _newRandomPos = true;
 
-        Vector3 randomOffset = Random.insideUnitSphere * _searchRadius;
-        randomOffset.y = 0;
-        Vector3 randomPosition = _startSearchPosition + randomOffset;
+        // Define a minimum distance to avoid generating points directly under the enemy
+        float minDistanceFromEnemy = 2.0f;  // Adjust this as needed
 
-        if (NavMesh.SamplePosition(randomPosition, out _navmeshHit, _searchRadius, NavMesh.AllAreas))
+        bool foundValidPosition = false;
+        Vector3 randomPosition = Vector3.zero;
+
+        while (!foundValidPosition)
         {
-            _targetVector = _navmeshHit.position;
+            // Generate a random position within the search radius
+            Vector3 randomOffset = Random.insideUnitSphere * _searchRadius;
+            randomOffset.y = 0;  // Ensure the random offset is on the same y-plane
+            randomPosition = _startSearchPosition + randomOffset;
+
+            // Check if the position is on the NavMesh
+            if (NavMesh.SamplePosition(randomPosition, out _navmeshHit, _searchRadius, NavMesh.AllAreas))
+            {
+                _targetVector = _navmeshHit.position;
+
+                // Check if the random position is far enough from the enemy
+                float distanceFromEnemy = Vector3.Distance(_startSearchPosition, _targetVector);
+                if (distanceFromEnemy >= minDistanceFromEnemy)
+                {
+                    foundValidPosition = true;  // Valid position found
+                }
+            }
         }
-        else
+
+        if (!foundValidPosition)
         {
-            Debug.LogWarning("Could not find a valid search position on the navmesh");
+            Debug.LogWarning("Could not find a valid search position on the navmesh after multiple attempts");
         }
+
     }
 
     public virtual void EnterDetection(Transform newDetected)

@@ -68,8 +68,17 @@ public class MeleeBot : RobotAI
     {
         if (!IsAttacking)
         {
+            AttackEffect.enabled = true;
+            AttackEffect.Play();
             StartCoroutine(StartAttacking());
         }
+    }
+
+    public override void StopAttack()
+    {
+        base.StopAttack();
+
+        AttackEffect.Stop();
     }
 
     public override void CheckForEntityInRange(float radius)

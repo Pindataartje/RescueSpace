@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.VFX;
 
 public class RobotAI : Entity
 {
@@ -77,6 +78,10 @@ public class RobotAI : Entity
     { get { return _playerStopDistance; } set { _playerStopDistance = value; } }
 
     [SerializeField] bool _isInsideSquad;
+
+    [SerializeField] VisualEffect _attackEffect;
+    public VisualEffect AttackEffect
+    { get { return _attackEffect; } }
 
     public override void Start()
     {
@@ -359,6 +364,8 @@ public class RobotAI : Entity
         if (_target != null)
         {
             _target.GetComponent<Entity>().TakeDamage(_robotInfo.damage); // this still happens with this because it tries to attack the player ( probably )
+            _attackEffect.enabled = true;
+            _attackEffect.Play();
 
             _bodyAnimator.SetTrigger("Attack");
             _weaponAnimator.SetTrigger("Attack");

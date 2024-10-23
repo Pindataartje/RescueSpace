@@ -53,7 +53,7 @@ MonoBehaviour:
   type: 0
   health: 1
   maxHealth: 1
-  speed: 4
+  speed: 4.5
   rotationSpeed: 0
   damage: 20
   _playManager: {fileID: 0}
@@ -67,6 +67,7 @@ MonoBehaviour:
   _player: {fileID: 0}
   _collider: {fileID: 4245132372291763190}
   _scrapRobot: {fileID: 0}
+  _startUp: 0
   _isAttacking: 0
   _distanceFromTarget: 0
   _checkRadius: 1
@@ -82,9 +83,10 @@ MonoBehaviour:
     type: 3}
   _playerStopDistance: 0
   _isInsideSquad: 0
+  _attackEffect: {fileID: 0}
   _currentState: 0
   _range: 3
-  _attackExplosion: {fileID: 1028437674367691199, guid: 6bacb6125f61cde488594019b9d0084a,
+  _attackExplosion: {fileID: 5265029659218010531, guid: 67e66590328bca64b8f705018b0f3b85,
     type: 3}
   enemiesBeenAttacked: []
 --- !u!65 &4245132372291763190
@@ -118,7 +120,7 @@ NavMeshAgent:
   m_Enabled: 0
   m_AgentTypeID: -334000983
   m_Radius: 0.45
-  m_Speed: 4
+  m_Speed: 4.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -149,7 +151,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.75, y: 0.5, z: 0.75}
+  m_Size: {x: 0.9, y: 0.5, z: 0.9}
   m_Center: {x: 0, y: 0.15, z: 0}
 --- !u!54 &4959965405089088270
 Rigidbody:

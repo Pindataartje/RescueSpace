@@ -126,8 +126,6 @@ public class TurtleBot : EnemyAI
             _hideTime += Time.deltaTime;
         }
 
-
-        // DOES NOT WORK RIGHT NOW ???
         if (_hideTime >= _maxHideTime && DistanceFromTarget <= 0.8f && !_newPosition)
         {
             _newPosition = true;
@@ -172,7 +170,10 @@ public class TurtleBot : EnemyAI
 
     public override void Chase()
     {
-        base.Chase();
+        if (!IsHiding)
+        {
+            base.Chase();
+        }
     }
 
     public override void StopChase()
@@ -191,7 +192,10 @@ public class TurtleBot : EnemyAI
 
     public override void Search()
     {
-        base.Search();
+        if (!IsHiding)
+        {
+            base.Search();
+        }
     }
 
     public override void StopSearch()
@@ -208,6 +212,9 @@ public class TurtleBot : EnemyAI
     {
         base.EnterDetection(newDetected);
 
+        Agent.enabled = true;
+
+        Animator.SetBool("Hide", false);
         Animator.SetBool("Power", true);
     }
 
@@ -240,6 +247,14 @@ public class TurtleBot : EnemyAI
     public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
+
+        if (IsHiding || !HasPoweredOn)
+        {
+            Animator.SetBool("Power", true);
+            Animator.SetBool("Hide", false);
+
+            ChangeState(State.SEARCH);
+        }
     }
 
     public override void GeneratePatrol(int patrolPoints)

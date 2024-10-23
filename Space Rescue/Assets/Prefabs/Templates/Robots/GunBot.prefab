@@ -194,6 +194,7 @@ MonoBehaviour:
     type: 3}
   _playerStopDistance: 0
   _isInsideSquad: 0
+  _attackEffect: {fileID: 8019643360214982928}
   _currentState: 0
 --- !u!65 &5668596216918850583
 BoxCollider:

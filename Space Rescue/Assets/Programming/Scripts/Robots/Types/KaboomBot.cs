@@ -47,15 +47,12 @@ public class KaboomBot : RobotAI
     public override void StartAttack()
     {
         _currentState = State.ATTACK;
+        Agent.enabled = false;
 
         Vector3 direction = Target.position - transform.position;
 
         if (Physics.Raycast(transform.position, direction, out RaycastHit hit, 4f, DetectionLayer))
         {
-            Target = Target.GetComponentInParent<EnemyAI>().transform;
-
-            Target.GetComponent<EnemyAI>().AttachRobot(this);
-
             Debug.Log("Raycast hit: " + hit.collider.name);
 
             transform.SetParent(Target, true);
@@ -78,9 +75,15 @@ public class KaboomBot : RobotAI
         else
         {
             Debug.Log("No raycast hit detected.");
+
+            ChangeState(State.IDLE);
         }
+        if (Target != null)
+        {
+            Target = Target.GetComponentInParent<EnemyAI>().transform;
 
-
+            Target.GetComponent<EnemyAI>().AttachRobot(this);
+        }
     }
 
     [SerializeField] List<EnemyAI> enemiesBeenAttacked = new();
