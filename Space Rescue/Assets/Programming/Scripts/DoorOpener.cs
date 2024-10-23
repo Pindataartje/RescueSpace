@@ -8,6 +8,7 @@ public class DoorOpener : MonoBehaviour
 
     [SerializeField] List<Entity> _entitiesInRange;
 
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Entity>(out Entity entity))
