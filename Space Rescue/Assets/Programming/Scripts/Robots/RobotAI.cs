@@ -89,6 +89,7 @@ public class RobotAI : Entity
     [SerializeField] AudioClip _attackClip;
     public AudioClip AttackClip
     { get { return _attackClip; } }
+    [SerializeField] AudioClip _deathClip;
 
     public override void Start()
     {
@@ -127,6 +128,8 @@ public class RobotAI : Entity
         GameObject effect = Instantiate(_deathEffectPrefab);
 
         effect.transform.position = transform.position;
+        effect.GetComponent<AudioSource>().clip = _deathClip;
+        effect.GetComponent<AudioSource>().Play();
 
         Destroy(effect, 1f);
 

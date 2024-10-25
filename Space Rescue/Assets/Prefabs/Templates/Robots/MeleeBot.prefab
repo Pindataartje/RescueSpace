@@ -198,6 +198,7 @@ MonoBehaviour:
   _attackEffect: {fileID: 4150226167477248397}
   _attackSource: {fileID: 6722265875091049775}
   _attackClip: {fileID: 8300000, guid: 5cf4db3631dfcc0448a24da981cae18c, type: 3}
+  _deathClip: {fileID: 8300000, guid: d158f3d5e64000940a70d8b5fb6af23e, type: 3}
   _currentState: 0
 --- !u!65 &1227535519904105975
 BoxCollider:

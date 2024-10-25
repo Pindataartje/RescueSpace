@@ -192,6 +192,11 @@ public class EnemyAI : Entity
 
         _healthBar.maxValue = maxHealth;
 
+        if (_animator != null)
+        {
+            _animator.SetBool("IsAlive", true);
+        }
+
         ChangeState(State.PATROL);
     }
 
@@ -222,6 +227,7 @@ public class EnemyAI : Entity
             _playManager.OnEnemyDeath(this);
 
             Debug.Log("Die");
+            _animator.SetBool("IsAlive", false);
             _animator.SetTrigger("Die");
 
         }

@@ -86,6 +86,7 @@ MonoBehaviour:
   _attackEffect: {fileID: 0}
   _attackSource: {fileID: 0}
   _attackClip: {fileID: 8300000, guid: d158f3d5e64000940a70d8b5fb6af23e, type: 3}
+  _deathClip: {fileID: 8300000, guid: d158f3d5e64000940a70d8b5fb6af23e, type: 3}
   _currentState: 0
   _range: 3
   _attackExplosion: {fileID: 5265029659218010531, guid: 67e66590328bca64b8f705018b0f3b85,
