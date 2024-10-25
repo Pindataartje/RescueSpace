@@ -197,7 +197,7 @@ MonoBehaviour:
   _isInsideSquad: 0
   _attackEffect: {fileID: 4150226167477248397}
   _attackSource: {fileID: 6722265875091049775}
-  _attackClip: {fileID: 0}
+  _attackClip: {fileID: 8300000, guid: 5cf4db3631dfcc0448a24da981cae18c, type: 3}
   _currentState: 0
 --- !u!65 &1227535519904105975
 BoxCollider:
@@ -301,10 +301,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 3532030446744399003, guid: 2ba17c2ae46e42c41a55b0c62c8b205c,
     type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 5cf4db3631dfcc0448a24da981cae18c, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0.2
+  m_Pitch: 0.75
   Loop: 1
   Mute: 0
   Spatialize: 0
