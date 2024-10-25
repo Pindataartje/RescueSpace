@@ -70,6 +70,7 @@ public class MeleeBot : RobotAI
         {
             AttackEffect.enabled = true;
             AttackEffect.Play();
+            AttackSource.Play();
             StartCoroutine(StartAttacking());
         }
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -28,6 +29,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool _isMouseMovement;
 
     [SerializeField] bool _isThrow;
+
+    [SerializeField] bool _canThrow;
 
     [SerializeField] float _scrollTypes;
 
@@ -285,7 +288,16 @@ public class PlayerController : MonoBehaviour
             _animator.SetBool("Walking", false);
         }
 
-        if (_isThrow)
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            _canThrow = false;
+        }
+        else
+        {
+            _canThrow = true;
+        }
+
+        if (_isThrow && _canThrow)
         {
             HoldThrow();
 
@@ -354,35 +366,41 @@ public class PlayerController : MonoBehaviour
 
     void StartThrow(InputAction.CallbackContext context)
     {
-        if (_robotManager.RobotsInSquad.Count > 0)
+        if (_canThrow)
         {
-            if (_currentSquadNumber >= 0)
+            if (_robotManager.RobotsInSquad.Count > 0)
             {
-                Debug.Log($"Cant throw squad number is : {_currentSquadNumber} and squad count is {_robotManager.RobotsInSquad.Count}");
-
-                if (_robotManager.RobotsInSquad[_currentSquadNumber].Count > 0)
+                if (_currentSquadNumber >= 0)
                 {
-                    _currentRobot = _robotManager.RobotsInSquad[_currentSquadNumber][0].gameObject;
-                    _robotManager.RemoveRobotFromSquad(_robotManager.RobotsInSquad[_currentSquadNumber][0]);
+                    Debug.Log($"Cant throw squad number is : {_currentSquadNumber} and squad count is {_robotManager.RobotsInSquad.Count}");
+
+                    if (_robotManager.RobotsInSquad[_currentSquadNumber].Count > 0)
+                    {
+                        _currentRobot = _robotManager.RobotsInSquad[_currentSquadNumber][0].gameObject;
+                        _robotManager.RemoveRobotFromSquad(_robotManager.RobotsInSquad[_currentSquadNumber][0]);
+                    }
+                }
+                else
+                {
+                    Debug.Log($"Cant throw squad number is : {_currentSquadNumber}");
                 }
             }
-            else
+
+            if (_currentRobot != null)
             {
-                Debug.Log($"Cant throw squad number is : {_currentSquadNumber}");
+                _isThrow = true;
+
+                _animator.SetTrigger("Hold");
+
+                _currentRobot.GetComponent<Collider>().isTrigger = true; // maybe do in start throw
+                _currentRobot.transform.position = _throwSpot.position;
+                _currentRobot.GetComponent<RobotAI>().ChangeState(RobotAI.State.THROWN);
             }
         }
-
-        if (_currentRobot != null)
+        else
         {
-            _isThrow = true;
-
-            _animator.SetTrigger("Hold");
-
-            _currentRobot.GetComponent<Collider>().isTrigger = true; // maybe do in start throw
-            _currentRobot.transform.position = _throwSpot.position;
-            _currentRobot.GetComponent<RobotAI>().ChangeState(RobotAI.State.THROWN);
+            Debug.Log("Cant throw");
         }
-
     }
 
     void HoldThrow() // maybe change robot state

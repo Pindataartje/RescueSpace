@@ -44,7 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9c7739ed29a3e0478b9d6e71235df56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 0}
   unsortedSquad: []
   _numberOfRobotsInSquad: 0
   _currentRobot: {fileID: 0}
   _currentSquad: 0
+  _meleeBotPanel: {fileID: 0}
+  _gunBotPanel: {fileID: 0}
+  _kaboomBotPanel: {fileID: 0}

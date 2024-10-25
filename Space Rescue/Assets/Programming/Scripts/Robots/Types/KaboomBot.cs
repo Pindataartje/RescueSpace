@@ -111,6 +111,8 @@ public class KaboomBot : RobotAI
         GameObject effect = Instantiate(_attackExplosion);
 
         effect.transform.position = transform.position;
+        effect.GetComponent<AudioSource>().clip = AttackClip;
+        effect.GetComponent<AudioSource>().Play();
 
         Destroy(effect, 1f);
 

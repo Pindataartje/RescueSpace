@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3056637571452732054
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3004200311808133648}
+  m_Layer: 6
+  m_Name: CollectPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3004200311808133648
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3056637571452732054}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1489931521255693271}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5550154956106475446
 GameObject:
   m_ObjectHideFlags: 0
@@ -33,6 +64,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9103592291584186644}
+  - {fileID: 3004200311808133648}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7279389844502198655
@@ -80,13 +112,17 @@ MonoBehaviour:
   _deathEffectPrefab: {fileID: 0}
   _playerStopDistance: 0
   _isInsideSquad: 0
-  _currentState: 1
-  _spawnTime: 0
-  _robotPrefabs: []
+  _attackEffect: {fileID: 0}
+  _currentState: 0
+  _spawnTime: 3
+  _robotPrefabs:
+  - {fileID: 9067155408617356733, guid: eac2ab7e78f9426479dbd9cf036c4fe8, type: 3}
+  - {fileID: 8273847429328212341, guid: 6ee738e4bf16d384589041f509697db2, type: 3}
+  - {fileID: 3335178299160948188, guid: 6f3f573a45282e54bb16963fd58c15f0, type: 3}
   _robotToSpawn: {fileID: 0}
   _spawnPosition: {fileID: 6974003063184881083}
   _grabBone: {fileID: 8320599676779650267}
-  _grabPosition: {fileID: 0}
+  _grabPosition: {fileID: 3004200311808133648}
   _scrapToCollect: {fileID: 0}
   _stopDistance: 0
   _isSpawning: 0
@@ -99,7 +135,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5550154956106475446}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: -334000983
   m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
@@ -128,7 +164,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -820,8 +856,32 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6974003063184881083}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8751146669081916596, guid: 5a6b294e1818db14481fbcc618afae19,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1639960406090849607}
   m_SourcePrefab: {fileID: 100100000, guid: 5a6b294e1818db14481fbcc618afae19, type: 3}
+--- !u!1 &1765854128471668056 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8751146669081916596, guid: 5a6b294e1818db14481fbcc618afae19,
+    type: 3}
+  m_PrefabInstance: {fileID: 7058199991236264428}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1639960406090849607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765854128471668056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9a3df93ce65fde46b1e1638dbf08bd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scrapRobot: {fileID: 7279389844502198655}
+  _robot: {fileID: 0}
 --- !u!95 &4213058603054799608 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6594405670176529172, guid: 5a6b294e1818db14481fbcc618afae19,

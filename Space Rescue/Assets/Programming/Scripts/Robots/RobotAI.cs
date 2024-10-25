@@ -83,6 +83,13 @@ public class RobotAI : Entity
     public VisualEffect AttackEffect
     { get { return _attackEffect; } }
 
+    [SerializeField] AudioSource _attackSource;
+    public AudioSource AttackSource
+    { get { return _attackSource; } }
+    [SerializeField] AudioClip _attackClip;
+    public AudioClip AttackClip
+    { get { return _attackClip; } }
+
     public override void Start()
     {
         _playManager = FindObjectOfType<PlayManager>();
@@ -366,6 +373,7 @@ public class RobotAI : Entity
             _target.GetComponent<Entity>().TakeDamage(_robotInfo.damage); // this still happens with this because it tries to attack the player ( probably )
             _attackEffect.enabled = true;
             _attackEffect.Play();
+            _attackSource.Play();
 
             _bodyAnimator.SetTrigger("Attack");
             _weaponAnimator.SetTrigger("Attack");

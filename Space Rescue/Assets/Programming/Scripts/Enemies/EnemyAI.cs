@@ -158,6 +158,9 @@ public class EnemyAI : Entity
 
     #endregion
 
+    [SerializeField] AudioSource _enemyAudioSource;
+    [SerializeField] AudioClip _deathExplosionClip;
+
     public override void Start()
     {
         _playManager = FindObjectOfType<PlayManager>();
@@ -234,6 +237,8 @@ public class EnemyAI : Entity
         GameObject effect = Instantiate(_deathEffectPrefab);
 
         effect.transform.position = transform.position;
+        effect.GetComponent<AudioSource>().clip = _deathExplosionClip;
+        effect.GetComponent<AudioSource>().Play();
 
         Destroy(effect, 1f);
 

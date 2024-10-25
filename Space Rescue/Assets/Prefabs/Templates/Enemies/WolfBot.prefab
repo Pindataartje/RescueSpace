@@ -498,6 +498,8 @@ MonoBehaviour:
   _deathEffectPrefab: {fileID: 8043584368744636961, guid: 953c254cc5e763b4c8e8bc67df3c95c3,
     type: 3}
   _attachedRobots: []
+  _enemyAudioSource: {fileID: 0}
+  _deathExplosionClip: {fileID: 8300000, guid: 1dae19e150ff5dd4f9b994c263dcba7e, type: 3}
   _gizmoSize: 0.3
 --- !u!195 &2090475737085718487
 NavMeshAgent:
@@ -654,10 +656,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3147061256548701990, guid: 00d5c106fd931cd458ba716cb6603184,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3189736787058206180, guid: 00d5c106fd931cd458ba716cb6603184,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5619568371534315240, guid: 00d5c106fd931cd458ba716cb6603184,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586126036631978769, guid: 00d5c106fd931cd458ba716cb6603184,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8742528136779632295, guid: 00d5c106fd931cd458ba716cb6603184,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8967957227969978452, guid: 00d5c106fd931cd458ba716cb6603184,
         type: 3}
       propertyPath: m_Name
       value: HealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 8967957227969978452, guid: 00d5c106fd931cd458ba716cb6603184,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

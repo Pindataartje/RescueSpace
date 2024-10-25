@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5134824822118604937}
   - component: {fileID: 1566669464405222668}
+  - component: {fileID: 2817248353048607173}
   m_Layer: 0
   m_Name: GameManger
   m_TagString: Untagged
@@ -45,9 +46,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   killedAllEnemies: 0
+  _killCount: 0
+  _enemyCount: 0
+  _killCountTxt: {fileID: 0}
   _enemies: []
   _robots: []
   _scrapRobot: {fileID: 0}
   _navigationSystem: {fileID: 0}
   _winScreen: {fileID: 0}
   _loseScreen: {fileID: 0}
+--- !u!114 &2817248353048607173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031085901103199043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb8c3c6396127634092c51d041c1d803, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pausePanel: {fileID: 0}
+  _losePanel: {fileID: 0}
+  _winPanel: {fileID: 0}
