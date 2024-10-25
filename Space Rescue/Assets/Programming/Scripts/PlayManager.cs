@@ -23,10 +23,11 @@ public class PlayManager : MonoBehaviour
     [SerializeField] GameObject _winScreen;
     [SerializeField] GameObject _loseScreen;
 
-    [SerializeField] AudioSource gameEndSource;
+    [SerializeField] AudioSource _musicSource;
+    [SerializeField] AudioSource _gameEndSource;
 
-    [SerializeField] AudioClip winClip;
-    [SerializeField] AudioClip loseClip;
+    [SerializeField] AudioClip _winClip;
+    [SerializeField] AudioClip _loseClip;
 
 
     private void Awake()
@@ -104,8 +105,10 @@ public class PlayManager : MonoBehaviour
 
         _loseScreen.SetActive(true);
 
-        gameEndSource.clip = loseClip;
-        gameEndSource.Play();
+        _gameEndSource.clip = _loseClip;
+        _gameEndSource.Play();
+
+        _musicSource.Stop();
 
         Cursor.visible = true;
     }
@@ -114,8 +117,10 @@ public class PlayManager : MonoBehaviour
     {
         _navigationSystem.canWin = false;
 
-        gameEndSource.clip = winClip;
-        gameEndSource.Play();
+        _gameEndSource.clip = _winClip;
+        _gameEndSource.Play();
+
+        _musicSource.Stop();
 
         _winScreen.SetActive(true);
 

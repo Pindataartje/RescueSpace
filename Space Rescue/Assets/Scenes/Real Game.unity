@@ -539,6 +539,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1921284721}
   m_SourcePrefab: {fileID: 100100000, guid: 004e271c203668e4db7524d0c54b94ae, type: 3}
+--- !u!82 &145123329 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1989205342702746590, guid: 004e271c203668e4db7524d0c54b94ae,
+    type: 3}
+  m_PrefabInstance: {fileID: 145123328}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &232853210 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7279389844502198655, guid: fbfe4f00f63d22644bdbb48b045a55c3,
@@ -3434,7 +3440,17 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: d901913842ae8db40b500e2adb2669e2, type: 3}
     - target: {fileID: 1566669464405222668, guid: 2ce5143bcbf8b11439a0e948168b6346,
         type: 3}
+      propertyPath: _winClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d901913842ae8db40b500e2adb2669e2, type: 3}
+    - target: {fileID: 1566669464405222668, guid: 2ce5143bcbf8b11439a0e948168b6346,
+        type: 3}
       propertyPath: loseClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 036363d8b1eaeb84fb6da7a4d677946f, type: 3}
+    - target: {fileID: 1566669464405222668, guid: 2ce5143bcbf8b11439a0e948168b6346,
+        type: 3}
+      propertyPath: _loseClip
       value: 
       objectReference: {fileID: 8300000, guid: 036363d8b1eaeb84fb6da7a4d677946f, type: 3}
     - target: {fileID: 1566669464405222668, guid: 2ce5143bcbf8b11439a0e948168b6346,
@@ -3454,12 +3470,22 @@ PrefabInstance:
       objectReference: {fileID: 232853210}
     - target: {fileID: 1566669464405222668, guid: 2ce5143bcbf8b11439a0e948168b6346,
         type: 3}
+      propertyPath: _musicSource
+      value: 
+      objectReference: {fileID: 145123329}
+    - target: {fileID: 1566669464405222668, guid: 2ce5143bcbf8b11439a0e948168b6346,
+        type: 3}
       propertyPath: _killCountTxt
       value: 
       objectReference: {fileID: 1232366741}
     - target: {fileID: 1566669464405222668, guid: 2ce5143bcbf8b11439a0e948168b6346,
         type: 3}
       propertyPath: gameEndSource
+      value: 
+      objectReference: {fileID: 1970542305}
+    - target: {fileID: 1566669464405222668, guid: 2ce5143bcbf8b11439a0e948168b6346,
+        type: 3}
+      propertyPath: _gameEndSource
       value: 
       objectReference: {fileID: 1970542305}
     - target: {fileID: 1566669464405222668, guid: 2ce5143bcbf8b11439a0e948168b6346,
