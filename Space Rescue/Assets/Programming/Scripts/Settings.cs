@@ -30,6 +30,9 @@ public class Settings : MonoBehaviour
     [SerializeField] Slider _fpsSlider;
     [SerializeField] TMP_InputField _fpsInput;
 
+    [SerializeField] GameObject _screenPanel;
+    [SerializeField] GameObject _audioPanel;
+
 
 
     // Start is called before the first frame update
@@ -37,23 +40,32 @@ public class Settings : MonoBehaviour
     {
         GetAndSetResolution();
 
-
         #region Audio Start
+
         _audioMixer.SetFloat("MasterVol", PlayerPrefs.GetFloat("MasterVol"));
         _masterSlider.value = PlayerPrefs.GetFloat("MasterVol");
-        _masterInput.text = PlayerPrefs.GetFloat("MasterVol").ToString("0");
+        float masterTemp = PlayerPrefs.GetFloat("MasterVol");
+        masterTemp *= 100;
+        _masterInput.text = masterTemp.ToString("0");
 
         _audioMixer.SetFloat("MusicVol", PlayerPrefs.GetFloat("MusicVol"));
         _musicSlider.value = PlayerPrefs.GetFloat("MusicVol");
-        _musicInput.text = PlayerPrefs.GetFloat("MusicVol").ToString("0");
+        float musicTemp = PlayerPrefs.GetFloat("MusicVol");
+        musicTemp *= 100;
+        _musicInput.text = musicTemp.ToString("0");
 
         _audioMixer.SetFloat("SFXVol", PlayerPrefs.GetFloat("SfxVol"));
         _sfxSlider.value = PlayerPrefs.GetFloat("SfxVol");
-        _sfxInput.text = PlayerPrefs.GetFloat("SfxVol").ToString("0");
+        float sfxTemp = PlayerPrefs.GetFloat("SfxVol");
+        sfxTemp *= 100;
+        _sfxInput.text = sfxTemp.ToString("0");
 
         _audioMixer.SetFloat("RobotVol", PlayerPrefs.GetFloat("RobotVol"));
         _robotSlider.value = PlayerPrefs.GetFloat("RobotVol");
-        _robotInput.text = PlayerPrefs.GetFloat("RobotVol").ToString("0");
+        float robotTemp = PlayerPrefs.GetFloat("RobotVol");
+        robotTemp *= 100;
+        _robotInput.text = robotTemp.ToString("0");
+
         #endregion
     }
 
@@ -79,9 +91,9 @@ public class Settings : MonoBehaviour
     }
     public void SetRobotVol(float robotLvl)
     {
-        _audioMixer.SetFloat("SFXVol", Mathf.Log10(robotLvl) * 20);
-        PlayerPrefs.SetFloat("SfxVol", robotLvl);
-        _sfxInput.text = (_sfxSlider.value * 100).ToString("0");
+        _audioMixer.SetFloat("RobotVol", Mathf.Log10(robotLvl) * 20);
+        PlayerPrefs.SetFloat("RobotVol", robotLvl);
+        _robotInput.text = (_robotSlider.value * 100).ToString("0");
     }
 
     public void SetMasterVolInput()
@@ -317,6 +329,16 @@ public class Settings : MonoBehaviour
 
     #endregion
 
+    public void ScreenBtn()
+    {
+        _screenPanel.SetActive(true);
+        _audioPanel.SetActive(false);
+    }
 
+    public void AudioBtn()
+    {
+        _screenPanel.SetActive(false);
+        _audioPanel.SetActive(true);
+    }
 
 }
