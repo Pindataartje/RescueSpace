@@ -108,11 +108,13 @@ public class Scrap : Entity
                 {
                     if (_atPos[i] != null)
                     {
+                        _atPos[i].transform.localScale = Vector3.one;
                         _atPos[i].CollectScrapAtBase();
                         _atPos[i] = null;
 
                         if (_holdPos[i] != null)
                         {
+                            _holdPos[i].transform.localScale = Vector3.one;
                             _holdPos[i].CollectScrapAtBase();
                             _holdPos[i] = null;
                         }
@@ -123,11 +125,13 @@ public class Scrap : Entity
                 {
                     if (_extraAtPos[i] != null)
                     {
+                        _extraAtPos[i].transform.localScale = Vector3.one;
                         _extraAtPos[i].CollectScrapAtBase();
                         _extraAtPos[i] = null;
 
                         if (_extraHoldPos[i] != null)
                         {
+                            _extraHoldPos[i].transform.localScale = Vector3.one;
                             _extraHoldPos[i].CollectScrapAtBase();
                             _extraHoldPos[i] = null;
                         }
