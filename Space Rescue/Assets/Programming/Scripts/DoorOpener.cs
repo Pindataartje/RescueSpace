@@ -12,6 +12,7 @@ public class DoorOpener : MonoBehaviour
 
     [SerializeField] bool _isOpen;
 
+    [SerializeField] bool player;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -33,6 +34,22 @@ public class DoorOpener : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            player = true;
+        }
+
+        if (other.TryGetComponent<Entity>(out Entity entity))
+        {
+            if (!_entitiesInRange.Contains(entity))
+            {
+                _entitiesInRange.Add(entity);
+            }
+        }
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.TryGetComponent<Entity>(out Entity entity))
@@ -43,7 +60,12 @@ public class DoorOpener : MonoBehaviour
             }
         }
 
-        if (_entitiesInRange.Count <= 0 && _isOpen)
+        if (other.CompareTag("Player"))
+        {
+            player = false;
+        }
+
+        if (_entitiesInRange.Count <= 0 && _isOpen && !player)
         {
             _isOpen = false;
             _doorAnimator.SetBool("Open", false);

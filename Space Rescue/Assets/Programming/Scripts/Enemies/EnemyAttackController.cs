@@ -64,6 +64,9 @@ public class EnemyAttackController : MonoBehaviour
     public void SmashStart()
     {
         _attacks[1].DoAttack();
+
+        attackAudioS.clip = attackClip;
+        attackAudioS.Play();
     }
 
     public void SmashStop()

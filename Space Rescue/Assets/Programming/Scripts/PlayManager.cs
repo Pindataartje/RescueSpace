@@ -71,7 +71,7 @@ public class PlayManager : MonoBehaviour
             _killCountTxt.text = $"Enemies left: {_enemyCount - _killCount}/{_enemyCount}";
         }
 
-        if (_enemyCount == 0)
+        if (_enemyCount <= 0)
         {
             _killCountTxt.text = $"Go to the cockpit console";
         }
@@ -96,7 +96,7 @@ public class PlayManager : MonoBehaviour
             _robots.Remove(robot);
         }
 
-        if (_robots.Count == 0)
+        if (_robots.Count <= 1)
         {
             RobotFailSafe();
         }

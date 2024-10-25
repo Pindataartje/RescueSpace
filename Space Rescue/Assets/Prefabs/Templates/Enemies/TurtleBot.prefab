@@ -139,6 +139,8 @@ MonoBehaviour:
   _attachedRobots: []
   _enemyAudioSource: {fileID: 6439151633272133635}
   _deathExplosionClip: {fileID: 8300000, guid: 1dae19e150ff5dd4f9b994c263dcba7e, type: 3}
+  _deathClip: {fileID: 8300000, guid: d044545060f8d744da24b92f41e3ebdf, type: 3}
+  _attackReadyClip: {fileID: 8300000, guid: d71a702815ff7d44892c22ea52d4713c, type: 3}
   _gizmoSize: 0.3
   _isHiding: 0
   _preyInRange: 0
@@ -1124,6 +1126,8 @@ MonoBehaviour:
   - Attack
   - Attack2
   _animator: {fileID: 5991455134888532697}
+  attackAudioS: {fileID: 0}
+  attackClip: {fileID: 0}
 --- !u!4 &5931449577114392615 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1961647514777149023, guid: 156d03722f0210d4ab18554a0478a25c,

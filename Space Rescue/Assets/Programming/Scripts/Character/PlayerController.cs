@@ -458,19 +458,25 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator ArcMovement(Vector3 start, Vector3 target, GameObject robot, float duration)
     {
-        float timeElapsed = 0f;
-        Vector3 peak = (start + target) / 2f + Vector3.up * 5f;
-
-        while (timeElapsed < duration)
+        if (robot != null)
         {
-            timeElapsed += Time.deltaTime;
+            float timeElapsed = 0f;
+            Vector3 peak = (start + target) / 2f + Vector3.up * 5f;
 
-            float t = timeElapsed / duration;
-            Vector3 currentPos = CalculateParabolicPosition(start, peak, target, t);
+            while (timeElapsed < duration)
+            {
+                timeElapsed += Time.deltaTime;
 
-            robot.transform.position = currentPos;
+                float t = timeElapsed / duration;
+                Vector3 currentPos = CalculateParabolicPosition(start, peak, target, t);
 
-            yield return null;
+                if (robot != null)
+                {
+                    robot.transform.position = currentPos;
+                }
+
+                yield return null;
+            }
         }
     }
 

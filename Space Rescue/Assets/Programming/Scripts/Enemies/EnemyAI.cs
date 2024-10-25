@@ -162,6 +162,8 @@ public class EnemyAI : Entity
     public AudioSource EnemyAudioSource
     { get { return _enemyAudioSource; } }
     [SerializeField] AudioClip _deathExplosionClip;
+    [SerializeField] AudioClip _deathClip;
+    [SerializeField] AudioClip _attackReadyClip;
 
     public override void Start()
     {
@@ -214,6 +216,11 @@ public class EnemyAI : Entity
     {
         if (isAlive)
         {
+            if (_deathClip != null)
+            {
+                _enemyAudioSource.clip = _deathClip;
+                _enemyAudioSource.Play();
+            }
             isAlive = false;
 
             for (int i = 0; i < _attachedRobots.Count; i++)
@@ -684,6 +691,11 @@ public class EnemyAI : Entity
 
                     _animator.SetBool("Walking", false);
                     _attackController.DoRandomAttack();
+                    if (_attackReadyClip != null)
+                    {
+                        _enemyAudioSource.clip = _attackReadyClip;
+                        _enemyAudioSource.Play();
+                    }
                 }
             }
             else if (!_isAttacking)

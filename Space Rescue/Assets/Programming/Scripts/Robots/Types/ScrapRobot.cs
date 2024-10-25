@@ -203,7 +203,7 @@ public class ScrapRobot : RobotAI
         {
             GameObject newRobot = Instantiate(_robotPrefabs[0]);
 
-            newRobot.GetComponent<Rigidbody>().position = _spawnPosition.position;
+            newRobot.transform.position = _spawnPosition.position;
 
             PlayManager.OnRobotSpawned(newRobot.GetComponent<RobotAI>());
         }
