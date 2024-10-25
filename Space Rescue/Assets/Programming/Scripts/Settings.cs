@@ -42,56 +42,101 @@ public class Settings : MonoBehaviour
 
         #region Audio Start
 
-        _audioMixer.SetFloat("MasterVol", PlayerPrefs.GetFloat("MasterVol"));
-        _masterSlider.value = PlayerPrefs.GetFloat("MasterVol");
-        float masterTemp = PlayerPrefs.GetFloat("MasterVol");
-        masterTemp *= 100;
-        _masterInput.text = masterTemp.ToString("0");
+        // Master Volume
+        float masterVol = PlayerPrefs.GetFloat("MasterVol", 1f);
+        InitializeVolume("MasterVol", masterVol, _masterSlider, _masterInput);
 
-        _audioMixer.SetFloat("MusicVol", PlayerPrefs.GetFloat("MusicVol"));
-        _musicSlider.value = PlayerPrefs.GetFloat("MusicVol");
-        float musicTemp = PlayerPrefs.GetFloat("MusicVol");
-        musicTemp *= 100;
-        _musicInput.text = musicTemp.ToString("0");
+        // Music Volume
+        float musicVol = PlayerPrefs.GetFloat("MusicVol", 1f);
+        InitializeVolume("MusicVol", musicVol, _musicSlider, _musicInput);
 
-        _audioMixer.SetFloat("SFXVol", PlayerPrefs.GetFloat("SfxVol"));
-        _sfxSlider.value = PlayerPrefs.GetFloat("SfxVol");
-        float sfxTemp = PlayerPrefs.GetFloat("SfxVol");
-        sfxTemp *= 100;
-        _sfxInput.text = sfxTemp.ToString("0");
+        // SFX Volume
+        float sfxVol = PlayerPrefs.GetFloat("SfxVol", 1f);
+        InitializeVolume("SFXVol", sfxVol, _sfxSlider, _sfxInput);
 
-        _audioMixer.SetFloat("RobotVol", PlayerPrefs.GetFloat("RobotVol"));
-        _robotSlider.value = PlayerPrefs.GetFloat("RobotVol");
-        float robotTemp = PlayerPrefs.GetFloat("RobotVol");
-        robotTemp *= 100;
-        _robotInput.text = robotTemp.ToString("0");
+        // Robot Volume
+        float robotVol = PlayerPrefs.GetFloat("RobotVol", 1f);
+        InitializeVolume("RobotVol", robotVol, _robotSlider, _robotInput);
 
         #endregion
+    }
+
+    void InitializeVolume(string volumeParameter, float volumeLevel, Slider slider, TMP_InputField inputField)
+    {
+        // Set volume based on whether volume level is zero or non-zero
+        if (volumeLevel > 0)
+        {
+            _audioMixer.SetFloat(volumeParameter, Mathf.Log10(volumeLevel) * 20);
+        }
+        else
+        {
+            _audioMixer.SetFloat(volumeParameter, -80f); // Minimum dB level when volume level is 0
+        }
+
+        // Set slider and input field values
+        if (slider != null)
+        {
+            slider.value = volumeLevel;
+        }
+        if (inputField != null)
+        {
+            inputField.text = (volumeLevel * 100).ToString("0");
+        }
     }
 
     #region Audio
     public void SetMasterVol(float masterLvl)
     {
-        _audioMixer.SetFloat("MasterVol", Mathf.Log10(masterLvl) * 20);
+        if (masterLvl > 0)
+        {
+            _audioMixer.SetFloat("MasterVol", Mathf.Log10(masterLvl) * 20);
+        }
+        else
+        {
+            _audioMixer.SetFloat("MasterVol", -80f); // Set to a minimum dB level when slider is at 0
+        }
         PlayerPrefs.SetFloat("MasterVol", masterLvl);
         _masterInput.text = (_masterSlider.value * 100).ToString("0");
     }
 
     public void SetMusicVol(float musicLvl)
     {
-        _audioMixer.SetFloat("MusicVol", Mathf.Log10(musicLvl) * 20);
+        if (musicLvl > 0)
+        {
+            _audioMixer.SetFloat("MusicVol", Mathf.Log10(musicLvl) * 20);
+        }
+        else
+        {
+            _audioMixer.SetFloat("MusicVol", -80f); // Set to a minimum dB level when slider is at 0
+        }
         PlayerPrefs.SetFloat("MusicVol", musicLvl);
         _musicInput.text = (_musicSlider.value * 100).ToString("0");
     }
+
     public void SetSFXVol(float sfxLvl)
     {
-        _audioMixer.SetFloat("SFXVol", Mathf.Log10(sfxLvl) * 20);
+        if (sfxLvl > 0)
+        {
+            _audioMixer.SetFloat("SFXVol", Mathf.Log10(sfxLvl) * 20);
+        }
+        else
+        {
+            _audioMixer.SetFloat("SFXVol", -80f); // Set to a minimum dB level when slider is at 0
+        }
         PlayerPrefs.SetFloat("SfxVol", sfxLvl);
         _sfxInput.text = (_sfxSlider.value * 100).ToString("0");
     }
+
     public void SetRobotVol(float robotLvl)
     {
-        _audioMixer.SetFloat("RobotVol", Mathf.Log10(robotLvl) * 20);
+        if (robotLvl > 0)
+        {
+            _audioMixer.SetFloat("RobotVol", Mathf.Log10(robotLvl) * 20);
+        }
+        else
+        {
+            _audioMixer.SetFloat("RobotVol", -80f); // Set to a minimum dB level when slider is at 0
+        }
         PlayerPrefs.SetFloat("RobotVol", robotLvl);
         _robotInput.text = (_robotSlider.value * 100).ToString("0");
     }
