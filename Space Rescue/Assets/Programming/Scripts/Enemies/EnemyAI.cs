@@ -159,6 +159,8 @@ public class EnemyAI : Entity
     #endregion
 
     [SerializeField] AudioSource _enemyAudioSource;
+    public AudioSource EnemyAudioSource
+    { get { return _enemyAudioSource; } }
     [SerializeField] AudioClip _deathExplosionClip;
 
     public override void Start()

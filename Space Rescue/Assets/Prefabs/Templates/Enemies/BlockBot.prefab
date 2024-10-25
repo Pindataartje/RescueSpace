@@ -352,7 +352,7 @@ MonoBehaviour:
   _deathEffectPrefab: {fileID: 8043584368744636961, guid: 953c254cc5e763b4c8e8bc67df3c95c3,
     type: 3}
   _attachedRobots: []
-  _enemyAudioSource: {fileID: 0}
+  _enemyAudioSource: {fileID: 248803002367728847}
   _deathExplosionClip: {fileID: 8300000, guid: 1dae19e150ff5dd4f9b994c263dcba7e, type: 3}
   _gizmoSize: 0.3
 --- !u!195 &9174439976876299966
@@ -386,10 +386,10 @@ AudioSource:
   m_GameObject: {fileID: 6267110394023435300}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 3532030446744399003, guid: 2ba17c2ae46e42c41a55b0c62c8b205c,
+  OutputAudioMixerGroup: {fileID: -2230694662781874984, guid: 2ba17c2ae46e42c41a55b0c62c8b205c,
     type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

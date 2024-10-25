@@ -3874,11 +3874,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4702703197392661161, guid: d30f9a15ee1af7245917ba4f801ad34a,
-        type: 3}
-      propertyPath: _deathExplosionClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 1dae19e150ff5dd4f9b994c263dcba7e, type: 3}
     - target: {fileID: 4913891989532649836, guid: d30f9a15ee1af7245917ba4f801ad34a,
         type: 3}
       propertyPath: m_Name

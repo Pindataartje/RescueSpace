@@ -2587,6 +2587,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4000215901272192052, guid: 83dd1a2d3cd92534cb688526816b631f,
+        type: 3}
+      propertyPath: _sceneToLoad
+      value: Real Game
+      objectReference: {fileID: 0}
     - target: {fileID: 6115525216649871480, guid: 83dd1a2d3cd92534cb688526816b631f,
         type: 3}
       propertyPath: m_Pivot.x

@@ -12,6 +12,9 @@ public class EnemyAttackController : MonoBehaviour
 
     [SerializeField] Animator _animator;
 
+    [SerializeField] AudioSource attackAudioS;
+
+    [SerializeField] AudioClip attackClip;
 
     private void Start()
     {
@@ -108,6 +111,9 @@ public class EnemyAttackController : MonoBehaviour
         _attacks[0].DoAttack();
 
         _shockWaveController.Shockwave();
+
+        attackAudioS.clip = attackClip;
+        attackAudioS.Play();
     }
 
     public void StopStomp()
@@ -118,11 +124,19 @@ public class EnemyAttackController : MonoBehaviour
     public void LungeStart()
     {
         _attacks[1].DoAttack();
+
+        attackAudioS.clip = attackClip;
+        attackAudioS.Play();
     }
 
     public void LungeStop()
     {
         _attacks[1].StopAttack();
+    }
+
+    public void Growl()
+    {
+        _enemyAi.GetComponent<WolfBot>().DoGrowl();
     }
 
     #endregion

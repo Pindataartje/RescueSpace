@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class WolfBot : EnemyAI
 {
+    [SerializeField] AudioClip _growlClip;
+
     public override void Start()
     {
         base.Start();
@@ -13,6 +12,12 @@ public class WolfBot : EnemyAI
     public override void Update()
     {
         base.Update();
+    }
+
+    public void DoGrowl()
+    {
+        EnemyAudioSource.clip = _growlClip;
+        EnemyAudioSource.Play();
     }
 
     public override void GizmosLogic()
