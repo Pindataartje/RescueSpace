@@ -8,6 +8,8 @@ public class DoorOpener : MonoBehaviour
 
     [SerializeField] List<Entity> _entitiesInRange;
 
+    [SerializeField] AudioSource audioSource;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,11 +19,13 @@ public class DoorOpener : MonoBehaviour
             {
                 _entitiesInRange.Add(entity);
                 _doorAnimator.SetBool("Open", true);
+                audioSource.Play();
             }
         }
         if (other.CompareTag("Player"))
         {
             _doorAnimator.SetBool("Open", true);
+            audioSource.Play();
         }
     }
 
@@ -38,6 +42,7 @@ public class DoorOpener : MonoBehaviour
         if (_entitiesInRange.Count <= 0)
         {
             _doorAnimator.SetBool("Open", false);
+            audioSource.Play();
         }
     }
 }
