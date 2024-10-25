@@ -5,6 +5,7 @@ public class TestRecal : MonoBehaviour
     [SerializeField] LayerMask _recalLayer;
 
     public bool canCheck;
+    private bool hasChecked;
 
     [SerializeField] float _startScale;
     [SerializeField] float _maxScale;
@@ -15,10 +16,18 @@ public class TestRecal : MonoBehaviour
 
     private float _elapsedTime;
 
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip audioClip;
+
     private void Start()
     {
         _originalDetectionScale = transform.localScale;
         _elapsedTime = 0f;
+
+        if (audioSource != null && audioClip != null)
+        {
+            audioSource.clip = audioClip;
+        }
     }
 
     public void DetectionPulse()
@@ -32,10 +41,20 @@ public class TestRecal : MonoBehaviour
         transform.localScale = new Vector3(transform.localScale.x, 0.25f, transform.localScale.z);
     }
 
-    private void Update()
+
+    void Update()
     {
         if (canCheck)
         {
+            // This empty conditional will execute once when canCheck first becomes true
+            if (!hasChecked)
+            {
+                hasChecked = true;
+                audioSource.Play();
+                // Place any "run once" code here
+            }
+
+            // This code will run every frame while canCheck is true
             DetectionPulse();
 
             float detectionRadius = transform.localScale.x / 2;
@@ -48,8 +67,15 @@ public class TestRecal : MonoBehaviour
         }
         else
         {
+            // Reset if canCheck is false
             transform.localScale = _originalDetectionScale;
             _elapsedTime = 0f;
+
+            if (hasChecked)
+            {
+                hasChecked = false; // Reset hasChecked so it can trigger again next time canCheck becomes true
+                audioSource.Stop();
+            }
         }
     }
 

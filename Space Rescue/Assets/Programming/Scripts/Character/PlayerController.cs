@@ -92,6 +92,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject _robotTypePanel;
     [SerializeField] GameObject _pausePanel;
 
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip audioClip;
+
     private void Awake()
     {
         playerInput.actions.FindActionMap("Game").Enable();
@@ -277,6 +280,11 @@ public class PlayerController : MonoBehaviour
         {
             _animator.SetBool("Walking", true);
 
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+
             if (!_isThrow)
             {
                 Quaternion lookRotation = Quaternion.LookRotation(_currentMovement, Vector3.up);
@@ -286,6 +294,11 @@ public class PlayerController : MonoBehaviour
         else
         {
             _animator.SetBool("Walking", false);
+
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
         }
 
         if (EventSystem.current.IsPointerOverGameObject())
