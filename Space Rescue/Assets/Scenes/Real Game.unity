@@ -1168,6 +1168,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7284015245941661136, guid: 5e544623312d29b46b382d218d42cc20,
+        type: 3}
+      propertyPath: m_text
+      value: 'Controls:
+
+        LMB to trow bots
+
+        RMB to collect bots
+
+        Scroll
+        to change bots
+
+        Tab to choose bots to spawn
+
+        + and - to zoom'
+      objectReference: {fileID: 0}
     - target: {fileID: 7554099478086979539, guid: 5e544623312d29b46b382d218d42cc20,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3067,6 +3083,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ScrapBot
+      objectReference: {fileID: 0}
+    - target: {fileID: 8400267121321105273, guid: fbfe4f00f63d22644bdbb48b045a55c3,
+        type: 3}
+      propertyPath: m_Speed
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

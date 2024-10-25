@@ -70,6 +70,11 @@ public class PlayManager : MonoBehaviour
         {
             _killCountTxt.text = $"Enemies left: {_enemyCount - _killCount}/{_enemyCount}";
         }
+
+        if (_enemyCount == 0)
+        {
+            _killCountTxt.text = $"Go to the cockpit console";
+        }
     }
 
     public void OnRobotSpawned(RobotAI robot)
@@ -116,11 +121,13 @@ public class PlayManager : MonoBehaviour
     public void OnWin()
     {
         _navigationSystem.canWin = false;
+        Time.timeScale = 0;
 
         _gameEndSource.clip = _winClip;
         _gameEndSource.Play();
 
         _musicSource.Stop();
+
 
         _winScreen.SetActive(true);
 
